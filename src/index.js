@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { KeycloakProvider } from './context/KeycloakContext';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <KeycloakProvider>
     <App />
-  </React.StrictMode>,
+  </KeycloakProvider>,
   document.getElementById('root')
 );
 

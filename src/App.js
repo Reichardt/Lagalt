@@ -1,25 +1,18 @@
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
-import About from './components/About/About';
+import Login from './components/Login/Login';
+import Profile from './components/Profile/Profile';
 import Timeline from './components/Timeline/Timeline';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <ul>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/timeline">Timeline</Link>
-          </li>
-        </ul>
-
-    
+        <h1>Keycloak App</h1>
         <Switch>
-          <Route path="/about" component={About} />
+          <Route exact path="/" component={Login} />
           <Route path="/timeline" component={Timeline} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     </BrowserRouter>
@@ -27,4 +20,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
