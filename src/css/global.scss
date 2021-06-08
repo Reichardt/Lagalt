@@ -1,0 +1,175 @@
+$bg-white: #fff;
+$content-white: #fff;
+$text-dark: rgba(0, 0, 0, 1);
+$btn-color: #0069d9;
+$text-color: #0069d9;
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Poppins', sans-serif;
+	font-size: 18px;
+}
+
+.m-height-screen {
+	min-height: 100vh;
+}
+
+.m-height-half-screen {
+	min-height: 50vh;
+}
+
+.bg-container {
+	background-color: $bg-white;
+}
+.bg-content {
+	background-color: $content-white;
+}
+
+.text-darken {
+	color: $text-dark;
+}
+
+.text-primary {
+	color: $text-color;
+}
+
+.btn-primary {
+	background-color: $btn-color;
+}
+
+.fire-icon {
+	color: #b73939;
+}
+
+small {
+	font-size: 0.75rem;
+}
+
+.icon-wrapper {
+	font-size: 1.2rem;
+
+	.btn {
+		width: 100%;
+	}
+
+	a {
+		color: $text-dark;
+		letter-spacing: 2px;
+		font-weight: 600;
+		text-transform: capitalize;
+		transition: all 0.2s ease-in-out;
+		text-decoration: none;
+
+		&:hover {
+			color: #0069d9;
+		}
+	}
+
+	.active {
+		color: #0069d9;
+	}
+
+	.badge {
+		font-size: 10px;
+	}
+}
+
+.recent-projects {
+	p {
+		font-weight: 600;
+	}
+}
+
+.recent-project {
+	p {
+		font-size: 1rem;
+	}
+
+	a {
+		font-size: 1rem;
+	}
+}
+
+.post-item {
+	transition: 0.2s all ease-in-out;
+
+	p {
+		font-size: 0.9em;
+	}
+
+	.badge {
+		font-size: 0.7em;
+	}
+
+	&:hover {
+		background-color: #d3d9de;
+		cursor: pointer;
+	}
+
+	.link {
+		color: $text-color;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.category {
+		font-size: 0.8em;
+	}
+}
+
+.center-column {
+	flex: 3;
+}
+
+.right-column {
+	flex: 4;
+}
+
+.sidenav {
+	flex: 1;
+}
+
+.search-input {
+	width: 100%;
+	padding: 0.5rem 1rem;
+	outline: none;
+	border-radius: 10px;
+	font-size: 1rem;
+	transition: all 0.2s ease-in-out;
+	border-color: #d0d5da;
+
+	&:focus {
+		border-color: #5e6974 !important;
+	}
+}
+
+.border-secondary {
+	border-color: #d3d9de !important;
+}
+
+.profile-desc {
+	p {
+		font-size: 1rem;
+		line-height: 30px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.container,
+	.container-lg,
+	.container-md,
+	.container-sm,
+	.container-xl {
+		max-width: 1300px;
+	}
+}

@@ -1,0 +1,176 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+.m-height-screen {
+  min-height: 100vh;
+}
+
+.m-height-half-screen {
+  min-height: 50vh;
+}
+
+.bg-container {
+  background-color: #fff;
+}
+
+.bg-content {
+  background-color: #fff;
+}
+
+.text-darken {
+  color: black;
+}
+
+.text-primary {
+  color: #0069d9;
+}
+
+.btn-primary {
+  background-color: #0069d9;
+}
+
+.fire-icon {
+  color: #b73939;
+}
+
+small {
+  font-size: 0.75rem;
+}
+
+.icon-wrapper {
+  font-size: 1.2rem;
+}
+
+.icon-wrapper .btn {
+  width: 100%;
+}
+
+.icon-wrapper a {
+  color: black;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: capitalize;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.icon-wrapper a:hover {
+  color: #0069d9;
+}
+
+.icon-wrapper .active {
+  color: #0069d9;
+}
+
+.icon-wrapper .badge {
+  font-size: 10px;
+}
+
+.recent-projects p {
+  font-weight: 600;
+}
+
+.recent-project p {
+  font-size: 1rem;
+}
+
+.recent-project a {
+  font-size: 1rem;
+}
+
+.post-item {
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+}
+
+.post-item p {
+  font-size: 0.9em;
+}
+
+.post-item .badge {
+  font-size: 0.7em;
+}
+
+.post-item:hover {
+  background-color: #d3d9de;
+  cursor: pointer;
+}
+
+.post-item .link {
+  color: #0069d9;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.post-item .link:hover {
+  text-decoration: underline;
+}
+
+.post-item .category {
+  font-size: 0.8em;
+}
+
+.center-column {
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+}
+
+.right-column {
+  -webkit-box-flex: 4;
+      -ms-flex: 4;
+          flex: 4;
+}
+
+.sidenav {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border-color: #d0d5da;
+}
+
+.search-input:focus {
+  border-color: #5e6974 !important;
+}
+
+.border-secondary {
+  border-color: #d3d9de !important;
+}
+
+.profile-desc p {
+  font-size: 1rem;
+  line-height: 30px;
+}
+
+@media (min-width: 1200px) {
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl {
+    max-width: 1300px;
+  }
+}
+/*# sourceMappingURL=global.css.map */
