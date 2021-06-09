@@ -5,10 +5,14 @@ import './index.css';
 import './css/global.css';
 import App from './App';
 import { KeycloakProvider } from './context/KeycloakContext';
+import store from './store';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
 	<KeycloakProvider>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</KeycloakProvider>,
 	document.getElementById('root')
 );

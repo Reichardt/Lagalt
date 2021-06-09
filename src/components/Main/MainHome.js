@@ -1,17 +1,27 @@
-import Posts from '../Posts/Posts';
-import PostCreate from '../Posts/PostCreate';
-import { usePosts } from '../../context/PostsContext';
+import Projects from '../Projects/Projects';
+import ProjectCreate from '../Projects/ProjectCreate';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	fetchProjects,
+	projectSelector,
+} from '../../features/Project/projectSlice';
+import { useEffect } from 'react';
 
 function MainHome() {
-	const { posts } = usePosts();
+	const dispatch = useDispatch();
+	const { projects, loading } = useSelector(projectSelector);
+
+	useEffect(() => {
+		dispatch(fetchProjects());
+	}, [dispatch]);
 
 	return (
-		<div>
-			<div className="bg-content center-column border-bottom border-start border-end border-secondary text-darken p-3">
+		<div className="col-lg-6">
+			<div className="bg-content border-bottom border-start border-end border-secondary text-darken p-3">
 				<p className="fw-bold m-0">Home</p>
 			</div>
-			<PostCreate />
-			<Posts posts={posts} />
+			<ProjectCreate />
+			<Projects projects={projects} loading={loading} />
 		</div>
 	);
 }

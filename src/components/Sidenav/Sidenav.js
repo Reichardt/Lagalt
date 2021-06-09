@@ -11,7 +11,7 @@ import SideRecent from './SideRecent';
 function Sidenav({ side }) {
 	const renderLeftSide = () => {
 		return (
-			<div className="bg-content sidenav border-dark text-darken sticky-top align-self-start p-4">
+			<div className="bg-content col-lg-3 border-dark text-darken sticky-top align-self-start p-4">
 				<SidenavItem title={'home'} icon={<FaHome />} link={'/'} />
 				<SidenavItem
 					title={'hot'}
@@ -35,7 +35,7 @@ function Sidenav({ side }) {
 
 	const renderRightSide = () => {
 		return (
-			<div className="bg-content border-dark sidenav text-darken sticky-top align-self-start pt-4 ms-3">
+			<div className="bg-content border-dark col-lg-3 text-darken sticky-top align-self-start pt-4">
 				<Search />
 				<SideRecent />
 			</div>

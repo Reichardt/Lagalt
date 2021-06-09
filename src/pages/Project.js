@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Post() {
-	return <div>Post Page</div>;
+	return <div>Project Page</div>;
 }
 
 export default Post;

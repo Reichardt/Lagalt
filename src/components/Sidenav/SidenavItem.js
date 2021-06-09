@@ -2,8 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 function SidenavItem({ title, icon, link }) {
+	const marginStyle = {
+		marginBottom: title !== 'Profile' && '1.5em',
+	};
+
 	const renderItemTitle = () => {
-		if (title == 'notifications') {
+		if (title === 'notifications') {
 			return (
 				<>
 					{title} <span className="badge bg-primary rounded-circle">0</span>
@@ -13,7 +17,7 @@ function SidenavItem({ title, icon, link }) {
 		return <>{title}</>;
 	};
 	return (
-		<div className="mb-4 d-flex align-items-center icon-wrapper">
+		<div style={marginStyle} className="d-flex align-items-center icon-wrapper">
 			<NavLink activeClassName="active" exact to={link}>
 				{icon}
 				<span className="ms-3">{renderItemTitle()}</span>

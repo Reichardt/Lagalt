@@ -2,7 +2,7 @@ import React from 'react';
 import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-function PostCreate() {
+function ProjectCreate() {
 	return (
 		<div className="bg-light border border-secondary text-darken p-3 d-flex justify-content-between align-items-center">
 			<div className="d-flex align-items-center">
@@ -16,4 +16,4 @@ function PostCreate() {
 	);
 }
 
-export default PostCreate;
+export default ProjectCreate;

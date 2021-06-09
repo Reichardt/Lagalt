@@ -55,10 +55,6 @@ small {
 .icon-wrapper {
 	font-size: 1.2rem;
 
-	.btn {
-		width: 100%;
-	}
-
 	a {
 		color: $text-dark;
 		letter-spacing: 2px;
@@ -137,6 +133,21 @@ small {
 
 .sidenav {
 	flex: 1;
+}
+
+.search-wrapper {
+	flex: 5;
+}
+
+.filter-icon {
+	flex: 1;
+	font-size: 1.3rem;
+	transition: all 0.3 ease-in-out;
+
+	&:hover {
+		color: $text-color;
+		cursor: pointer;
+	}
 }
 
 .search-input {

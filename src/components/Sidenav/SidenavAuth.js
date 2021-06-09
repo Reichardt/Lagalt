@@ -1,12 +1,18 @@
-import React from 'react';
 import { useKeycloak } from '../../context/KeycloakContext';
-import { useProfile } from '../../context/ProfileContext';
 import SidenavItem from './SidenavItem';
 import { FaUserCircle } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	setProfile,
+	setId,
+	profileSelector,
+} from '../../features/Profile/profileSlice';
+import { useEffect } from 'react';
 
 function SidenavAuth() {
 	const { keyCloak, Login, Logout } = useKeycloak();
-	const { profile } = useProfile();
+	const dispatch = useDispatch();
+	const { profile } = useSelector(profileSelector);
 
 	const handleLogin = () => {
 		Login();
@@ -16,10 +22,19 @@ function SidenavAuth() {
 		Logout();
 	};
 
+	useEffect(() => {
+		if (keyCloak.authenticated) {
+			keyCloak.loadUserProfile().then(profile => {
+				dispatch(setId(keyCloak.subject));
+				dispatch(setProfile(profile));
+			});
+		}
+	}, [dispatch, keyCloak]);
+
 	return (
 		<div style={authStyles} className="icon-wrapper mt-3">
-			{keyCloak.authenticated ? (
-				<>
+			{keyCloak.authenticated && profile ? (
+				<div className="d-flex justify-content-between align-items-center">
 					<SidenavItem
 						title={'Profile'}
 						link={'/profile/' + profile.username}
@@ -31,7 +46,7 @@ function SidenavAuth() {
 					>
 						Logout
 					</button>
-				</>
+				</div>
 			) : (
 				<button className="btn btn-primary text-center" onClick={handleLogin}>
 					Log in

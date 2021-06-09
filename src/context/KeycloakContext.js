@@ -65,6 +65,7 @@ export function KeycloakProvider({ children }) {
 	const value = {
 		keyCloak,
 		initialising,
+		error,
 		Login,
 		Logout,
 	};

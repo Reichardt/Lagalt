@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
-import { useProfile } from '../../context/ProfileContext';
 import ProfileImage from '../Profile/ProfileImage';
 import ProfileDesc from '../Profile/ProfileDesc';
 import ProfileSkills from '../Profile/ProfileSkills';
 import ProfilePortfolio from '../Profile/ProfilePortfolio';
+import { useSelector } from 'react-redux';
+import { profileSelector } from '../../features/Profile/profileSlice';
 
 function MainProfile({ userParam }) {
-	const { profile } = useProfile();
 	const [checked, setChecked] = useState(false);
+	const { profile } = useSelector(profileSelector);
 
 	const handleSwitchChange = () => {
 		setChecked(!checked);
 	};
 
 	return (
-		<div className="right-column border-bottom border-start border-end border-secondary">
+		<div className="col-lg-9 border-bottom border-start border-end border-secondary">
 			<div className="bg-content border-bottom border-secondary d-flex justify-content-between text-darken p-3">
-				{profile && userParam == profile.username && (
+				{profile && userParam === profile.username && (
 					<>
 						<p className="fw-bold m-0">Profile - {profile.username}</p>
 						<div className="form-check form-switch">

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-function PostItem({ post }) {
+function ProjectItem({ project }) {
 	const history = useHistory();
 
 	const handlePostClick = () => {
-		history.push('/post/' + post.id);
+		history.push('/project/' + project.id);
 	};
 
 	const handleLinkClick = e => {
@@ -26,7 +26,7 @@ function PostItem({ post }) {
 				</div>
 				<span className="members">0 / 4</span>
 			</div>
-			<p>{post.title}</p>
+			<p>{project.title}</p>
 			<div className="text-end">
 				<small>
 					Posted by{' '}
@@ -39,4 +39,4 @@ function PostItem({ post }) {
 	);
 }
 
-export default PostItem;
+export default ProjectItem;
