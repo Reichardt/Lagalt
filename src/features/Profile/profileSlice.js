@@ -7,6 +7,7 @@ export const profileSlice = createSlice({
 		profile: null,
 		loading: false,
 		error: false,
+		authenticated: false,
 	},
 	reducers: {
 		setId: (state, { payload }) => {

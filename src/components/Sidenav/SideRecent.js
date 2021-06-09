@@ -9,7 +9,7 @@ function SideRecent() {
 			</div>
 			<div className="recent-project border border-secondary p-3 d-flex justify-content-between align-items-center">
 				<p className="mb-0">Dummy project</p>
-				<Link to="/post">View</Link>
+				<Link to="/project/1">View</Link>
 			</div>
 		</Fragment>
 	);

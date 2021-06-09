@@ -13,7 +13,9 @@ function MainCreate() {
 	return (
 		<div className="col-lg-9 col-lg-9 border-bottom border-start border-end border-secondary">
 			<div className="bg-content border-bottom border-secondary d-flex justify-content-between text-darken p-3">
-				<p className="fw-bold m-0">Create a new project</p>
+				<div className="d-flex align-items-center">
+					<p className="fw-bold m-0 ms-2">Create a new project</p>
+				</div>
 			</div>
 		</div>
 	);
