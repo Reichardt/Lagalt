@@ -1,31 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import ProjectsAPI from "../../data/ProjectsAPI";
 
+export const fetchAllProjects = createAsyncThunk(
+    "project/fetchAllProjects",
+    async () => {
+        return ProjectsAPI.getAllProjects();
+    }
+);
 export const projectSlice = createSlice({
-	name: 'project',
-	initialState: {
-		projects: [],
-		loading: false,
-		error: null,
-	},
-	reducers: {
-		fetchProjects: state => {
-			state.loading = true;
-		},
-		setProjects: (state, { payload }) => {
-			state.projects = payload;
-			state.loading = false;
-			state.error = false;
-		},
-		setProjectError: state => {
-			state.loading = false;
-			state.error = true;
-		},
-	},
+    name: "project",
+    initialState: {
+        projects: [],
+        loading: false,
+        error: null,
+    },
+    extraReducers: {
+        [fetchAllProjects.pending]: (state) => {
+            state.loading = true;
+        },
+        [fetchAllProjects.fulfilled]: (state, action) => {
+            state.projects = action.payload;
+            state.loading = false;
+        },
+    },
 });
 
-export const { fetchProjects, setProjects, setProjectError } =
-	projectSlice.actions;
-
-export const projectSelector = state => state.project;
+export const projectSelector = (state) => state.project;
 
 export default projectSlice.reducer;

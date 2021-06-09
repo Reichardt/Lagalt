@@ -7,180 +7,197 @@ $text-color: #0069d9;
 *,
 *::before,
 *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
-	font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
 }
 
 .m-height-screen {
-	min-height: 100vh;
+    min-height: 100vh;
 }
 
 .m-height-half-screen {
-	min-height: 50vh;
+    min-height: 50vh;
 }
 
 .bg-container {
-	background-color: $bg-white;
+    background-color: $bg-white;
 }
 .bg-content {
-	background-color: $content-white;
+    background-color: $content-white;
 }
 
 .text-darken {
-	color: $text-dark;
+    color: $text-dark;
 }
 
 .text-primary {
-	color: $text-color;
+    color: $text-color;
 }
 
 .btn-primary {
-	background-color: $btn-color;
+    background-color: $btn-color;
 }
 
 .fire-icon {
-	color: #b73939;
+    color: #b73939;
 }
 
 small {
-	font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 .icon-wrapper {
-	font-size: 1.2rem;
+    font-size: 1.2rem;
 
-	a {
-		color: $text-dark;
-		letter-spacing: 2px;
-		font-weight: 600;
-		text-transform: capitalize;
-		transition: all 0.2s ease-in-out;
-		text-decoration: none;
+    a {
+        color: $text-dark;
+        letter-spacing: 1px;
+        font-weight: 600;
+        text-transform: capitalize;
+        transition: all 0.2s ease-in-out;
+        text-decoration: none;
 
-		&:hover {
-			color: #0069d9;
-		}
-	}
+        &:hover {
+            color: #0069d9;
+        }
+    }
 
-	.active {
-		color: #0069d9;
-	}
+    .active {
+        color: #0069d9;
+    }
 
-	.badge {
-		font-size: 10px;
-	}
+    .badge {
+        font-size: 10px;
+    }
 }
 
 .recent-projects {
-	p {
-		font-weight: 600;
-	}
+    p {
+        font-weight: 600;
+    }
 }
 
 .recent-project {
-	p {
-		font-size: 1rem;
-	}
+    p {
+        font-size: 1rem;
+    }
 
-	a {
-		font-size: 1rem;
-	}
+    a {
+        font-size: 1rem;
+    }
 }
 
-.post-item {
-	transition: 0.2s all ease-in-out;
+.project-item {
+    transition: 0.2s all ease-in-out;
 
-	p {
-		font-size: 0.9em;
-	}
+    p {
+        font-size: 0.9em;
+    }
 
-	.badge {
-		font-size: 0.7em;
-	}
+    .badge {
+        font-size: 0.7em;
+    }
 
-	&:hover {
-		background-color: #d3d9de;
-		cursor: pointer;
-	}
+    &:hover {
+        background-color: #d3d9de;
+        cursor: pointer;
+    }
 
-	.link {
-		color: $text-color;
-		transition: all 0.3s ease-in-out;
+    .link {
+        color: $text-color;
+        transition: all 0.3s ease-in-out;
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 
-	.category {
-		font-size: 0.8em;
-	}
+    .category {
+        font-size: 0.8em;
+        font-weight: 600;
+    }
 }
 
 .center-column {
-	flex: 3;
+    flex: 3;
 }
 
 .right-column {
-	flex: 4;
+    flex: 4;
 }
 
 .sidenav {
-	flex: 1;
+    flex: 1;
 }
 
 .search-wrapper {
-	flex: 5;
+    flex: 5;
+
+    .suggestions {
+        width: 100%;
+        z-index: 10;
+        background: #fff;
+        font-size: 1rem;
+
+        .suggestion {
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #d3d9de;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .filter-icon {
-	flex: 1;
-	font-size: 1.3rem;
-	transition: all 0.3 ease-in-out;
+    flex: 1;
+    font-size: 1.3rem;
+    transition: all 0.3 ease-in-out;
 
-	&:hover {
-		color: $text-color;
-		cursor: pointer;
-	}
+    &:hover {
+        color: $text-color;
+        cursor: pointer;
+    }
 }
 
 .search-input {
-	width: 100%;
-	padding: 0.5rem 1rem;
-	outline: none;
-	border-radius: 10px;
-	font-size: 1rem;
-	transition: all 0.2s ease-in-out;
-	border-color: #d0d5da;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    border-color: #d0d5da;
 
-	&:focus {
-		border-color: #5e6974 !important;
-	}
+    &:focus {
+        border-color: #5e6974 !important;
+    }
 }
 
 .border-secondary {
-	border-color: #d3d9de !important;
+    border-color: #d3d9de !important;
 }
 
 .profile-desc {
-	p {
-		font-size: 1rem;
-		line-height: 30px;
-	}
+    p {
+        font-size: 1rem;
+        line-height: 30px;
+    }
 }
 
 @media (min-width: 1200px) {
-	.container,
-	.container-lg,
-	.container-md,
-	.container-sm,
-	.container-xl {
-		max-width: 1300px;
-	}
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1300px;
+    }
 }

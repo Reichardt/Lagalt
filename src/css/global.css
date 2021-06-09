@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
 }
 
@@ -54,7 +54,7 @@ small {
 
 .icon-wrapper a {
   color: black;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-weight: 600;
   text-transform: capitalize;
   -webkit-transition: all 0.2s ease-in-out;
@@ -86,36 +86,37 @@ small {
   font-size: 1rem;
 }
 
-.post-item {
+.project-item {
   -webkit-transition: 0.2s all ease-in-out;
   transition: 0.2s all ease-in-out;
 }
 
-.post-item p {
+.project-item p {
   font-size: 0.9em;
 }
 
-.post-item .badge {
+.project-item .badge {
   font-size: 0.7em;
 }
 
-.post-item:hover {
+.project-item:hover {
   background-color: #d3d9de;
   cursor: pointer;
 }
 
-.post-item .link {
+.project-item .link {
   color: #0069d9;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
-.post-item .link:hover {
+.project-item .link:hover {
   text-decoration: underline;
 }
 
-.post-item .category {
+.project-item .category {
   font-size: 0.8em;
+  font-weight: 600;
 }
 
 .center-column {
@@ -142,6 +143,24 @@ small {
           flex: 5;
 }
 
+.search-wrapper .suggestions {
+  width: 100%;
+  z-index: 10;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.search-wrapper .suggestions .suggestion {
+  padding: 0.5rem 1rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-wrapper .suggestions .suggestion:hover {
+  background-color: #d3d9de;
+  cursor: pointer;
+}
+
 .filter-icon {
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -160,7 +179,6 @@ small {
   width: 100%;
   padding: 0.5rem 1rem;
   outline: none;
-  border-radius: 10px;
   font-size: 1rem;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
