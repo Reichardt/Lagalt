@@ -22,6 +22,10 @@ export const projectSlice = createSlice({
             state.projects = action.payload;
             state.loading = false;
         },
+        [fetchAllProjects.rejected]: (state, action) => {
+            console.log(action.payload);
+            state.error = action.payload;
+        },
     },
 });
 
