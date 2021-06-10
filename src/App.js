@@ -9,7 +9,7 @@ import Categories from './pages/Categories';
 function App() {
 	return (
 		<BrowserRouter>
-			<div className="App bg-container-fluid">
+			<div className="app">
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/home" component={Home} />
