@@ -1,5 +1,5 @@
 import React from 'react';
-import MainCreate from '../components/Main/MainCreate';
+import MainCreate from '../components/Create/MainCreate';
 import Sidenav from '../components/Sidenav/Sidenav';
 
 function Create() {

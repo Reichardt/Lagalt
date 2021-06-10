@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidenav from '../components/Sidenav/Sidenav';
-import MainProfile from '../components/Main/MainProfile';
+import MainProfile from '../components/Profile/MainProfile';
 
 function Profile({ match }) {
 	return (
