@@ -9,8 +9,8 @@ function MainProfile({ userParam }) {
 	const { profile } = useSelector(profileSelector);
 
 	return (
-		<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary">
-			<div className="border-bottom border-secondary d-flex justify-content-between text-darken p-3">
+		<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary profile">
+			<div className="border-bottom border-secondary d-flex justify-content-between text-darken p-3 profile-header">
 				{profile && <p className="fw-bold m-0">Profile - {profile.username}</p>}
 			</div>
 			<div className="row pt-5">

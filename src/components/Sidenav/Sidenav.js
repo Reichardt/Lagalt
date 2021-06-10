@@ -2,28 +2,30 @@ import React from 'react';
 import Search from '../Search/Search';
 import SidenavAuth from './SidenavAuth';
 import SidenavItem from './SidenavItem';
-import { FaHome } from 'react-icons/fa';
+import SidenavLogo from './SidenavLogo';
+import { HouseDoorFill, ListTask } from 'react-bootstrap-icons';
 import { FaFire } from 'react-icons/fa';
-
-import { FaElementor } from 'react-icons/fa';
 import SideRecent from './SideRecent';
 
 function Sidenav({ side }) {
 	const renderLeftSide = () => {
 		return (
-			<div className="left-nav col-lg-3 border-dark text-darken sticky-top align-self-start p-4">
-				<SidenavItem title={'home'} icon={<FaHome />} link={'/'} />
-				<SidenavItem
-					title={'hot'}
-					icon={<FaFire className="fire-icon" />}
-					link={'/hot'}
-				/>
-				<SidenavItem
-					title={'categories'}
-					icon={<FaElementor />}
-					link={'/categories'}
-				/>
-				<SidenavAuth />
+			<div className="left-nav col-lg-2 offset-lg-1 border-dark text-darken">
+				<SidenavLogo />
+				<div className="sticky-top align-self-start pt-3">
+					<SidenavItem title={'home'} icon={<HouseDoorFill />} link={'/'} />
+					<SidenavItem
+						title={'hot'}
+						icon={<FaFire className="fire-icon" />}
+						link={'/hot'}
+					/>
+					<SidenavItem
+						title={'categories'}
+						icon={<ListTask />}
+						link={'/categories'}
+					/>
+					<SidenavAuth />
+				</div>
 			</div>
 		);
 	};

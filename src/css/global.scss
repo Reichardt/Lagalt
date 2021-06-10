@@ -1,9 +1,10 @@
-$bg-white: #fff;
-$bg-fluid: #fafafa;
-$content-white: #fff;
-$text-dark: rgba(0, 0, 0, 1);
-$btn-color: #0069d9;
-$text-color: #0069d9;
+$color-white: #fff;
+$color-light: #fafafa;
+$color-dark: rgba(0, 0, 0, 1);
+$color-purple: #4338ca;
+$color-blue: #0069d9;
+$color-red: #b73939;
+$color-grey: #d3d9de;
 
 *,
 *::before,
@@ -18,39 +19,42 @@ body {
 	font-size: 18px;
 }
 
-.m-height-screen {
-	min-height: 100vh;
-}
-
-.m-height-half-screen {
-	min-height: 50vh;
-}
-
-.bg-container-fluid {
-	background-color: $bg-fluid;
+.app {
+	background-color: $color-light;
 }
 
 .bg-container {
-	background-color: $bg-white;
+	background-color: $color-white;
 }
+
 .bg-content {
-	background-color: $content-white;
+	background-color: $color-white;
+}
+
+.bg-primary {
+	background-color: $color-purple !important;
 }
 
 .text-darken {
-	color: $text-dark;
+	color: $color-dark;
 }
 
 .text-primary {
-	color: $text-color;
+	color: $color-purple !important;
 }
 
 .btn-primary {
-	background-color: $btn-color;
+	background-color: $color-purple;
+	border: 1px solid $color-purple;
+	font-size: 0.8em;
+
+	&:hover {
+		background-color: darken($color-purple, 20%);
+	}
 }
 
 .fire-icon {
-	color: #b73939;
+	color: $color-red;
 }
 
 small {
@@ -58,27 +62,40 @@ small {
 }
 
 .icon-wrapper {
-	font-size: 1em;
+	font-size: 1.2rem;
+	font-weight: 600;
+	font-family: 'Open Sans', sans-serif;
 
 	a {
-		color: $text-dark;
-		font-weight: 600;
+		color: $color-dark;
 		text-transform: capitalize;
-		transition: all 0.2s ease-in-out;
+		transition: all 0.1s ease-in-out;
 		text-decoration: none;
-		font-family: 'Open Sans', sans-serif;
 
 		&:hover {
-			color: #0069d9;
+			color: $color-purple;
 		}
 	}
 
 	.active {
-		color: #0069d9;
+		color: $color-purple;
 	}
 
 	.badge {
 		font-size: 10px;
+	}
+
+	.logout,
+	.login {
+		span {
+			cursor: pointer;
+
+			transition: all 0.1s ease-in-out;
+
+			&:hover {
+				color: $color-purple;
+			}
+		}
 	}
 }
 
@@ -99,11 +116,12 @@ small {
 }
 
 .project-item {
-	transition: 0.2s all ease-in-out;
+	transition: 0.1s all ease-in-out;
 
 	p {
 		font-size: 0.9em;
-		font-family: 'Open Sans', sans-serif;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 500;
 	}
 
 	.badge {
@@ -115,12 +133,12 @@ small {
 	}
 
 	&:hover {
-		background-color: #d3d9de;
+		background-color: $color-grey;
 		cursor: pointer;
 	}
 
 	.link {
-		color: $text-color;
+		color: $color-blue;
 		transition: all 0.3s ease-in-out;
 
 		&:hover {
@@ -128,9 +146,13 @@ small {
 		}
 	}
 
-	.category {
-		font-size: 0.8em;
-		font-weight: 600;
+	.tags {
+		font-size: 0.9em;
+
+		.tag {
+			font-size: 0.8em;
+			font-weight: 500;
+		}
 	}
 }
 
@@ -152,7 +174,7 @@ small {
 	.suggestions {
 		width: 100%;
 		z-index: 10;
-		background: #fff;
+		background: $color-white;
 		font-size: 1rem;
 
 		.suggestion {
@@ -160,7 +182,7 @@ small {
 			transition: all 0.3s ease-in-out;
 
 			&:hover {
-				background-color: #d3d9de;
+				background-color: $color-grey;
 				cursor: pointer;
 			}
 		}
@@ -173,7 +195,7 @@ small {
 	transition: all 0.3 ease-in-out;
 
 	&:hover {
-		color: $text-color;
+		color: $color-purple;
 		cursor: pointer;
 	}
 }
@@ -184,35 +206,43 @@ small {
 	outline: none;
 	font-size: 1rem;
 	transition: all 0.2s ease-in-out;
-	border-color: #d0d5da;
 
 	&:focus {
-		border-color: #5e6974 !important;
+		border-color: darken($color-grey, 50%) !important;
 	}
 }
 
 .border-secondary {
-	border-color: #d3d9de !important;
+	border-color: $color-grey !important;
 }
-
-.profile-desc {
-	p,
-	textarea {
-		font-size: 1rem;
-		line-height: 30px;
+.profile {
+	.profile-header {
+		p {
+			text-transform: capitalize;
+		}
 	}
-
-	textarea {
-		width: 100%;
-		height: 17rem;
-
-		&::-webkit-scrollbar {
-			width: 0; /* Remove scrollbar space */
-			background: transparent; /* Optional: just make scrollbar invisible */
+	.profile-desc {
+		p,
+		textarea {
+			font-size: 1rem;
+			line-height: 30px;
 		}
 
-		&::-webkit-scrollbar-thumb {
-			background: #ff0000;
+		textarea {
+			width: 100%;
+			height: 17rem;
+			margin-bottom: 1rem;
+
+			&::-webkit-scrollbar {
+				width: 0; /* Remove scrollbar space */
+				background: transparent; /* Optional: just make scrollbar invisible */
+			}
+		}
+	}
+
+	.form-switch input {
+		&:focus {
+			box-shadow: none;
 		}
 	}
 }

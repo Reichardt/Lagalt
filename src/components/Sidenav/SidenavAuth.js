@@ -1,78 +1,89 @@
-import { useKeycloak } from "../../context/KeycloakContext";
-import SidenavItem from "./SidenavItem";
-import { FaUserCircle } from "react-icons/fa";
-import { FaEnvelopeOpenText } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useKeycloak } from '../../context/KeycloakContext';
+import SidenavItem from './SidenavItem';
 import {
-    setProfile,
-    setId,
-    profileSelector,
-} from "../../features/Profile/profileSlice";
-import { useEffect } from "react";
+	PersonCircle,
+	BoxArrowRight,
+	BoxArrowLeft,
+	Envelope,
+	HandThumbsUp,
+} from 'react-bootstrap-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	setProfile,
+	setId,
+	profileSelector,
+} from '../../features/Profile/profileSlice';
+import { useEffect } from 'react';
 
 function SidenavAuth() {
-    const { keyCloak, Login, Logout } = useKeycloak();
-    const dispatch = useDispatch();
-    const { profile } = useSelector(profileSelector);
+	const { keyCloak, Login, Logout } = useKeycloak();
+	const dispatch = useDispatch();
+	const { profile } = useSelector(profileSelector);
 
-    const handleLogin = () => {
-        Login();
-    };
+	const handleLogin = () => {
+		Login();
+	};
 
-    const handleLogout = () => {
-        Logout();
-    };
+	const handleLogout = () => {
+		Logout();
+	};
 
-    useEffect(() => {
-        if (keyCloak.authenticated) {
-            keyCloak.loadUserProfile().then((profile) => {
-                dispatch(setId(keyCloak.subject));
-                dispatch(setProfile(profile));
-            });
-        }
-    }, [dispatch, keyCloak]);
+	useEffect(() => {
+		if (keyCloak.authenticated) {
+			keyCloak.loadUserProfile().then(profile => {
+				dispatch(setId(keyCloak.subject));
+				dispatch(setProfile(profile));
+			});
+		}
+	}, [dispatch, keyCloak]);
 
-    return (
-        <div style={authStyles} className='icon-wrapper mt-3'>
-            {keyCloak.authenticated && profile ? (
-                <>
-                    <SidenavItem
-                        title={"recommended"}
-                        icon={<FaEnvelopeOpenText />}
-                        link={"/recommended"}
-                    />
-                    <SidenavItem
-                        title={"notifications"}
-                        icon={<FaEnvelopeOpenText />}
-                        link={"/notifications"}
-                    />
-                    <div className='d-flex justify-content-between align-items-center'>
-                        <SidenavItem
-                            title={"Profile"}
-                            link={"/profile/" + profile.username}
-                            icon={<FaUserCircle />}
-                        />
-                        <button
-                            className='btn btn-primary text-center'
-                            onClick={handleLogout}>
-                            Logout
-                        </button>
-                    </div>
-                </>
-            ) : (
-                <button
-                    className='btn btn-primary text-center'
-                    onClick={handleLogin}>
-                    Log in
-                </button>
-            )}
-        </div>
-    );
+	return (
+		<div style={authStyles} className="icon-wrapper mt-3">
+			{keyCloak.authenticated && profile ? (
+				<>
+					<SidenavItem
+						title={'recommended'}
+						icon={<HandThumbsUp />}
+						link={'/recommended'}
+					/>
+					<SidenavItem
+						title={'notifications'}
+						icon={<Envelope />}
+						link={'/notifications'}
+					/>
+					<SidenavItem
+						title={'Profile'}
+						link={'/profile/' + profile.username}
+						icon={<PersonCircle />}
+					/>
+					<div
+						className="d-flex align-items-center icon-wrapper logout"
+						onClick={handleLogout}
+					>
+						<span>
+							<BoxArrowLeft />
+							<span className="ms-2">Logout</span>
+						</span>
+					</div>
+				</>
+			) : (
+				<div
+					className="d-flex align-items-center icon-wrapper login"
+					onClick={handleLogin}
+				>
+					<span>
+						<BoxArrowRight />
+						<span className="ms-2">Login</span>
+					</span>
+				</div>
+			)}
+		</div>
+	);
 }
 
 export default SidenavAuth;
 
 const authStyles = {
-    display: "flex",
-    flexDirection: "column",
+	display: 'flex',
+	flexDirection: 'column',
 };
