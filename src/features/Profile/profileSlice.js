@@ -3,9 +3,9 @@ import UserAPI from '../../data/UserAPI';
 
 export const addNewProfile = createAsyncThunk(
 	'profile/addNewProfile',
-	async (user, token) => {
+	async data => {
 		try {
-			return UserAPI.addUser(user, token);
+			return UserAPI.addUser(data[0], data[1]);
 		} catch (err) {
 			console.log(err);
 		}
