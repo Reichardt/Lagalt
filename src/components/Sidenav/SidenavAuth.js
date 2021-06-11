@@ -9,9 +9,10 @@ import {
 } from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	setProfile,
-	setId,
 	profileSelector,
+	addNewProfile,
+	getProfile,
+	setProfile,
 } from '../../features/Profile/profileSlice';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -19,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 function SidenavAuth() {
 	const { keyCloak, Login, Logout } = useKeycloak();
 	const dispatch = useDispatch();
-	const { profile } = useSelector(profileSelector);
+	const { userProfile, loading, error } = useSelector(profileSelector);
 	const history = useHistory();
 
 	const handleLogin = () => {
@@ -28,21 +29,28 @@ function SidenavAuth() {
 
 	const handleLogout = () => {
 		history.push('/');
+		dispatch(setProfile(null));
 		Logout();
 	};
 
 	useEffect(() => {
-		if (keyCloak.authenticated) {
+		console.log(keyCloak.token);
+		if (keyCloak.authenticated && !userProfile) {
 			keyCloak.loadUserProfile().then(profile => {
-				dispatch(setId(keyCloak.subject));
-				dispatch(setProfile(profile));
+				dispatch(getProfile(keyCloak.subject));
+				if (!userProfile) {
+					dispatch(addNewProfile(profile, keyCloak.token));
+				} else {
+					dispatch(setProfile(profile));
+				}
 			});
 		}
 	}, [dispatch, keyCloak]);
 
 	return (
 		<div style={authStyles} className="icon-wrapper mt-3">
-			{keyCloak.authenticated && profile ? (
+			{}
+			{keyCloak.authenticated && userProfile ? (
 				<>
 					<SidenavItem
 						title={'recommended'}
@@ -56,7 +64,7 @@ function SidenavAuth() {
 					/>
 					<SidenavItem
 						title={'Profile'}
-						link={'/profile/' + profile.username}
+						link={'/profile/' + userProfile.username}
 						icon={<PersonCircle />}
 					/>
 					<div

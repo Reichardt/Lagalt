@@ -1,27 +1,65 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import UserAPI from '../../data/UserAPI';
+
+export const addNewProfile = createAsyncThunk(
+	'profile/addNewProfile',
+	async (user, token) => {
+		try {
+			return UserAPI.addUser(user, token);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+);
+
+export const getProfile = createAsyncThunk('profile/getProfile', async id => {
+	try {
+		const user = UserAPI.getUser(id);
+		return user;
+	} catch (err) {
+		console.log(err);
+	}
+});
 
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
 		id: null,
-		profile: null,
+		userProfile: null,
 		loading: false,
-		error: false,
-		authenticated: false,
+		error: null,
 	},
 	reducers: {
-		setId: (state, { payload }) => {
-			state.id = payload;
+		setProfile: (state, action) => {
+			state.profile = action.payload;
 		},
-		setProfile: (state, { payload }) => {
-			state.profile = payload;
+	},
+	extraReducers: {
+		[addNewProfile.pending]: state => {
+			state.loading = true;
+		},
+		[addNewProfile.fulfilled]: (state, action) => {
+			state.userProfile = action.payload;
 			state.loading = false;
-			state.error = false;
+		},
+		[addNewProfile.rejected]: (state, action) => {
+			state.error = action.payload;
+		},
+		[getProfile.pending]: state => {
+			state.loading = true;
+		},
+		[getProfile.fulfilled]: (state, action) => {
+			state.userProfile = action.payload;
+			state.loading = false;
+		},
+		[getProfile.rejected]: (state, action) => {
+			state.error = action.payload;
+			state.loading = false;
 		},
 	},
 });
 
-export const { setProfile, setId } = profileSlice.actions;
+export const { setProfile } = profileSlice.actions;
 
 export const profileSelector = state => state.profile;
 
