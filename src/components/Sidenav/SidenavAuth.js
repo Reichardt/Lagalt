@@ -36,19 +36,20 @@ function SidenavAuth() {
 	useEffect(() => {
 		if (keyCloak.authenticated && !userProfile) {
 			keyCloak.loadUserProfile().then(profile => {
-				dispatch(getProfile(keyCloak.subject));
-				if (!userProfile) {
-					dispatch(addNewProfile([profile, keyCloak.token]));
-				} else {
-					dispatch(setProfile(profile));
-				}
+				dispatch(getProfile(keyCloak.subject)).then(prof => {
+					if (!prof) {
+						dispatch(addNewProfile([profile, keyCloak.token]));
+					} else {
+						dispatch(setProfile(profile));
+					}
+				});
+				
 			});
 		}
 	}, [dispatch, keyCloak]);
 
 	return (
 		<div style={authStyles} className="icon-wrapper mt-3">
-			{}
 			{keyCloak.authenticated && userProfile ? (
 				<>
 					<SidenavItem

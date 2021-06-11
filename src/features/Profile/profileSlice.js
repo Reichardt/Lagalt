@@ -31,7 +31,7 @@ export const profileSlice = createSlice({
 	},
 	reducers: {
 		setProfile: (state, action) => {
-			state.profile = action.payload;
+			state.userProfile = action.payload;
 		},
 	},
 	extraReducers: {
