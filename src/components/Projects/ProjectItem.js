@@ -29,7 +29,10 @@ function ProjectItem({ project }) {
 						))}
 				</div>
 				<span className="members">
-					<PeopleFill /> <span className="ms-1">0 / 4</span>
+					<PeopleFill />{' '}
+					<span className="ms-1">
+						{project.current} / {project.total}
+					</span>
 				</span>
 			</div>
 			<div className="tags mb-2">

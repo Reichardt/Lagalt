@@ -4,7 +4,10 @@ function ProjectSkill({ skill }) {
 	return (
 		<Fragment>
 			<span className="badge rounded-pill bg-primary text-white me-2">
-				{skill.skillName}
+				{skill.skillName}{' '}
+				<span>
+					({skill.foundCount} / {skill.requiredCount})
+				</span>
 			</span>
 		</Fragment>
 	);
