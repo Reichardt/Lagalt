@@ -34,12 +34,11 @@ function SidenavAuth() {
 	};
 
 	useEffect(() => {
-		console.log(keyCloak.token);
 		if (keyCloak.authenticated && !userProfile) {
 			keyCloak.loadUserProfile().then(profile => {
 				dispatch(getProfile(keyCloak.subject));
 				if (!userProfile) {
-					dispatch(addNewProfile(profile, keyCloak.token));
+					dispatch(addNewProfile([profile, keyCloak.token]));
 				} else {
 					dispatch(setProfile(profile));
 				}

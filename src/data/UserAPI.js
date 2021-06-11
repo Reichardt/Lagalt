@@ -7,6 +7,7 @@ const UserAPI = {
 		}
 	},
 	async addUser(user, token) {
+		console.log(token);
 		const newUser = {
 			email: user.email,
 			name: user.firstName,
