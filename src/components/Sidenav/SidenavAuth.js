@@ -14,17 +14,20 @@ import {
 	profileSelector,
 } from '../../features/Profile/profileSlice';
 import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 function SidenavAuth() {
 	const { keyCloak, Login, Logout } = useKeycloak();
 	const dispatch = useDispatch();
 	const { profile } = useSelector(profileSelector);
+	const history = useHistory();
 
 	const handleLogin = () => {
 		Login();
 	};
 
 	const handleLogout = () => {
+		history.push('/');
 		Logout();
 	};
 

@@ -4,7 +4,6 @@ import SidenavAuth from './SidenavAuth';
 import SidenavItem from './SidenavItem';
 import SidenavLogo from './SidenavLogo';
 import { HouseDoorFill, ListTask } from 'react-bootstrap-icons';
-import { FaFire } from 'react-icons/fa';
 import SideRecent from './SideRecent';
 
 function Sidenav({ side }) {
@@ -14,11 +13,6 @@ function Sidenav({ side }) {
 				<SidenavLogo />
 				<div className="sticky-top align-self-start pt-3">
 					<SidenavItem title={'home'} icon={<HouseDoorFill />} link={'/'} />
-					<SidenavItem
-						title={'hot'}
-						icon={<FaFire className="fire-icon" />}
-						link={'/hot'}
-					/>
 					<SidenavItem
 						title={'categories'}
 						icon={<ListTask />}

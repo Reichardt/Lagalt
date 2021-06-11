@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
 }
 
@@ -47,6 +47,11 @@ body {
   background-color: #28217b;
 }
 
+.btn-primary:disabled {
+  background-color: #564ccf;
+  border: 1px solid #4338ca;
+}
+
 .fire-icon {
   color: #b73939;
 }
@@ -58,7 +63,7 @@ small {
 .icon-wrapper {
   font-size: 1.2rem;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .icon-wrapper a {
@@ -112,12 +117,13 @@ small {
 
 .project-item p {
   font-size: 0.9em;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
 .project-item .badge {
   font-size: 0.7em;
+  font-weight: 400;
 }
 
 .project-item .members {
@@ -244,8 +250,13 @@ small {
   /* Optional: just make scrollbar invisible */
 }
 
-.profile .skill-editable {
-  width: 65%;
+.profile .profile-skill svg {
+  color: #b73939;
+  font-size: 1.2em;
+}
+
+.profile .profile-skill svg:hover {
+  cursor: pointer;
 }
 
 .profile .form-switch input:focus {
@@ -270,6 +281,16 @@ small {
 }
 
 .profile select {
+  width: 65%;
+}
+
+.profile select:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 1px solid #4338ca;
+}
+
+.profile .item-editable {
   width: 65%;
 }
 
