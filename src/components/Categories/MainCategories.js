@@ -12,14 +12,17 @@ function MainCategories() {
 	useEffect(() => {
 		dispatch(fetchAllCategories());
 	}, []);
+
 	return (
 		<div className="col-lg-6">
 			<div className="bg-content border-bottom border-start border-end border-secondary text-darken p-3">
 				<p className="fw-bold m-0">Categories</p>
 			</div>
-			{categories.map(category => (
-				<CategoryItem category={category} key={category.id} />
-			))}
+			<div className="d-grid four-column mt-5">
+				{categories.map(category => (
+					<CategoryItem category={category} key={category.id} />
+				))}
+			</div>
 		</div>
 	);
 }

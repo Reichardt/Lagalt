@@ -12,20 +12,48 @@ export const addNewProfile = createAsyncThunk(
 	}
 );
 
-export const getProfile = createAsyncThunk('profile/getProfile', async id => {
-	try {
-		const user = UserAPI.getUser(id);
-		return user;
-	} catch (err) {
-		console.log(err);
+export const getProfileById = createAsyncThunk(
+	'profile/getProfileById',
+	async id => {
+		try {
+			const user = UserAPI.getUserById(id);
+			return user;
+		} catch (err) {
+			console.log(err);
+		}
 	}
-});
+);
+
+export const getProfileByUsername = createAsyncThunk(
+	'profile/getProfileByUsername',
+	async username => {
+		try {
+			const user = await UserAPI.getUserByName(username);
+			return user;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+);
+
+export const getProfileByUsernameAndId = createAsyncThunk(
+	'profile/getProfileByUsernameAndId',
+	async data => {
+		try {
+			const data = await UserAPI.getUserByNameAndId(data[0], data[1]);
+			return data;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+);
 
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
-		id: null,
 		userProfile: null,
+		searchedUser: null,
+		searchedUserLoading: false,
 		loading: false,
 		error: null,
 	},
@@ -45,16 +73,28 @@ export const profileSlice = createSlice({
 		[addNewProfile.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
-		[getProfile.pending]: state => {
+		[getProfileById.pending]: state => {
 			state.loading = true;
 		},
-		[getProfile.fulfilled]: (state, action) => {
+		[getProfileById.fulfilled]: (state, action) => {
 			state.userProfile = action.payload;
 			state.loading = false;
 		},
-		[getProfile.rejected]: (state, action) => {
+		[getProfileById.rejected]: (state, action) => {
 			state.error = action.payload;
 			state.loading = false;
+		},
+		[getProfileByUsername.pending]: state => {
+			state.searchedUserLoading = true;
+		},
+		[getProfileByUsername.fulfilled]: (state, action) => {
+			state.searchedUser = action.payload;
+			state.searchedUserLoading = false;
+		},
+		[getProfileByUsername.rejected]: (state, action) => {
+			state.searchedUser = null;
+			state.error = action.payload;
+			state.searchedUserLoading = false;
 		},
 	},
 });

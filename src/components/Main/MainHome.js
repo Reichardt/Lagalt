@@ -1,5 +1,5 @@
 import Projects from '../Projects/Projects';
-import ProjectCreate from '../Projects/ProjectCreate';
+import ProjectHeader from '../Projects/ProjectHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchAllProjects,
@@ -37,7 +37,7 @@ function MainHome() {
 			<div className="bg-content border-bottom border-start border-end border-secondary text-darken p-3">
 				<p className="fw-bold m-0">Home</p>
 			</div>
-			<ProjectCreate />
+			<ProjectHeader />
 			{!error && <Projects projects={projects} loading={loading} />}
 			{error && 'There was an error fetching the projects'}
 		</div>

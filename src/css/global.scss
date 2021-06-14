@@ -14,6 +14,16 @@ $color-grey: #d3d9de;
 	box-sizing: border-box;
 }
 
+.d-grid {
+	display: grid;
+}
+
+.four-column {
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-gap: 25px;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
 	font-size: 18px;

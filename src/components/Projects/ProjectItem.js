@@ -13,7 +13,7 @@ function ProjectItem({ project }) {
 
 	const handleLinkClick = e => {
 		e.stopPropagation();
-		history.push('/profile/chefen');
+		history.push('/profile/fednoob');
 	};
 
 	return (

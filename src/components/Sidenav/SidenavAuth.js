@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	profileSelector,
 	addNewProfile,
-	getProfile,
+	getProfileById,
 	setProfile,
 } from '../../features/Profile/profileSlice';
 import { useEffect } from 'react';
@@ -36,11 +36,9 @@ function SidenavAuth() {
 	useEffect(() => {
 		if (keyCloak.authenticated && !userProfile) {
 			keyCloak.loadUserProfile().then(profile => {
-				dispatch(getProfile('dadadad')).then(user => {
-					if (!user) {
+				dispatch(getProfileById(keyCloak.subject)).then(user => {
+					if (!user.payload) {
 						dispatch(addNewProfile([profile, keyCloak.token]));
-					} else {
-						dispatch(setProfile(profile));
 					}
 				});
 			});
