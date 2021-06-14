@@ -1,11 +1,15 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 
 function CategoryItem({ category }) {
-	return (
-		<div className="bg-content d-flex justify-content-center align-items-center border border-secondary text-darken p-3">
-			<p className="m-0 text-capitalize">{category.name}</p>
-		</div>
-	);
+    return (
+        <>
+            <Link
+                to={"/category/" + category.id}
+                className='text-capitalize bg-content d-flex justify-content-center align-items-center text-darken p-3 category-item'>
+                {category.name}
+            </Link>
+        </>
+    );
 }
 
 export default CategoryItem;

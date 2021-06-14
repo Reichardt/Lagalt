@@ -46,7 +46,6 @@ function Search() {
                         <SearchSuggestions suggestions={suggestions} />
                     )}
                 </div>
-                <FaCogs className='filter-icon' onClick={handleShow} />
             </div>
             {show && (
                 <SearchFilterModal show={show} handleClose={handleClose} />

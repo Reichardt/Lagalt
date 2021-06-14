@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import ProjectsAPI from "../../data/ProjectsAPI";
+import ProgressAPI from "../../data/ProgressAPI";
 
 export const fetchAllProgress = createAsyncThunk(
     "progress/fetchAllProgress",
     async () => {
-        return ProjectsAPI.getAllProgress();
+        return ProgressAPI.getAllProgress();
     }
 );
 export const progressSlice = createSlice({
