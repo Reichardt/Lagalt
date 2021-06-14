@@ -9,7 +9,7 @@ function ProjectCreate() {
 				<FaUser />
 				<p className="m-0 ms-2">Post a project</p>
 			</div>
-			<Link to="/create" className="btn btn-primary">
+			<Link to="/create-project" className="btn btn-primary">
 				Start
 			</Link>
 		</div>

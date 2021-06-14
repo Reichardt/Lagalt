@@ -64,7 +64,7 @@ function ProfileSkills({ profile, profileParam }) {
 		<div>
 			<div className="d-flex justify-content-between align-items-center pe-3">
 				<h2 className="text-primary">Skills</h2>
-				{profile && profileParam === profile.username && (
+				{profileParam && profileParam.username === profile.username && (
 					<div className="form-check form-switch">
 						<label>Edit skills</label>
 						<input

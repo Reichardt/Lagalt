@@ -8,6 +8,7 @@ import Categories from './pages/Categories';
 import Recommended from './pages/Recommended';
 import Notifications from './pages/Notifications';
 import ProtectedRoute from './util/ProtectedRoute';
+import NotFound from './pages/NotFound';
 
 function App() {
 	return (
@@ -19,7 +20,8 @@ function App() {
 					<Route path="/categories" component={Categories} />
 					<Route path="/profile/:name" component={Profile} />
 					<Route path="/project/:id" component={Project} />
-					<ProtectedRoute path="/create" component={Create} />
+					<Route path="/404" component={NotFound} />
+					<ProtectedRoute path="/create-project" component={Create} />
 					<ProtectedRoute path="/recommended" component={Recommended} />
 					<ProtectedRoute path="/notifications" component={Notifications} />
 				</Switch>

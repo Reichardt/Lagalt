@@ -1,13 +1,21 @@
 const UserAPI = {
-	async getUser(id) {
+	async getUserById(id) {
 		const res = await fetch(`https://localhost:44381/api/v1/users/${id}`);
 		if (res.ok) {
 			const data = await res.json();
 			return data;
 		}
 	},
+	async getUserByName(name) {
+		const res = await fetch(
+			`https://localhost:44381/api/v1/users/${name}/profile`
+		);
+		if (res.ok) {
+			const data = await res.json();
+			return data;
+		}
+	},
 	async addUser(user, token) {
-		console.log(token);
 		const newUser = {
 			email: user.email,
 			name: user.firstName,
