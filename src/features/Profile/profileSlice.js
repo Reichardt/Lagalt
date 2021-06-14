@@ -36,12 +36,24 @@ export const getProfileByUsername = createAsyncThunk(
 	}
 );
 
+export const getProfileByUsernameAndId = createAsyncThunk(
+	'profile/getProfileByUsernameAndId',
+	async data => {
+		try {
+			const data = await UserAPI.getUserByNameAndId(data[0], data[1]);
+			return data;
+		} catch (err) {
+			console.log(err);
+		}
+	}
+);
+
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
 		userProfile: null,
 		searchedUser: null,
-		searchedUserLoading: true,
+		searchedUserLoading: false,
 		loading: false,
 		error: null,
 	},
@@ -77,7 +89,7 @@ export const profileSlice = createSlice({
 		},
 		[getProfileByUsername.fulfilled]: (state, action) => {
 			state.searchedUser = action.payload;
-			// state.searchedUserLoading = false;
+			state.searchedUserLoading = false;
 		},
 		[getProfileByUsername.rejected]: (state, action) => {
 			state.searchedUser = null;

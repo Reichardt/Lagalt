@@ -15,6 +15,7 @@ const UserAPI = {
 			return data;
 		}
 	},
+	async getUserByNameAndId(name, id) {},
 	async addUser(user, token) {
 		const newUser = {
 			email: user.email,
