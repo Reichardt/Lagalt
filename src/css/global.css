@@ -7,6 +7,10 @@
           box-sizing: border-box;
 }
 
+.full-height {
+  height: 100%;
+}
+
 .d-grid {
   display: -ms-grid;
   display: grid;
@@ -17,11 +21,10 @@
       grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-  grid-gap: 25px;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
 }
 
@@ -76,7 +79,7 @@ small {
 .icon-wrapper {
   font-size: 1.2rem;
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .icon-wrapper a {
@@ -130,7 +133,7 @@ small {
 
 .project-item p {
   font-size: 0.9em;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
 }
 
@@ -320,6 +323,64 @@ small {
 
 .project-create label {
   font-size: 0.9em;
+}
+
+.project-create .skills-select {
+  width: 65%;
+}
+
+.project-create .project-skill input {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.project-create .project-skill label {
+  font-size: 0.8em;
+}
+
+.project-create .project-skill p {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.project-create .project-skill svg {
+  color: #b73939;
+  cursor: pointer;
+}
+
+.categories .category-item {
+  -webkit-transition: 0.2s all ease-in-out;
+  transition: 0.2s all ease-in-out;
+  text-decoration: none;
+}
+
+.categories .category-item:nth-of-type(1) {
+  border: 1px solid #d3d9de;
+}
+
+.categories .category-item:nth-of-type(2) {
+  border-right: 1px solid #d3d9de;
+  border-bottom: 1px solid #d3d9de;
+  border-top: 1px solid #d3d9de;
+}
+
+.categories .category-item:nth-of-type(3) {
+  border-left: 1px solid #d3d9de;
+  border-bottom: 1px solid #d3d9de;
+}
+
+.categories .category-item:nth-of-type(4) {
+  border-left: 1px solid #d3d9de;
+  border-right: 1px solid #d3d9de;
+  border-bottom: 1px solid #d3d9de;
+}
+
+.categories .category-item:hover {
+  background-color: #d3d9de;
+  cursor: pointer;
+  color: #4338ca;
+  font-weight: 500;
 }
 
 @media (min-width: 1200px) {

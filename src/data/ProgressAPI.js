@@ -1,10 +1,12 @@
 const ProgressAPI = {
-	async getAllProgress() {
-		const res = await fetch('https://localhost:44381/api/v1/projectprogresses');
-		const data = await res.json();
+    async getAllProgress() {
+        const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/projectprogress`
+        );
+        const data = await res.json();
 
-		return data;
-	},
+        return data;
+    },
 };
 
 export default ProgressAPI;
