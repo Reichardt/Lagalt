@@ -27,7 +27,7 @@ function ProfileMain({ username }) {
 				history.push('/404');
 			}
 		});
-	}, [username]);
+	}, [username, dispatch, history]);
 
 	return (
 		<>

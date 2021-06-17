@@ -45,7 +45,7 @@ export function KeycloakProvider({ children }) {
 			.init({ onLoad: 'check-sso' })
 			.then(_ => handleKeycloakInitSuccess(keycloak))
 			.catch(handleKeycloakInitError);
-	}, []);
+	}, [keyCloak]);
 
 	useEffect(() => {
 		if (keyCloak && keyCloak.authenticated) {
