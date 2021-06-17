@@ -11,7 +11,7 @@ function CategoriesMain() {
 	const { categories } = useSelector(projectSelector);
 	useEffect(() => {
 		dispatch(fetchAllCategories());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div className="col-lg-6 categories">

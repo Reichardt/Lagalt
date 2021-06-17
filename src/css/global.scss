@@ -15,6 +15,16 @@ $color-green: #5a9e32;
 	box-sizing: border-box;
 }
 
+textarea,
+input {
+	transition: 0.2s ease-in-out all;
+
+	&:focus {
+		box-shadow: none !important;
+		border: 1px solid $color-purple !important;
+	}
+}
+
 p {
 	margin: 0;
 }
@@ -247,11 +257,6 @@ small {
 	padding: 0.5rem 1rem;
 	outline: none;
 	font-size: 1rem;
-	transition: all 0.2s ease-in-out;
-
-	&:focus {
-		border-color: darken($color-grey, 50%) !important;
-	}
 }
 
 .border-secondary {
@@ -295,10 +300,6 @@ small {
 
 	.form-switch {
 		input {
-			&:focus {
-				box-shadow: none;
-			}
-
 			&:checked {
 				background-color: $color-purple;
 				border: $color-purple;
@@ -346,6 +347,9 @@ small {
 }
 
 .project-create {
+	form {
+		font-size: 0.9em;
+	}
 	* {
 		&:focus {
 			box-shadow: none;
@@ -375,7 +379,6 @@ small {
 		}
 
 		p {
-			font-size: 0.9em;
 			font-weight: 500;
 		}
 
@@ -387,25 +390,108 @@ small {
 }
 
 .project {
-	.messages {
+	height: 100vh;
+
+	.project-details {
+		h3 {
+			font-weight: 400;
+			font-size: 1.4em;
+			width: fit-content;
+			border-bottom: 2px solid $color-purple;
+		}
+
+		p {
+			font-size: 0.9em;
+			font-weight: 500;
+		}
+
+		.required {
+			p {
+				font-weight: 400;
+
+				span {
+					font-weight: 600;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+
+	.comments {
 		height: 30vh;
-		background-color: lighten($color-grey, 10%);
 		font-size: 0.8em;
 	}
 
-	.message {
-		.text {
-			font-weight: 600;
+	.comment {
+		position: relative;
+		margin: 1em auto;
+	}
+	.comment-heading {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1em;
+	}
+	.comment-voting {
+		width: 20px;
+		height: 32px;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 4px;
+	}
+	.comment-voting button {
+		display: block;
+		width: 100%;
+		height: 50%;
+		padding: 0;
+		border: 0;
+		font-size: 10px;
+	}
+	.comment-author {
+		color: $color-dark;
+		font-weight: 600;
+		text-decoration: none;
+		transition: 0.2s ease-in-out all;
+
+		&:hover {
+			color: $color-purple;
 		}
 	}
 
-	.reply {
-		width: 80%;
-
-		& small {
-			top: 0;
-			right: 0;
+	.comment-info {
+		p {
+			color: darken($color-light, 25%);
+			font-size: 0.75em;
 		}
+	}
+
+	.comment-body {
+		svg {
+			cursor: pointer;
+		}
+	}
+	.replies {
+		padding-left: 1em;
+		margin-left: 0.8em;
+	}
+
+	.reply-form {
+		label {
+			font-size: 0.9em;
+		}
+
+		svg {
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				cursor: pointer;
+				color: $color-purple;
+			}
+		}
+	}
+}
+
+.project-app-modal {
+	textarea {
+		height: 10em;
 	}
 }
 

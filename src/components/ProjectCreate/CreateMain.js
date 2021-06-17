@@ -19,7 +19,7 @@ function CreateMain() {
 		} else {
 			dispatch(fetchAllProgress());
 		}
-	}, []);
+	}, [dispatch, keyCloak]);
 
 	return (
 		<>

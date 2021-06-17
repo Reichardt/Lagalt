@@ -7,6 +7,19 @@
           box-sizing: border-box;
 }
 
+textarea,
+input {
+  -webkit-transition: 0.2s ease-in-out all;
+  transition: 0.2s ease-in-out all;
+}
+
+textarea:focus,
+input:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border: 1px solid #4338ca !important;
+}
+
 p {
   margin: 0;
 }
@@ -252,12 +265,6 @@ small {
   padding: 0.5rem 1rem;
   outline: none;
   font-size: 1rem;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.search-input:focus {
-  border-color: #4c5a66 !important;
 }
 
 .border-secondary {
@@ -294,11 +301,6 @@ small {
 
 .profile .profile-skill svg:hover {
   cursor: pointer;
-}
-
-.profile .form-switch input:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 .profile .form-switch input:checked {
@@ -343,6 +345,10 @@ small {
   color: #5a9e32;
 }
 
+.project-create form {
+  font-size: 0.9em;
+}
+
 .project-create *:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -373,7 +379,6 @@ small {
 }
 
 .project-create .project-skill p {
-  font-size: 0.9em;
   font-weight: 500;
 }
 
@@ -382,23 +387,111 @@ small {
   cursor: pointer;
 }
 
-.project .messages {
+.project {
+  height: 100vh;
+}
+
+.project .project-details h3 {
+  font-weight: 400;
+  font-size: 1.4em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-bottom: 2px solid #4338ca;
+}
+
+.project .project-details p {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.project .project-details .required p {
+  font-weight: 400;
+}
+
+.project .project-details .required p span {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.project .comments {
   height: 30vh;
-  background-color: #f0f2f4;
   font-size: 0.8em;
 }
 
-.project .message .text {
+.project .comment {
+  position: relative;
+  margin: 1em auto;
+}
+
+.project .comment-heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1em;
+}
+
+.project .comment-voting {
+  width: 20px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.project .comment-voting button {
+  display: block;
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  border: 0;
+  font-size: 10px;
+}
+
+.project .comment-author {
+  color: black;
   font-weight: 600;
+  text-decoration: none;
+  -webkit-transition: 0.2s ease-in-out all;
+  transition: 0.2s ease-in-out all;
 }
 
-.project .reply {
-  width: 80%;
+.project .comment-author:hover {
+  color: #4338ca;
 }
 
-.project .reply small {
-  top: 0;
-  right: 0;
+.project .comment-info p {
+  color: #bababa;
+  font-size: 0.75em;
+}
+
+.project .comment-body svg {
+  cursor: pointer;
+}
+
+.project .replies {
+  padding-left: 1em;
+  margin-left: 0.8em;
+}
+
+.project .reply-form label {
+  font-size: 0.9em;
+}
+
+.project .reply-form svg {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.project .reply-form svg:hover {
+  cursor: pointer;
+  color: #4338ca;
+}
+
+.project-app-modal textarea {
+  height: 10em;
 }
 
 .categories .category-item {
