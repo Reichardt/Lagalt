@@ -1,16 +1,16 @@
 import React from 'react';
-import MainCreate from '../components/ProjectCreate/MainCreate';
+import CreateMain from '../components/ProjectCreate/CreateMain';
 import Sidenav from '../components/Sidenav/Sidenav';
 
-function Create() {
+function CreateProject() {
 	return (
 		<div className="container">
 			<div className="d-flex">
 				<Sidenav side={'left'} />
-				<MainCreate />
+				<CreateMain />
 			</div>
 		</div>
 	);
 }
 
-export default Create;
+export default CreateProject;

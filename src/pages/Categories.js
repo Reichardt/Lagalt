@@ -1,5 +1,5 @@
 import React from 'react';
-import MainCategories from '../components/Categories/MainCategories';
+import CategoriesMain from '../components/Categories/CategoriesMain';
 import Sidenav from '../components/Sidenav/Sidenav';
 
 function Categories() {
@@ -7,7 +7,7 @@ function Categories() {
 		<div className="container">
 			<div className="row">
 				<Sidenav side={'left'} />
-				<MainCategories />
+				<CategoriesMain />
 				<Sidenav side={'right'} />
 			</div>
 		</div>

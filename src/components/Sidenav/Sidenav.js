@@ -4,7 +4,7 @@ import SidenavAuth from './SidenavAuth';
 import SidenavItem from './SidenavItem';
 import SidenavLogo from './SidenavLogo';
 import { HouseDoorFill, ListTask } from 'react-bootstrap-icons';
-import SideRecent from './SideRecent';
+import SidenavRecent from './SidenavRecent';
 
 function Sidenav({ side }) {
 	const renderLeftSide = () => {
@@ -28,7 +28,7 @@ function Sidenav({ side }) {
 		return (
 			<div className="border-dark col-lg-3 text-darken sticky-top align-self-start pt-4">
 				<Search />
-				<SideRecent />
+				<SidenavRecent />
 			</div>
 		);
 	};

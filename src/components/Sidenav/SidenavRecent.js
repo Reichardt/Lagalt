@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-function SideRecent() {
+function SidenavRecent() {
 	return (
 		<Fragment>
 			<div className="bg-light border border-secondary text-darken p-3 mt-3 recent-projects">
@@ -15,4 +15,4 @@ function SideRecent() {
 	);
 }
 
-export default SideRecent;
+export default SidenavRecent;

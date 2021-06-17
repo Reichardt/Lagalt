@@ -7,6 +7,10 @@
           box-sizing: border-box;
 }
 
+p {
+  margin: 0;
+}
+
 .full-height {
   height: 100%;
 }
@@ -24,7 +28,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
 }
 
@@ -68,6 +72,11 @@ body {
   border: 1px solid #4338ca;
 }
 
+.btn-primary:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .fire-icon {
   color: #b73939;
 }
@@ -76,10 +85,22 @@ small {
   font-size: 0.75rem;
 }
 
+.skill span:first-of-type {
+  text-decoration: none;
+  color: #fff;
+  -webkit-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
+}
+
+.skill span:first-of-type:hover {
+  color: #d3d9de;
+  cursor: pointer;
+}
+
 .icon-wrapper {
   font-size: 1.2rem;
   font-weight: 600;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .icon-wrapper a {
@@ -133,7 +154,7 @@ small {
 
 .project-item p {
   font-size: 0.9em;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
 }
 
@@ -310,6 +331,18 @@ small {
   width: 65%;
 }
 
+.profile-app-modal p {
+  font-size: 0.8em;
+}
+
+.profile-app-modal .status {
+  font-weight: 600;
+}
+
+.profile-app-modal .approved {
+  color: #5a9e32;
+}
+
 .project-create *:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -347,6 +380,25 @@ small {
 .project-create .project-skill svg {
   color: #b73939;
   cursor: pointer;
+}
+
+.project .messages {
+  height: 30vh;
+  background-color: #f0f2f4;
+  font-size: 0.8em;
+}
+
+.project .message .text {
+  font-weight: 600;
+}
+
+.project .reply {
+  width: 80%;
+}
+
+.project .reply small {
+  top: 0;
+  right: 0;
 }
 
 .categories .category-item {
