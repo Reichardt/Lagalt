@@ -1,23 +1,36 @@
 const ProjectsAPI = {
-    async getAllProjects() {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/projects`);
-        const data = await res.json();
+	async getAllProjects() {
+		const res = await fetch(`${process.env.REACT_APP_API_URL}/projects`);
+		const data = await res.json();
 
-        if (res.ok) {
-            return data;
-        }
-    },
-    async addProject() {},
-    async getProjectById(id) {
-        const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/projects/${id}`
-        );
-        const data = await res.json();
+		if (res.ok) {
+			return data;
+		}
+	},
+	async addProject(project, token) {
+		const res = await fetch(`${process.env.REACT_APP_API_URL}/projects`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + token,
+			},
+			body: JSON.stringify(project),
+		});
 
-        if (res.ok) {
-            return data;
-        }
-    },
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
+	async getProjectById(id) {
+		const res = await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 };
 
 export default ProjectsAPI;

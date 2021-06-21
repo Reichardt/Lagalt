@@ -20,6 +20,10 @@ input:focus {
   border: 1px solid #4338ca !important;
 }
 
+select {
+  text-transform: capitalize;
+}
+
 p {
   margin: 0;
 }
@@ -387,8 +391,10 @@ small {
   cursor: pointer;
 }
 
-.project {
-  height: 100vh;
+.project .project-details {
+  height: 100%;
+  background-color: #fafafa;
+  font-size: 0.9em;
 }
 
 .project .project-details .require {
@@ -396,14 +402,21 @@ small {
   font-weight: 500;
 }
 
-.project .project-details .required p {
-  font-weight: 400;
-  background-color: #fafafa;
+.project .project-details .required .intro {
+  font-weight: 600;
 }
 
-.project .project-details .required p span {
+.project .project-details .required .required-skill {
+  font-weight: 400;
+}
+
+.project .project-details .required .required-skill span {
   font-weight: 600;
   text-transform: capitalize;
+}
+
+.project .project-details .repo-url a {
+  color: #4338ca;
 }
 
 .project .comments {

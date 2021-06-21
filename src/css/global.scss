@@ -25,6 +25,10 @@ input {
 	}
 }
 
+select {
+	text-transform: capitalize;
+}
+
 p {
 	margin: 0;
 }
@@ -390,23 +394,33 @@ small {
 }
 
 .project {
-	height: 100vh;
-
 	.project-details {
+		height: 100%;
+		background-color: $color-light;
+		font-size: 0.9em;
+
 		.require {
 			font-size: 1.1em;
 			font-weight: 500;
 		}
 
 		.required {
-			p {
+			.intro {
+				font-weight: 600;
+			}
+			.required-skill {
 				font-weight: 400;
-				background-color: $color-light;
 
 				span {
 					font-weight: 600;
 					text-transform: capitalize;
 				}
+			}
+		}
+
+		.repo-url {
+			a {
+				color: $color-purple;
 			}
 		}
 	}

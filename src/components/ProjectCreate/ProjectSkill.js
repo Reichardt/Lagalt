@@ -17,7 +17,7 @@ function ProjectSkill({ skill, handleAmountChange, removeSkill }) {
 					People needed
 				</label>
 				<input
-					value={skill.amountNeeded}
+					value={skill.requiredCount}
 					type="number"
 					className="form-control me-3"
 					onInput={handleChange}

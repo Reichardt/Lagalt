@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
-import uniqid from 'uniqid';
 import ProjectSkill from './ProjectSkill';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllSkills, skillSelector } from '../../features/Skill/skillSlice';
+import { addNewProject } from '../../features/Project/projectSlice';
+import { useKeycloak } from '../../context/KeycloakContext';
+import { useHistory } from 'react-router-dom';
 
 function CreateForm({ progress }) {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { loading } = useSelector(skillSelector);
+	const { keyCloak } = useKeycloak();
 
 	const [state, setState] = useState({
 		title: '',
@@ -20,10 +24,10 @@ function CreateForm({ progress }) {
 	});
 
 	useEffect(() => {
-		dispatch(fetchAllSkills()).then(skills => {
+		dispatch(fetchAllSkills()).then(res => {
 			setState({
 				...state,
-				skillOptions: skills.payload,
+				skillOptions: res.payload,
 			});
 		});
 	}, []);
@@ -45,10 +49,13 @@ function CreateForm({ progress }) {
 		});
 	};
 
-	const handleAmountChange = (val, id) => {
+	const handleAmountChange = (reqAmount, id) => {
 		const idToUpdate = state.addedSkills.findIndex(skill => skill.id === id);
 		let newArray = [...state.addedSkills];
-		newArray[idToUpdate] = { ...newArray[idToUpdate], amountNeeded: val };
+		newArray[idToUpdate] = {
+			...newArray[idToUpdate],
+			requiredCount: reqAmount,
+		};
 		setState({
 			...state,
 			addedSkills: newArray,
@@ -65,7 +72,7 @@ function CreateForm({ progress }) {
 					...state.addedSkills,
 					{
 						...state.chosenSkill,
-						amountNeeded: 1,
+						requiredCount: 1,
 					},
 				],
 				skillOptions: state.skillOptions.filter(
@@ -85,8 +92,34 @@ function CreateForm({ progress }) {
 		});
 	};
 
+	const handleProjectAdd = e => {
+		e.preventDefault();
+
+		const skills = state.addedSkills.map(skill => {
+			return {
+				skillId: skill.id,
+				requiredCount: skill.requiredCount,
+			};
+		});
+
+		const projectData = {
+			project: {
+				title: state.title,
+				description: state.description,
+				repoUrl: state.repoUrl,
+				progressId: Number(state.progress),
+				skills,
+			},
+			token: keyCloak.token,
+		};
+
+		dispatch(addNewProject(projectData)).then(res => {
+			history.push(`/project/${res.payload.id}`);
+		});
+	};
+
 	return (
-		<form>
+		<form onSubmit={handleProjectAdd}>
 			<div className="row mt-3 ps-5 pe-5">
 				<div className="col-lg-12">
 					<div className="mb-3">
@@ -197,7 +230,9 @@ function CreateForm({ progress }) {
 							key={index}
 						/>
 					))}
-					<button className="btn btn-primary my-5">Post project</button>
+					<button className="btn btn-primary my-5" onClick={handleProjectAdd}>
+						Post project
+					</button>
 				</div>
 			</div>
 		</form>
