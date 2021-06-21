@@ -5,7 +5,7 @@ function ProjectComment({ handleShow }) {
 		<div className="comment px-3">
 			<div className="comment-heading">
 				<div className="comment-info">
-					<a href="#" className="comment-author">
+					<a href="/" className="comment-author">
 						Fednoob
 					</a>
 					<p className="m-0">3 days ago</p>
@@ -19,7 +19,7 @@ function ProjectComment({ handleShow }) {
 				<div className="comment" id="comment-2">
 					<div className="comment-heading">
 						<div className="comment-info">
-							<a href="#" className="comment-author">
+							<a href="/" className="comment-author">
 								randomperson81
 							</a>
 							<p className="m-0">3 days ago</p>
