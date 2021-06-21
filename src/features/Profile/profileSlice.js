@@ -50,6 +50,7 @@ export const profileSlice = createSlice({
 		searchedUser: null,
 		searchedUserLoading: false,
 		loading: false,
+		userAttributesLoading: false,
 		error: null,
 	},
 	reducers: {
@@ -58,7 +59,7 @@ export const profileSlice = createSlice({
 		},
 		setProfileSkills: (state, action) => {
 			state.userProfile.skills = action.payload;
-		}
+		},
 	},
 	extraReducers: {
 		[addNewProfile.pending]: state => {
@@ -95,14 +96,14 @@ export const profileSlice = createSlice({
 			state.searchedUserLoading = false;
 		},
 		[updateProfileSkills.pending]: state => {
-			state.loading = true;
+			state.userAttributesLoading = true;
 		},
 		[updateProfileSkills.fulfilled]: state => {
-			state.loading = false;
+			state.userAttributesLoading = false;
 		},
 		[updateProfileSkills.rejected]: (state, action) => {
 			state.error = action.payload;
-			state.loading = false;
+			state.userAttributesLoading = false;
 		},
 	},
 });

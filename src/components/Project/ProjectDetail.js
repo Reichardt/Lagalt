@@ -31,8 +31,8 @@ function ProjectDetail({ project }) {
 					<div className="mt-3 required">
 						<p className="mb-2 intro">We're currently looking for</p>
 						<ul>
-							{project.skills.map(skill => (
-								<ProjectReq skill={skill} key={skill.id} />
+							{project.skills.map((skill, index) => (
+								<ProjectReq skill={skill} key={index} />
 							))}
 						</ul>
 					</div>

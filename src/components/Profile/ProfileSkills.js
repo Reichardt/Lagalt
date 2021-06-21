@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ProfileSkill from './ProfileSkill';
 import uniqid from 'uniqid';
-import { skillSelector, fetchAllSkills } from '../../features/Skill/skillSlice';
-import { setProfileSkills, updateProfileSkills } from '../../features/Profile/profileSlice';
+import { fetchAllSkills } from '../../features/Skill/skillSlice';
+import {
+	setProfileSkills,
+	updateProfileSkills,
+} from '../../features/Profile/profileSlice';
 import { useKeycloak } from '../../context/KeycloakContext';
 
 function ProfileSkills({ profile, profileParam }) {
-
-	const { loading } = useSelector(skillSelector);
 	const { keyCloak } = useKeycloak();
 	const dispatch = useDispatch();
-	// console.log("PROFILE",profile)
-	// console.log("PROFILE-PARAMS",profileParam)
 
-	
 	const [state, setState] = useState({
 		checked: false,
 		skillOptions: [],
@@ -26,11 +24,15 @@ function ProfileSkills({ profile, profileParam }) {
 		dispatch(fetchAllSkills()).then(res => {
 			setState({
 				...state,
-				skillOptions: res.payload.filter(so => profile.skills.every(pskill => pskill !== so.id)),
-				skillsAdded: res.payload.filter(so => profile.skills.some(pskill => pskill === so.id)),
+				skillOptions: res.payload.filter(so =>
+					profile.skills.every(pskill => pskill.id !== so.id)
+				),
+				skillsAdded: res.payload.filter(so =>
+					profile.skills.some(pskill => pskill.id === so.id)
+				),
 			});
-		})
-	}, [dispatch])
+		});
+	}, [dispatch]);
 
 	const handleSwitchChange = () => {
 		setState({
@@ -42,10 +44,12 @@ function ProfileSkills({ profile, profileParam }) {
 				  )
 				: state.skillOptions,
 		});
-		if(state.checked) {
+		if (state.checked) {
 			const skillIds = state.skillsAdded.map(skill => skill.id);
-			dispatch(updateProfileSkills([skillIds, keyCloak.subject, keyCloak.token]))
-			dispatch(setProfileSkills(skillIds))
+			dispatch(
+				updateProfileSkills([skillIds, keyCloak.subject, keyCloak.token])
+			);
+			dispatch(setProfileSkills(state.skillsAdded));
 		}
 	};
 
@@ -53,10 +57,7 @@ function ProfileSkills({ profile, profileParam }) {
 		if (state.chosenSkill) {
 			setState({
 				...state,
-				skillsAdded: [
-					...state.skillsAdded,
-					state.chosenSkill
-				],
+				skillsAdded: [...state.skillsAdded, state.chosenSkill],
 				skillOptions: state.skillOptions.filter(
 					option => !option.name.includes(state.chosenSkill.name)
 				),

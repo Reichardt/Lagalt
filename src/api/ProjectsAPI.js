@@ -31,6 +31,19 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async applyToProject(application, id, token) {
+		await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/applications`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(application),
+			}
+		);
+	},
 };
 
 export default ProjectsAPI;

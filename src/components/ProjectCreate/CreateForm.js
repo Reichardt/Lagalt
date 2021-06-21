@@ -30,7 +30,11 @@ function CreateForm({ progress }) {
 				skillOptions: res.payload,
 			});
 		});
-	}, []);
+
+		return () => {
+			setState({ ...state });
+		};
+	}, [dispatch]);
 
 	const handleChange = e => {
 		setState({

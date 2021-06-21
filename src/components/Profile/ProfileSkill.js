@@ -6,7 +6,7 @@ function ProfileSkill({ skill, checked, removeSkill }) {
 	};
 
 	const renderSkillPara = () => {
-		return <p className="mb-0">{skill.name}</p>;
+		return <p className="mb-0 text-capitalize">{skill.name}</p>;
 	};
 
 	const renderSkillInput = () => {
