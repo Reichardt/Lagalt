@@ -43,7 +43,12 @@ export const fetchProjectById = createAsyncThunk(
 
 export const addNewProject = createAsyncThunk(
 	'project/addNewProject',
-	async project => {}
+	async projectData => {
+		const { project, token } = projectData;
+		const newProject = ProjectsAPI.addProject(project, token);
+
+		return newProject;
+	}
 );
 
 export const projectSlice = createSlice({
@@ -78,7 +83,7 @@ export const projectSlice = createSlice({
 		[addNewProject.pending]: state => {
 			state.loading = true;
 		},
-		[addNewProject.fulfilled]: state => {
+		[addNewProject.fulfilled]: (state, action) => {
 			state.loading = false;
 		},
 		[addNewProject.rejected]: (state, action) => {

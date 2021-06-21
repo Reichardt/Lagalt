@@ -12,6 +12,7 @@ import { PeopleFill } from 'react-bootstrap-icons';
 import ProjectBoard from './ProjectBoard';
 import ProjectDetail from './ProjectDetail';
 import ProjectAppModal from './ProjectAppModal';
+import Back from '../Global/Back';
 
 function ProjectMain({ id }) {
 	const { Login } = useKeycloak();
@@ -43,7 +44,10 @@ function ProjectMain({ id }) {
 				<>
 					<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary project">
 						<div className="border-bottom border-secondary d-flex justify-content-between align-items-center text-darken p-3">
-							<p className="fw-bold m-0">Project - {project.title}</p>
+							<div className="d-flex align-items-center">
+								<Back />
+								<p className="fw-bold ms-3 m-0">{project.title}</p>
+							</div>
 							<div className="d-flex align-items-center">
 								<p className="mb-0 me-3">{project.progress}</p>
 								<button className="btn btn-primary" onClick={handleShow}>
@@ -72,7 +76,11 @@ function ProjectMain({ id }) {
 						</div>
 					</div>
 					{showModal && (
-						<ProjectAppModal show={showModal} handleHide={handleHide} />
+						<ProjectAppModal
+							show={showModal}
+							handleHide={handleHide}
+							project={project}
+						/>
 					)}
 				</>
 			)}

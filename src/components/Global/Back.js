@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaArrowLeft } from 'react-icons/fa';
+import { ArrowLeft } from 'react-bootstrap-icons';
 import { useHistory } from 'react-router-dom';
 
 function Back() {
@@ -9,7 +9,13 @@ function Back() {
 		history.goBack();
 	};
 
-	return <FaArrowLeft onClick={handleClick} />;
+	return <ArrowLeft style={btnStyles} onClick={handleClick} />;
 }
 
 export default Back;
+
+const btnStyles = {
+	cursor: 'pointer',
+	color: '#4338ca',
+	fontSize: '1.3em',
+};

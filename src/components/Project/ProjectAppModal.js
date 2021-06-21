@@ -1,6 +1,11 @@
 import { Button, Modal } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { profileSelector } from '../../features/Profile/profileSlice';
 
-function ProjectAppModal({ show, handleHide }) {
+function ProjectAppModal({ show, handleHide, project }) {
+	const { userProfile } = useSelector(profileSelector);
+	const { skills } = userProfile;
+
 	return (
 		<>
 			<Modal
@@ -10,7 +15,7 @@ function ProjectAppModal({ show, handleHide }) {
 			>
 				<Modal.Header className="justify-content-center">
 					<Modal.Title>
-						<h4 className="mb-0">Apply to project</h4>
+						<h4 className="mb-0">Apply to {project.title}</h4>
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -20,6 +25,9 @@ function ProjectAppModal({ show, handleHide }) {
 						</label>
 						<textarea className="form-control" name="mot-app"></textarea>
 					</div>
+					{skills.map(skill => (
+						<p>{skill}</p>
+					))}
 				</Modal.Body>
 				<Modal.Footer>
 					<Button variant="primary" onClick={handleHide}>
