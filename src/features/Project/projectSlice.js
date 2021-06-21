@@ -55,7 +55,6 @@ export const projectSlice = createSlice({
 		project: null,
 		loading: false,
 		error: null,
-		categories: [],
 	},
 	extraReducers: {
 		[fetchAllProjects.pending]: state => {

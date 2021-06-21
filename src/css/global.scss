@@ -393,21 +393,15 @@ small {
 	height: 100vh;
 
 	.project-details {
-		h3 {
-			font-weight: 400;
-			font-size: 1.4em;
-			width: fit-content;
-			border-bottom: 2px solid $color-purple;
-		}
-
-		p {
-			font-size: 0.9em;
+		.require {
+			font-size: 1.1em;
 			font-weight: 500;
 		}
 
 		.required {
 			p {
 				font-weight: 400;
+				background-color: $color-light;
 
 				span {
 					font-weight: 600;

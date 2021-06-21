@@ -5,10 +5,10 @@ function ProjectReq({ skill }) {
 
 	return (
 		<>
-			<p className="mb-2">
+			<p className="mb-2 p-3 rounded border-secondary border">
 				<span>{required}</span>
 				{required > 1 ? ' people' : ' person'} that knows{' '}
-				<span>{skill.skillName}</span>
+				<span className="fst-italic">{skill.skillName}</span>
 			</p>
 		</>
 	);

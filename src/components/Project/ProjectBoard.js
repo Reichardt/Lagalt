@@ -9,12 +9,14 @@ function ProjectBoard() {
 	const handleHide = () => setShowForm(false);
 
 	return (
-		<div className="col-lg-6">
-			<h5>Messages</h5>
-			<div className="comments shadow-sm border-secondary border-start border-top border-bottom">
-				<ProjectComment handleShow={handleShow} />
+		<div className="col-lg-12">
+			<div className="px-3">
+				<h5>Messages</h5>
+				<div className="comments border-top">
+					<ProjectComment handleShow={handleShow} />
+				</div>
+				{showForm && <ProjectReplyForm handleHide={handleHide} />}
 			</div>
-			{showForm && <ProjectReplyForm handleHide={handleHide} />}
 		</div>
 	);
 }
