@@ -81,7 +81,7 @@ function CreateForm({ progress }) {
 		setState({
 			...state,
 			addedSkills: state.addedSkills.filter(skill => skill.id !== idToRemove),
-			skillOptions: [...state.skillOptions, skill[0].title],
+			skillOptions: [...state.skillOptions, skill[0]],
 		});
 	};
 
@@ -165,6 +165,7 @@ function CreateForm({ progress }) {
 								className="form-select skills-select"
 								aria-label="Default select example"
 								onChange={handleSkillChange}
+								value={state.chosenSkill ? state.chosenSkill.id : '0'}
 							>
 								<option value="0">Choose skill</option>
 								{!loading &&
