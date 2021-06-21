@@ -3,7 +3,9 @@ import {
 	fetchProjectById,
 	projectSelector,
 } from '../../features/Project/projectSlice';
+import { profileSelector } from '../../features/Profile/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useKeycloak } from '../../context/KeycloakContext';
 import Loader from '../Global/Loader';
 import ProjectSkill from '../ProjectList/ProjectSkill';
 import { PeopleFill } from 'react-bootstrap-icons';
@@ -12,12 +14,18 @@ import ProjectDetail from './ProjectDetail';
 import ProjectAppModal from './ProjectAppModal';
 
 function ProjectMain({ id }) {
+	const { Login } = useKeycloak();
 	const { project, loading } = useSelector(projectSelector);
+	const { userProfile } = useSelector(profileSelector);
 	const [showModal, setShowModal] = useState(false);
 	const dispatch = useDispatch();
 
 	const handleShow = () => {
-		setShowModal(true);
+		if (!userProfile) {
+			Login();
+		} else {
+			setShowModal(true);
+		}
 	};
 
 	const handleHide = () => {
@@ -37,7 +45,7 @@ function ProjectMain({ id }) {
 						<div className="border-bottom border-secondary d-flex justify-content-between align-items-center text-darken p-3">
 							<p className="fw-bold m-0">Project - {project.title}</p>
 							<div className="d-flex align-items-center">
-								<p className="mb-0 me-2">{project.progress}</p>
+								<p className="mb-0 me-3">{project.progress}</p>
 								<button className="btn btn-primary" onClick={handleShow}>
 									Apply to project
 								</button>
@@ -58,6 +66,8 @@ function ProjectMain({ id }) {
 						</div>
 						<div className="row mt-4">
 							<ProjectDetail project={project} />
+						</div>
+						<div className="row mt-4">
 							<ProjectBoard />
 						</div>
 					</div>

@@ -391,22 +391,14 @@ small {
   height: 100vh;
 }
 
-.project .project-details h3 {
-  font-weight: 400;
-  font-size: 1.4em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  border-bottom: 2px solid #4338ca;
-}
-
-.project .project-details p {
-  font-size: 0.9em;
+.project .project-details .require {
+  font-size: 1.1em;
   font-weight: 500;
 }
 
 .project .project-details .required p {
   font-weight: 400;
+  background-color: #fafafa;
 }
 
 .project .project-details .required p span {

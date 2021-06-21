@@ -4,7 +4,7 @@ import CreateForm from './CreateForm';
 import {
 	progressSelector,
 	fetchAllProgress,
-} from '../../features/Progress/ProgressSlice';
+} from '../../features/Progress/progressSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../Global/Loader';
 

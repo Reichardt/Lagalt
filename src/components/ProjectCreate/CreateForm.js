@@ -1,18 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import uniqid from 'uniqid';
 import ProjectSkill from './ProjectSkill';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllSkills, skillSelector } from '../../features/Skill/skillSlice';
 
 function CreateForm({ progress }) {
+	const dispatch = useDispatch();
+	const { loading } = useSelector(skillSelector);
+
 	const [state, setState] = useState({
 		title: '',
 		description: '',
 		repoUrl: '',
 		imgUrl: '',
 		progress: null,
-		skillOptions: ['Web development', 'Music', 'Game development'],
+		skillOptions: null,
 		addedSkills: [],
 		chosenSkill: null,
 	});
+
+	useEffect(() => {
+		dispatch(fetchAllSkills()).then(skills => {
+			setState({
+				...state,
+				skillOptions: skills.payload,
+			});
+		});
+	}, []);
 
 	const handleChange = e => {
 		setState({
@@ -22,9 +36,12 @@ function CreateForm({ progress }) {
 	};
 
 	const handleSkillChange = e => {
+		const selectedSkill = state.skillOptions.find(
+			skill => skill.id === Number(e.target.value)
+		);
 		setState({
 			...state,
-			chosenSkill: e.target.value !== '0' ? e.target.value : null,
+			chosenSkill: e.target.value !== '0' ? selectedSkill : null,
 		});
 	};
 
@@ -47,13 +64,12 @@ function CreateForm({ progress }) {
 				addedSkills: [
 					...state.addedSkills,
 					{
-						id: uniqid(),
-						title: state.chosenSkill,
+						...state.chosenSkill,
 						amountNeeded: 1,
 					},
 				],
 				skillOptions: state.skillOptions.filter(
-					option => !option.includes(state.chosenSkill)
+					option => !option.name.includes(state.chosenSkill.name)
 				),
 				chosenSkill: null,
 			});
@@ -151,11 +167,17 @@ function CreateForm({ progress }) {
 								onChange={handleSkillChange}
 							>
 								<option value="0">Choose skill</option>
-								{state.skillOptions.map((option, index) => (
-									<option key={`${option}-${index}`} value={option}>
-										{option}
-									</option>
-								))}
+								{!loading &&
+									state.skillOptions &&
+									state.skillOptions.map((option, index) => (
+										<option
+											key={`${option}-${index}`}
+											data-name={option.name}
+											value={option.id}
+										>
+											{option.name}
+										</option>
+									))}
 							</select>
 							<button
 								className="btn btn-primary"
