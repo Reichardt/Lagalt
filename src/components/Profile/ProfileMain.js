@@ -47,20 +47,20 @@ function ProfileMain({ username }) {
 						</div>
 						<div className="row pt-5">
 							<div className="col-lg-6 text-center">
-								<ProfileImage
+								{userProfile && <ProfileImage
 									profile={userProfile}
 									profileParam={searchedUser}
-								/>
+								/>}
 								<ProfileDesc
 									profile={userProfile}
 									profileParam={searchedUser}
 								/>
 							</div>
 							<div className="col-lg-6">
-								<ProfileSkills
+								{userProfile && <ProfileSkills
 									profile={userProfile}
 									profileParam={searchedUser}
-								/>
+								/>}
 							</div>
 						</div>
 						<div className="row py-3 pb-5">

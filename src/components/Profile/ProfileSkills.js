@@ -1,40 +1,64 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileSkill from './ProfileSkill';
 import uniqid from 'uniqid';
+import { skillSelector, fetchAllSkills } from '../../features/Skill/skillSlice';
+import { setProfileSkills, updateProfileSkills } from '../../features/Profile/profileSlice';
+import { useKeycloak } from '../../context/KeycloakContext';
 
 function ProfileSkills({ profile, profileParam }) {
+
+	const { loading } = useSelector(skillSelector);
+	const { keyCloak } = useKeycloak();
+	const dispatch = useDispatch();
+	// console.log("PROFILE",profile)
+	// console.log("PROFILE-PARAMS",profileParam)
+
+	
 	const [state, setState] = useState({
 		checked: false,
-		options: ['Web development', 'Music', 'Game development'],
-		skills: [],
+		skillOptions: [],
+		skillsAdded: [],
 		chosenSkill: null,
 	});
+
+	useEffect(() => {
+		dispatch(fetchAllSkills()).then(res => {
+			setState({
+				...state,
+				skillOptions: res.payload.filter(so => profile.skills.every(pskill => pskill !== so.id)),
+				skillsAdded: res.payload.filter(so => profile.skills.some(pskill => pskill === so.id)),
+			});
+		})
+	}, [dispatch])
 
 	const handleSwitchChange = () => {
 		setState({
 			...state,
 			checked: !state.checked,
-			options: state.skills.length
-				? state.options.filter(option =>
-						state.skills.some(skill => skill.title !== option)
+			skillOptions: state.skillsAdded.length
+				? state.skillOptions.filter(option =>
+						state.skillsAdded.some(skill => skill.name !== option.name)
 				  )
-				: state.options,
+				: state.skillOptions,
 		});
+		if(state.checked) {
+			const skillIds = state.skillsAdded.map(skill => skill.id);
+			dispatch(updateProfileSkills([skillIds, keyCloak.subject, keyCloak.token]))
+			dispatch(setProfileSkills(skillIds))
+		}
 	};
 
 	const addNewSkill = () => {
 		if (state.chosenSkill) {
 			setState({
 				...state,
-				skills: [
-					...state.skills,
-					{
-						id: uniqid(),
-						title: state.chosenSkill,
-					},
+				skillsAdded: [
+					...state.skillsAdded,
+					state.chosenSkill
 				],
-				options: state.options.filter(
-					option => !option.includes(state.chosenSkill)
+				skillOptions: state.skillOptions.filter(
+					option => !option.name.includes(state.chosenSkill.name)
 				),
 				chosenSkill: null,
 			});
@@ -42,18 +66,21 @@ function ProfileSkills({ profile, profileParam }) {
 	};
 
 	const removeSkill = idToRemove => {
-		const skill = state.skills.filter(skill => skill.id === idToRemove);
+		const skill = state.skillsAdded.filter(skill => skill.id === idToRemove);
 		setState({
 			...state,
-			skills: state.skills.filter(skill => skill.id !== idToRemove),
-			options: [...state.options, skill[0].title],
+			skillsAdded: state.skillsAdded.filter(skill => skill.id !== idToRemove),
+			skillOptions: [...state.skillOptions, skill[0]],
 		});
 	};
 
 	const handleSelectChange = e => {
+		const selectedSkill = state.skillOptions.find(
+			skill => skill.id === Number(e.target.value)
+		);
 		setState({
 			...state,
-			chosenSkill: e.target.value !== '0' ? e.target.value : null,
+			chosenSkill: e.target.value !== '0' ? selectedSkill : null,
 		});
 	};
 
@@ -80,11 +107,12 @@ function ProfileSkills({ profile, profileParam }) {
 						className="form-select"
 						aria-label="Default select example"
 						onChange={handleSelectChange}
+						value={state.chosenSkill ? state.chosenSkill.id : '0'}
 					>
 						<option value="0">Choose skill</option>
-						{state.options.map((option, index) => (
-							<option key={`${option}-${index}`} value={option}>
-								{option}
+						{state.skillOptions.map((option, index) => (
+							<option key={`${option}-${index}`} value={option.id}>
+								{option.name}
 							</option>
 						))}
 					</select>
@@ -97,7 +125,7 @@ function ProfileSkills({ profile, profileParam }) {
 					</button>
 				</div>
 			)}
-			{state.skills.map(skill => (
+			{state.skillsAdded.map(skill => (
 				<ProfileSkill
 					skill={skill}
 					checked={state.checked}
