@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import ProjectsAPI from '../../api/ProjectsAPI';
-import SkillsAPI from '../../api/SkillsAPI';
 
 export const fetchAllProjects = createAsyncThunk(
 	'project/fetchAllProjects',
@@ -42,12 +41,11 @@ export const fetchProjectById = createAsyncThunk(
 	}
 );
 
-export const fetchAllCategories = createAsyncThunk(
-	'project/fetchAllCategories',
-	async () => {
-		return SkillsAPI.getAllSkills();
-	}
+export const addNewProject = createAsyncThunk(
+	'project/addNewProject',
+	async project => {}
 );
+
 export const projectSlice = createSlice({
 	name: 'project',
 	initialState: {
@@ -77,14 +75,13 @@ export const projectSlice = createSlice({
 		[fetchProjectById.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
-		[fetchAllCategories.pending]: state => {
+		[addNewProject.pending]: state => {
 			state.loading = true;
 		},
-		[fetchAllCategories.fulfilled]: (state, action) => {
-			state.categories = action.payload;
+		[addNewProject.fulfilled]: state => {
 			state.loading = false;
 		},
-		[fetchAllCategories.rejected]: (state, action) => {
+		[addNewProject.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 	},

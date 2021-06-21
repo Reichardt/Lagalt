@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-	fetchAllCategories,
-	projectSelector,
-} from '../../features/Project/projectSlice';
+import { skillSelector, fetchAllSkills } from '../../features/Skill/skillSlice';
 import CategoryItem from './CategoryItem';
 
 function CategoriesMain() {
 	const dispatch = useDispatch();
-	const { categories } = useSelector(projectSelector);
+	const { skills, loading } = useSelector(skillSelector);
 	useEffect(() => {
-		dispatch(fetchAllCategories());
+		dispatch(fetchAllSkills());
 	}, [dispatch]);
 
 	return (
@@ -19,9 +16,10 @@ function CategoriesMain() {
 				<p className="fw-bold m-0">Categories</p>
 			</div>
 			<div className="d-grid four-column full-height">
-				{categories.map(category => (
-					<CategoryItem category={category} key={category.id} />
-				))}
+				{!loading &&
+					skills.map(category => (
+						<CategoryItem category={category} key={category.id} />
+					))}
 			</div>
 		</div>
 	);
