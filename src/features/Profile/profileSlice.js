@@ -36,6 +36,13 @@ export const getProfileByUsername = createAsyncThunk(
 	}
 );
 
+export const updateProfileSkills = createAsyncThunk(
+	'profile/updateProfileSkills',
+	async data => {
+		await UserAPI.updateProfileSkills(data[0], data[1], data[2]);
+	}
+);
+
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
@@ -49,6 +56,9 @@ export const profileSlice = createSlice({
 		setProfile: (state, action) => {
 			state.userProfile = action.payload;
 		},
+		setProfileSkills: (state, action) => {
+			state.userProfile.skills = action.payload;
+		}
 	},
 	extraReducers: {
 		[addNewProfile.pending]: state => {
@@ -84,10 +94,20 @@ export const profileSlice = createSlice({
 			state.error = action.payload;
 			state.searchedUserLoading = false;
 		},
+		[updateProfileSkills.pending]: state => {
+			state.loading = true;
+		},
+		[updateProfileSkills.fulfilled]: state => {
+			state.loading = false;
+		},
+		[updateProfileSkills.rejected]: (state, action) => {
+			state.error = action.payload;
+			state.loading = false;
+		},
 	},
 });
 
-export const { setProfile } = profileSlice.actions;
+export const { setProfile, setProfileSkills } = profileSlice.actions;
 
 export const profileSelector = state => state.profile;
 

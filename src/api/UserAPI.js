@@ -38,6 +38,16 @@ const UserAPI = {
             return data;
         }
     },
+    async updateProfileSkills(skills, userId, token) {
+        await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}/skills`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify(skills),
+        });
+    },
 };
 
 export default UserAPI;
