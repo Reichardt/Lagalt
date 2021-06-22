@@ -32,55 +32,53 @@ function ProfileMain({ username }) {
 
 	return (
 		<>
-			<>
-				<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary profile position-relative">
-					{searchedUserLoading && <Loader styles={loaderStyles} />}
-					{!searchedUserLoading && searchedUser && (
-						<>
-							<div className="border-bottom border-secondary d-flex justify-content-between align-items-center text-darken p-3 profile-header">
-								<div className="d-flex align-items-center">
-									<Back />
-									<p className="fw-bold ms-3 m-0">{searchedUser.username}</p>
-								</div>
-								{searchedUser &&
-									userProfile &&
-									userProfile.username === searchedUser.username && (
-										<button className="btn btn-primary" onClick={handleShow}>
-											View applications
-										</button>
-									)}
+			<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary profile position-relative">
+				{searchedUserLoading && <Loader styles={loaderStyles} />}
+				{!searchedUserLoading && searchedUser && (
+					<>
+						<div className="border-bottom border-secondary d-flex justify-content-between align-items-center text-darken p-3 profile-header">
+							<div className="d-flex align-items-center">
+								<Back />
+								<p className="fw-bold ms-3 m-0">{searchedUser.username}</p>
 							</div>
-							<div className="row pt-5">
-								<div className="col-lg-6 text-center">
-									<ProfileImage
-										profile={userProfile}
-										profileParam={searchedUser}
-									/>
-									<ProfileDesc
-										profile={userProfile}
-										profileParam={searchedUser}
-									/>
-								</div>
-								<div className="col-lg-6">
-									<ProfileSkills
-										profile={userProfile}
-										profileParam={searchedUser}
-									/>
-								</div>
+							{searchedUser &&
+								userProfile &&
+								userProfile.username === searchedUser.username && (
+									<button className="btn btn-primary" onClick={handleShow}>
+										View applications
+									</button>
+								)}
+						</div>
+						<div className="row pt-5">
+							<div className="col-lg-6 text-center">
+								<ProfileImage
+									profile={userProfile}
+									profileParam={searchedUser}
+								/>
+								<ProfileDesc
+									profile={userProfile}
+									profileParam={searchedUser}
+								/>
 							</div>
-							<div className="row py-3 pb-5 mt-5">
-								<div className="col-lg-12">
-									<ProfilePortfolio
-										profile={userProfile}
-										profileParam={searchedUser}
-									/>
-								</div>
+							<div className="col-lg-6">
+								<ProfileSkills
+									profile={userProfile}
+									profileParam={searchedUser}
+								/>
 							</div>
-						</>
-					)}
-				</div>
-				{show && <ProfileAppModal show={show} handleClose={handleClose} />}
-			</>
+						</div>
+						<div className="row py-3 pb-5 mt-5">
+							<div className="col-lg-12">
+								<ProfilePortfolio
+									profile={userProfile}
+									profileParam={searchedUser}
+								/>
+							</div>
+						</div>
+					</>
+				)}
+			</div>
+			{show && <ProfileAppModal show={show} handleClose={handleClose} />}
 		</>
 	);
 }

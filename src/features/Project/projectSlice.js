@@ -70,12 +70,38 @@ export const getProjectApplications = createAsyncThunk(
 	}
 );
 
+export const getProjectUsers = createAsyncThunk(
+	'profile/getProjectUsers',
+	async id => {
+		const users = await ProjectsAPI.getProjectUsers(id);
+		return users;
+	}
+);
+
+export const updateProjectApplication = createAsyncThunk(
+	'profile/updateProjectApplication',
+	async applicationData => {
+		const { id, application, token } = applicationData;
+		await ProjectsAPI.updateProjectApplication(id, application, token);
+	}
+);
+
+export const addUserToProject = createAsyncThunk(
+	'profile/addUserToProject',
+	async userData => {
+		const { id, user, token } = userData;
+		const returnedUser = await ProjectsAPI.addUserToProject(id, user, token);
+		return returnedUser;
+	}
+);
+
 export const projectSlice = createSlice({
 	name: 'project',
 	initialState: {
 		projects: [],
 		project: null,
 		projectApplications: null,
+		projectUsers: null,
 		loading: false,
 		appLoading: false,
 		error: null,
@@ -128,6 +154,16 @@ export const projectSlice = createSlice({
 			state.projectApplications = action.payload;
 		},
 		[getProjectApplications.rejected]: (state, action) => {
+			state.error = action.payload;
+		},
+		[getProjectUsers.pending]: state => {
+			state.loading = true;
+		},
+		[getProjectUsers.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.projectUsers = action.payload;
+		},
+		[getProjectUsers.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 	},

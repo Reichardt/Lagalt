@@ -59,6 +59,47 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async getProjectUsers(id) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/users`
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
+	async updateProjectApplication(id, application, token) {
+		await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/applications/${application.id}`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(application),
+			}
+		);
+	},
+	async addUserToProject(id, user, token) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/users`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(user),
+			}
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 };
 
 export default ProjectsAPI;

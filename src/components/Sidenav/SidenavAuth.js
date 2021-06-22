@@ -4,7 +4,7 @@ import {
 	PersonCircle,
 	BoxArrowRight,
 	BoxArrowLeft,
-	Envelope,
+	FileEarmarkText,
 	HandThumbsUp,
 } from 'react-bootstrap-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import {
 	addNewProfile,
 	getProfileById,
 	setProfile,
-	getProfileApplications,
+	getProfileProjects,
 } from '../../features/Profile/profileSlice';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -22,7 +22,7 @@ import Loader from '../Global/Loader';
 function SidenavAuth() {
 	const { keyCloak, Login, Logout } = useKeycloak();
 	const dispatch = useDispatch();
-	const { userProfile, loading, applications } = useSelector(profileSelector);
+	const { userProfile, loading, projects } = useSelector(profileSelector);
 	const history = useHistory();
 
 	const handleLogin = () => {
@@ -41,8 +41,9 @@ function SidenavAuth() {
 				dispatch(getProfileById(keyCloak.subject)).then(user => {
 					if (!user.payload) {
 						dispatch(addNewProfile([profile, keyCloak.token]));
+					} else {
+						dispatch(getProfileProjects(user.payload.name));
 					}
-					dispatch(getProfileApplications(user.payload.name));
 				});
 			});
 		}
@@ -60,9 +61,10 @@ function SidenavAuth() {
 							link={'/recommended'}
 						/>
 						<SidenavItem
-							title={'projects' + applications.length}
-							icon={<Envelope />}
+							title={'projects'}
+							icon={<FileEarmarkText />}
 							link={'/projects'}
+							projects={projects}
 						/>
 						<SidenavItem
 							title={'Profile'}

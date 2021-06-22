@@ -6,6 +6,7 @@ import {
 } from '../../../features/Profile/profileSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import uniqid from 'uniqid';
 
 function ProfileAppModal({ show, handleClose }) {
 	const { applications, userProfile } = useSelector(profileSelector);
@@ -24,15 +25,27 @@ function ProfileAppModal({ show, handleClose }) {
 				</Modal.Header>
 				<Modal.Body>
 					<ul className="list-group">
-						<li className="list-group-item">
-							{applications &&
-								applications.map(application => (
+						{applications &&
+							applications.map(application => (
+								<li
+									className="list-group-item ps-2 pb-2 pt-2 pe-0"
+									key={uniqid()}
+								>
 									<div className="d-flex justify-content-between align-items-center">
-										<Link>This is a sample text</Link>
-										<p className="status pending">Approved</p>
+										<Link to={`/project/${application.project.id}`}>
+											{application.project.title}
+										</Link>
+										<p
+											className={`status p-2 bg-secondary border-secondary border-top border-bottom border-start rounded-start text-primary ${
+												application.isAccepted && 'accepted'
+											} ${application.isPending && 'pending'}`}
+										>
+											{application.isAccepted && 'Accepted'}
+											{application.isPending && 'Pending'}
+										</p>
 									</div>
-								))}
-						</li>
+								</li>
+							))}
 					</ul>
 				</Modal.Body>
 				<Modal.Footer>

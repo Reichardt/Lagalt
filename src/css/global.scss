@@ -69,6 +69,10 @@ body {
 	background-color: $color-purple !important;
 }
 
+.bg-secondary {
+	background-color: $color-light !important;
+}
+
 .text-darken {
 	color: $color-dark;
 }
@@ -211,7 +215,7 @@ small {
 	transition: 0.1s all ease-in-out;
 
 	p {
-		font-size: 0.9em;
+		font-size: 1.1em;
 		font-family: 'Roboto', sans-serif;
 		font-weight: 500;
 	}
@@ -254,6 +258,10 @@ small {
 			color: darken($color-grey, 15%);
 			font-weight: 400;
 		}
+	}
+
+	hr {
+		background-color: darken($color-grey, 20%);
 	}
 }
 
@@ -399,7 +407,7 @@ small {
 	}
 
 	.status {
-		font-weight: 600;
+		font-weight: 500;
 	}
 
 	.approved {
@@ -613,13 +621,13 @@ small {
 		text-decoration: none;
 
 		&:nth-of-type(1) {
-			border: 1px solid $color-grey;
+			border-left: 1px solid $color-grey;
+			border-bottom: 1px solid $color-grey;
+			border-top: 1px solid $color-grey;
 		}
 
 		&:nth-of-type(2) {
-			border-right: 1px solid $color-grey;
-			border-bottom: 1px solid $color-grey;
-			border-top: 1px solid $color-grey;
+			border: 1px solid $color-grey;
 		}
 
 		&:nth-of-type(3) {

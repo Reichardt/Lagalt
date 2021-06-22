@@ -22,11 +22,17 @@ function ProjectDetail({ project }) {
 						<small>{getTimeDiff(project.createdAt)}</small>
 					</div>
 					<hr />
-					<p className="repo-url">
-						<Link to={{ pathname: project.repoURL }} target="_blank">
+					<p className="repo-url mb-2">
+						Url:
+						<Link
+							to={{ pathname: project.repoURL }}
+							className="ms-1"
+							target="_blank"
+						>
 							{project.repoURL}
 						</Link>
 					</p>
+					<p className="mb-0">Status: {project.progress}</p>
 					<div className="mt-3 required">
 						<p className="mb-2 intro">We're currently looking for</p>
 						<ul>
