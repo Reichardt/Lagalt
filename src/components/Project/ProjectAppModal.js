@@ -70,13 +70,13 @@ function ProjectAppModal({ show, handleHide, project }) {
 				onHide={handleHide}
 				className="project-app-modal  text-center"
 			>
-				<Modal.Header className="justify-content-center">
-					<Modal.Title>
-						<h4 className="mb-0">Apply to {project.title}</h4>
-					</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<form onSubmit={submitApplication}>
+				<form onSubmit={submitApplication}>
+					<Modal.Header className="justify-content-center">
+						<Modal.Title>
+							<h4 className="mb-0">Apply to {project.title}</h4>
+						</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>
 						<div className="mb-2">
 							<label htmlFor="application" className="form-label">
 								Motivational application
@@ -98,13 +98,13 @@ function ProjectAppModal({ show, handleHide, project }) {
 								/>
 							))}
 						</div>
-					</form>
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="primary" onClick={submitApplication}>
-						Submit application
-					</Button>
-				</Modal.Footer>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="primary" onClick={submitApplication}>
+							Submit application
+						</Button>
+					</Modal.Footer>
+				</form>
 			</Modal>
 		</>
 	);
