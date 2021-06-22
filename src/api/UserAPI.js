@@ -20,7 +20,6 @@ const UserAPI = {
 			email: user.email,
 			name: user.firstName,
 			username: user.username,
-			description: 'hehe',
 			isSkillsHidden: false,
 			isActive: true,
 		};
@@ -56,6 +55,15 @@ const UserAPI = {
 			},
 			body: JSON.stringify(skills),
 		});
+	},
+	async getProfileProjects(name) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/profiles/${name}/projects`
+		);
+		if (res.ok) {
+			const data = await res.json();
+			return data;
+		}
 	},
 };
 

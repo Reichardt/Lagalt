@@ -1,8 +1,46 @@
 import getTimeDiff from '../../../util/getTimeDiff';
+import { useKeycloak } from '../../../context/KeycloakContext';
+import { useDispatch } from 'react-redux';
+import {
+	updateProjectApplication,
+	addUserToProject,
+} from '../../../features/Project/projectSlice';
 
 function ProjectApplication({ application }) {
+	const { keyCloak } = useKeycloak();
+	const dispatch = useDispatch();
+
+	const handleRequest = bool => {
+		const applicationData = {
+			id: application.project.id,
+			application: {
+				...application,
+				isAccepted: bool,
+				isPending: false,
+			},
+			token: keyCloak.token,
+		};
+
+		dispatch(updateProjectApplication(applicationData));
+
+		if (bool) {
+			const userData = {
+				id: application.project.id,
+				user: {
+					userId: application.user.id,
+					skills: application.skills,
+				},
+				token: keyCloak.token,
+			};
+			dispatch(addUserToProject(userData));
+		}
+	};
+
 	return (
-		<li className="list-group-item" key={application.id}>
+		<li
+			className="list-group-item mb-3 border-secondary border"
+			key={application.id}
+		>
 			<div className="d-flex justify-content-between align-items-center">
 				<p className="app-user">{application.user.username}</p>
 				<small>{getTimeDiff(application.createdAt)}</small>
@@ -20,9 +58,16 @@ function ProjectApplication({ application }) {
 				</ul>
 			</div>
 			<hr />
-			<div className="d-flex justify-content-end">
-				<button className="btn btn-danger me-2">Deny</button>
-				<button className="btn btn-success">Approve</button>
+			<div className="d-flex justify-content-end mb-2">
+				<button
+					className="btn btn-danger me-2"
+					onClick={() => handleRequest(false)}
+				>
+					Deny
+				</button>
+				<button className="btn btn-success" onClick={() => handleRequest(true)}>
+					Approve
+				</button>
 			</div>
 		</li>
 	);

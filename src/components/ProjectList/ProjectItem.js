@@ -30,7 +30,7 @@ function ProjectItem({ project }) {
 							<ProjectSkill skill={skill} key={uniqid()} />
 						))}
 				</div>
-				<span className="members">
+				<span className="members d-flex align-items-center">
 					<PeopleFill />{' '}
 					<span className="ms-1">
 						{project.current} / {project.total}
@@ -41,8 +41,9 @@ function ProjectItem({ project }) {
 				{project.tags &&
 					project.tags.map(tag => <ProjectTag tag={tag} key={tag} />)}
 			</div>
-			<p>{project.title}</p>
-			<div className="text-end desc">
+			<p className="mt-3">{project.title}</p>
+			<hr />
+			<div className="d-flex justify-content-between desc">
 				<small>
 					Posted by{' '}
 					<span className="link text-capitalize" onClick={handleLinkClick}>

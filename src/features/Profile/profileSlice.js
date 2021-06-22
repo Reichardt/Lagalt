@@ -63,8 +63,8 @@ export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
 		userProfile: null,
-		applications: null,
-		projects: null,
+		applications: [],
+		projects: [],
 		searchedUser: null,
 		searchedUserLoading: false,
 		loading: false,
@@ -131,6 +131,17 @@ export const profileSlice = createSlice({
 			state.applications = action.payload;
 		},
 		[getProfileApplications.rejected]: (state, action) => {
+			state.error = action.payload;
+			state.userAttributesLoading = false;
+		},
+		[getProfileProjects.pending]: state => {
+			state.userAttributesLoading = true;
+		},
+		[getProfileProjects.fulfilled]: (state, action) => {
+			state.userAttributesLoading = false;
+			state.applications = action.payload;
+		},
+		[getProfileProjects.rejected]: (state, action) => {
 			state.error = action.payload;
 			state.userAttributesLoading = false;
 		},

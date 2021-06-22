@@ -61,17 +61,16 @@ function ProjectMain({ id }) {
 
 	return (
 		<>
-			{loading && <Loader />}
-			{!loading && project && (
-				<>
-					<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary project">
+			<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary project">
+				{loading && <Loader styles={loaderStyles} />}
+				{!loading && project && (
+					<>
 						<div className="border-bottom border-secondary d-flex justify-content-between align-items-center text-darken p-3">
 							<div className="d-flex align-items-center">
 								<Back />
 								<p className="fw-bold ms-3 m-0">{project.title}</p>
 							</div>
 							<div className="d-flex align-items-center">
-								<p className="mb-0 me-3">{project.progress}</p>
 								{userProfile && userProfile.username === project.creator ? (
 									<>
 										<button className="btn btn-primary me-2">
@@ -113,25 +112,30 @@ function ProjectMain({ id }) {
 						<div className="row mt-4">
 							<ProjectBoard profile={userProfile} />
 						</div>
-					</div>
-					{showApplicationModal && (
-						<ProjectAppModal
-							show={showApplicationModal}
-							handleHide={handleAppHide}
-							project={project}
-						/>
-					)}
-					{showApplicationsModal && (
-						<ProjectApplicationsModal
-							show={showApplicationsModal}
-							handleHide={handleAppsHide}
-							applications={projectApplications}
-						/>
-					)}
-				</>
+					</>
+				)}
+			</div>
+			{showApplicationModal && (
+				<ProjectAppModal
+					show={showApplicationModal}
+					handleHide={handleAppHide}
+					project={project}
+				/>
+			)}
+			{showApplicationsModal && (
+				<ProjectApplicationsModal
+					show={showApplicationsModal}
+					handleHide={handleAppsHide}
+					applications={projectApplications}
+				/>
 			)}
 		</>
 	);
 }
 
 export default ProjectMain;
+
+const loaderStyles = {
+	top: '50%',
+	left: '50%',
+};
