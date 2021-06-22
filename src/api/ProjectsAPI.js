@@ -32,7 +32,7 @@ const ProjectsAPI = {
 		}
 	},
 	async applyToProject(application, id, token) {
-		await fetch(
+		const res = await fetch(
 			`${process.env.REACT_APP_API_URL}/projects/${id}/applications`,
 			{
 				method: 'POST',
@@ -43,6 +43,21 @@ const ProjectsAPI = {
 				body: JSON.stringify(application),
 			}
 		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
+	async getProjectApplications(id) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/applications`
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
 	},
 };
 

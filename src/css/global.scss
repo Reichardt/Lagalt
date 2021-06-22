@@ -1,11 +1,12 @@
 $color-white: #fff;
-$color-light: #fafafa;
-$color-dark: rgba(0, 0, 0, 1);
+$color-light: #f8f8f8;
+$color-dark: #000000;
 $color-purple: #4338ca;
 $color-blue: #0069d9;
 $color-red: #b73939;
 $color-grey: #d3d9de;
 $color-green: #5a9e32;
+$color-yellow: #bbb23c;
 
 *,
 *::before,
@@ -76,10 +77,17 @@ body {
 	color: $color-purple !important;
 }
 
+.btn {
+	font-size: 0.8em;
+
+	&:focus {
+		box-shadow: none;
+	}
+}
+
 .btn-primary {
 	background-color: $color-purple;
 	border: 1px solid $color-purple;
-	font-size: 0.8em;
 
 	&:hover {
 		background-color: darken($color-purple, 20%);
@@ -89,9 +97,33 @@ body {
 		background-color: lighten($color-purple, 5%);
 		border: 1px solid $color-purple;
 	}
+}
 
-	&:focus {
-		box-shadow: none;
+.btn-success {
+	background-color: darken($color-green, 10%);
+	border: 1px solid $color-green;
+
+	&:hover {
+		background-color: darken($color-green, 20%);
+	}
+
+	&:disabled {
+		background-color: lighten($color-green, 5%);
+		border: 1px solid $color-green;
+	}
+}
+
+.btn-danger {
+	background-color: darken($color-red, 10%);
+	border: 1px solid $color-red;
+
+	&:hover {
+		background-color: darken($color-red, 20%);
+	}
+
+	&:disabled {
+		background-color: lighten($color-red, 5%);
+		border: 1px solid $color-red;
 	}
 }
 
@@ -106,13 +138,18 @@ small {
 .skill {
 	span:first-of-type {
 		text-decoration: none;
-		color: $color-white;
 		transition: 0.1s ease-in-out all;
 
 		&:hover {
-			color: $color-grey;
 			cursor: pointer;
+			color: $color-purple;
 		}
+	}
+
+	&.bg-custom {
+		background-color: $color-light;
+		border: 1px solid $color-grey;
+		color: $color-dark;
 	}
 }
 
@@ -189,7 +226,7 @@ small {
 	}
 
 	&:hover {
-		background-color: $color-grey;
+		background-color: darken($color-light, 5%);
 		cursor: pointer;
 	}
 
@@ -208,6 +245,14 @@ small {
 		.tag {
 			font-size: 0.8em;
 			font-weight: 500;
+		}
+	}
+
+	.desc {
+		p {
+			font-size: 0.7em;
+			color: darken($color-grey, 15%);
+			font-weight: 400;
 		}
 	}
 }
@@ -334,6 +379,18 @@ small {
 	.item-editable {
 		width: 65%;
 	}
+
+	.profile-img {
+		height: 200px;
+		width: 200px;
+		margin: 0 auto;
+
+		img {
+			width: 100%;
+			height: 100%;
+			border: 1px solid $color-light;
+		}
+	}
 }
 
 .profile-app-modal {
@@ -347,6 +404,25 @@ small {
 
 	.approved {
 		color: $color-green;
+	}
+
+	.denied {
+		color: $color-red;
+	}
+
+	.pending {
+		color: $color-yellow;
+	}
+
+	a {
+		font-size: 0.8em;
+		text-decoration: none;
+		color: $color-dark;
+		transition: 0.2s ease-in-out all;
+
+		&:hover {
+			color: $color-purple;
+		}
 	}
 }
 
@@ -425,6 +501,12 @@ small {
 		}
 	}
 
+	.main-desc {
+		p {
+			font-size: 0.9em;
+		}
+	}
+
 	.comments {
 		height: 30vh;
 		font-size: 0.8em;
@@ -495,11 +577,33 @@ small {
 			}
 		}
 	}
+
+	.badge {
+		font-weight: 500;
+	}
 }
 
 .project-app-modal {
 	textarea {
 		height: 10em;
+	}
+}
+
+.application-list-modal {
+	.list-group-item {
+		font-size: 0.9em;
+	}
+	.app-mot-text {
+		word-break: break-all;
+	}
+
+	.app-user {
+		font-size: 1.1em;
+		font-weight: 500;
+	}
+
+	.app-skills {
+		font-size: 0.9em;
 	}
 }
 

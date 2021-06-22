@@ -1,10 +1,10 @@
 import React from 'react';
 
-function Loader() {
+function Loader({ styles }) {
 	return (
 		<div
-			className="spinner-border text-primary"
-			style={spinnerStyles}
+			className="spinner-border text-primary position-absolute"
+			style={styles}
 			role="status"
 		>
 			<span className="visually-hidden">Loading...</span>
@@ -13,9 +13,3 @@ function Loader() {
 }
 
 export default Loader;
-
-const spinnerStyles = {
-	position: 'absolute',
-	left: '50%',
-	top: '25%',
-};

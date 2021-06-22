@@ -50,7 +50,7 @@ body {
 }
 
 .app {
-  background-color: #fafafa;
+  background-color: #f8f8f8;
   min-height: 100vh;
 }
 
@@ -67,17 +67,25 @@ body {
 }
 
 .text-darken {
-  color: black;
+  color: #000000;
 }
 
 .text-primary {
   color: #4338ca !important;
 }
 
+.btn {
+  font-size: 0.8em;
+}
+
+.btn:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .btn-primary {
   background-color: #4338ca;
   border: 1px solid #4338ca;
-  font-size: 0.8em;
 }
 
 .btn-primary:hover {
@@ -89,9 +97,32 @@ body {
   border: 1px solid #4338ca;
 }
 
-.btn-primary:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.btn-success {
+  background-color: #447726;
+  border: 1px solid #5a9e32;
+}
+
+.btn-success:hover {
+  background-color: #2e5119;
+}
+
+.btn-success:disabled {
+  background-color: #65b138;
+  border: 1px solid #5a9e32;
+}
+
+.btn-danger {
+  background-color: #902d2d;
+  border: 1px solid #b73939;
+}
+
+.btn-danger:hover {
+  background-color: #692121;
+}
+
+.btn-danger:disabled {
+  background-color: #c54545;
+  border: 1px solid #b73939;
 }
 
 .fire-icon {
@@ -104,14 +135,19 @@ small {
 
 .skill span:first-of-type {
   text-decoration: none;
-  color: #fff;
   -webkit-transition: 0.1s ease-in-out all;
   transition: 0.1s ease-in-out all;
 }
 
 .skill span:first-of-type:hover {
-  color: #d3d9de;
   cursor: pointer;
+  color: #4338ca;
+}
+
+.skill.bg-custom {
+  background-color: #f8f8f8;
+  border: 1px solid #d3d9de;
+  color: #000000;
 }
 
 .icon-wrapper {
@@ -121,7 +157,7 @@ small {
 }
 
 .icon-wrapper a {
-  color: black;
+  color: #000000;
   text-transform: capitalize;
   -webkit-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
@@ -185,7 +221,7 @@ small {
 }
 
 .project-item:hover {
-  background-color: #d3d9de;
+  background-color: #ebebeb;
   cursor: pointer;
 }
 
@@ -206,6 +242,12 @@ small {
 .project-item .tags .tag {
   font-size: 0.8em;
   font-weight: 500;
+}
+
+.project-item .desc p {
+  font-size: 0.7em;
+  color: #a7b3bd;
+  font-weight: 400;
 }
 
 .center-column {
@@ -337,6 +379,18 @@ small {
   width: 65%;
 }
 
+.profile .profile-img {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.profile .profile-img img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #f8f8f8;
+}
+
 .profile-app-modal p {
   font-size: 0.8em;
 }
@@ -347,6 +401,26 @@ small {
 
 .profile-app-modal .approved {
   color: #5a9e32;
+}
+
+.profile-app-modal .denied {
+  color: #b73939;
+}
+
+.profile-app-modal .pending {
+  color: #bbb23c;
+}
+
+.profile-app-modal a {
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #000000;
+  -webkit-transition: 0.2s ease-in-out all;
+  transition: 0.2s ease-in-out all;
+}
+
+.profile-app-modal a:hover {
+  color: #4338ca;
 }
 
 .project-create form {
@@ -393,7 +467,7 @@ small {
 
 .project .project-details {
   height: 100%;
-  background-color: #fafafa;
+  background-color: #f8f8f8;
   font-size: 0.9em;
 }
 
@@ -417,6 +491,10 @@ small {
 
 .project .project-details .repo-url a {
   color: #4338ca;
+}
+
+.project .main-desc p {
+  font-size: 0.9em;
 }
 
 .project .comments {
@@ -456,7 +534,7 @@ small {
 }
 
 .project .comment-author {
-  color: black;
+  color: #000000;
   font-weight: 600;
   text-decoration: none;
   -webkit-transition: 0.2s ease-in-out all;
@@ -468,7 +546,7 @@ small {
 }
 
 .project .comment-info p {
-  color: #bababa;
+  color: #b8b8b8;
   font-size: 0.75em;
 }
 
@@ -495,8 +573,29 @@ small {
   color: #4338ca;
 }
 
+.project .badge {
+  font-weight: 500;
+}
+
 .project-app-modal textarea {
   height: 10em;
+}
+
+.application-list-modal .list-group-item {
+  font-size: 0.9em;
+}
+
+.application-list-modal .app-mot-text {
+  word-break: break-all;
+}
+
+.application-list-modal .app-user {
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.application-list-modal .app-skills {
+  font-size: 0.9em;
 }
 
 .categories .category-item {

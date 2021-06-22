@@ -55,7 +55,18 @@ export const applyToProject = createAsyncThunk(
 	'project/applyToProject',
 	async applicationData => {
 		const { application, id, token } = applicationData;
-		await ProjectsAPI.applyToProject(application, id, token);
+		const app = await ProjectsAPI.applyToProject(application, id, token);
+
+		return app;
+	}
+);
+
+export const getProjectApplications = createAsyncThunk(
+	'project/getProjectApplications',
+	async id => {
+		const applications = await ProjectsAPI.getProjectApplications(id);
+
+		return applications;
 	}
 );
 
@@ -64,6 +75,7 @@ export const projectSlice = createSlice({
 	initialState: {
 		projects: [],
 		project: null,
+		projectApplications: null,
 		loading: false,
 		appLoading: false,
 		error: null,
@@ -106,6 +118,16 @@ export const projectSlice = createSlice({
 		},
 		[applyToProject.rejected]: (state, action) => {
 			state.appLoading = false;
+			state.error = action.payload;
+		},
+		[getProjectApplications.pending]: state => {
+			state.loading = true;
+		},
+		[getProjectApplications.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.projectApplications = action.payload;
+		},
+		[getProjectApplications.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 	},

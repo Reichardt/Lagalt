@@ -6,7 +6,7 @@ import Project from './pages/Project';
 import CreateProject from './pages/CreateProject';
 import Categories from './pages/Categories';
 import Recommended from './pages/Recommended';
-import Notifications from './pages/Notifications';
+import Projects from './pages/Projects';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './util/ProtectedRoute';
 import Category from './pages/Category';
@@ -25,7 +25,7 @@ function App() {
 					<Route path="/404" component={NotFound} />
 					<ProtectedRoute path="/create-project" component={CreateProject} />
 					<ProtectedRoute path="/recommended" component={Recommended} />
-					<ProtectedRoute path="/notifications" component={Notifications} />
+					<ProtectedRoute path="/projects" component={Projects} />
 				</Switch>
 			</div>
 		</BrowserRouter>
