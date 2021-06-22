@@ -17,6 +17,8 @@ function ProjectApplication({ application }) {
 				...application,
 				isAccepted: bool,
 				isPending: false,
+				userId: application.user.id,
+				projectId: application.project.id,
 			},
 			token: keyCloak.token,
 		};
