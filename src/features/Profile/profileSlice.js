@@ -43,10 +43,28 @@ export const updateProfileSkills = createAsyncThunk(
 	}
 );
 
+export const getProfileApplications = createAsyncThunk(
+	'profile/getProfileApplications',
+	async username => {
+		const applications = await UserAPI.getProfileApplications(username);
+		return applications;
+	}
+);
+
+export const getProfileProjects = createAsyncThunk(
+	'profile/getProfileProjects',
+	async username => {
+		const projects = await UserAPI.getProfileProjects(username);
+		return projects;
+	}
+);
+
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
 		userProfile: null,
+		applications: null,
+		projects: null,
 		searchedUser: null,
 		searchedUserLoading: false,
 		loading: false,
@@ -102,6 +120,17 @@ export const profileSlice = createSlice({
 			state.userAttributesLoading = false;
 		},
 		[updateProfileSkills.rejected]: (state, action) => {
+			state.error = action.payload;
+			state.userAttributesLoading = false;
+		},
+		[getProfileApplications.pending]: state => {
+			state.userAttributesLoading = true;
+		},
+		[getProfileApplications.fulfilled]: (state, action) => {
+			state.userAttributesLoading = false;
+			state.applications = action.payload;
+		},
+		[getProfileApplications.rejected]: (state, action) => {
 			state.error = action.payload;
 			state.userAttributesLoading = false;
 		},

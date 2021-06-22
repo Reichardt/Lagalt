@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ProfileSkill from './ProfileSkill';
 import uniqid from 'uniqid';
-import { fetchAllSkills } from '../../features/Skill/skillSlice';
+import { fetchAllSkills } from '../../../features/Skill/skillSlice';
 import {
 	setProfileSkills,
 	updateProfileSkills,
-} from '../../features/Profile/profileSlice';
-import { useKeycloak } from '../../context/KeycloakContext';
+} from '../../../features/Profile/profileSlice';
+import { useKeycloak } from '../../../context/KeycloakContext';
 
 function ProfileSkills({ profile, profileParam }) {
 	const { keyCloak } = useKeycloak();
@@ -25,10 +25,14 @@ function ProfileSkills({ profile, profileParam }) {
 			setState({
 				...state,
 				skillOptions: res.payload.filter(so =>
-					profile.skills.every(pskill => pskill.id !== so.id)
+					profile
+						? profile.skills.every(pskill => pskill.id !== so.id)
+						: profileParam.skills.every(pskill => pskill.id !== so.id)
 				),
 				skillsAdded: res.payload.filter(so =>
-					profile.skills.some(pskill => pskill.id === so.id)
+					profile
+						? profile.skills.some(pskill => pskill.id === so.id)
+						: profileParam.skills.some(pskill => pskill.id === so.id)
 				),
 			});
 		});

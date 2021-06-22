@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { PeopleFill } from 'react-bootstrap-icons';
 import ProjectSkill from './ProjectSkill';
 import ProjectTag from './ProjectTag';
+import getTimeDiff from '../../util/getTimeDiff';
+import uniqid from 'uniqid';
 
 function ProjectItem({ project }) {
 	const history = useHistory();
@@ -24,8 +26,8 @@ function ProjectItem({ project }) {
 			<div className="d-flex justify-content-between align-items-center">
 				<div className="d-flex align-items-center">
 					{project.skills &&
-						project.skills.map((skill, index) => (
-							<ProjectSkill skill={skill} key={`${skill}-${index}`} />
+						project.skills.map(skill => (
+							<ProjectSkill skill={skill} key={uniqid()} />
 						))}
 				</div>
 				<span className="members">
@@ -40,13 +42,14 @@ function ProjectItem({ project }) {
 					project.tags.map(tag => <ProjectTag tag={tag} key={tag} />)}
 			</div>
 			<p>{project.title}</p>
-			<div className="text-end">
+			<div className="text-end desc">
 				<small>
 					Posted by{' '}
-					<span className="link" onClick={handleLinkClick}>
+					<span className="link text-capitalize" onClick={handleLinkClick}>
 						{project.creator}
 					</span>
 				</small>
+				<p>{getTimeDiff(project.createdAt)}</p>
 			</div>
 		</div>
 	);

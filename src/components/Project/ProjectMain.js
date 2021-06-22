@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import {
 	fetchProjectById,
 	projectSelector,
+	getProjectApplications,
 } from '../../features/Project/projectSlice';
 import { profileSelector } from '../../features/Profile/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,33 +10,54 @@ import { useKeycloak } from '../../context/KeycloakContext';
 import Loader from '../Global/Loader';
 import ProjectSkill from '../ProjectList/ProjectSkill';
 import { PeopleFill } from 'react-bootstrap-icons';
-import ProjectBoard from './ProjectBoard';
-import ProjectDetail from './ProjectDetail';
-import ProjectAppModal from './ProjectAppModal';
+import ProjectBoard from './ProjectMessageBoard/ProjectBoard';
+import ProjectDetail from './ProjectDetail/ProjectDetail';
+import ProjectAppModal from './ProjectApplication/ProjectAppModal';
 import Back from '../Global/Back';
+import { useHistory } from 'react-router-dom';
+import ProjectApplicationsModal from './ProjectAdmin/ProjectApplicationsModal';
 
 function ProjectMain({ id }) {
 	const { Login } = useKeycloak();
-	const { project, loading } = useSelector(projectSelector);
+	const { project, loading, projectApplications } =
+		useSelector(projectSelector);
 	const { userProfile } = useSelector(profileSelector);
-	const [showModal, setShowModal] = useState(false);
+	const [showApplicationModal, setShowApplicationModal] = useState(false);
+	const [showApplicationsModal, setShowApplicationsModal] = useState(false);
 	const dispatch = useDispatch();
+	const history = useHistory();
 
-	const handleShow = () => {
+	const handleAppShow = () => {
 		if (!userProfile) {
 			Login();
 		} else {
-			setShowModal(true);
+			setShowApplicationModal(true);
 		}
 	};
 
-	const handleHide = () => {
-		setShowModal(false);
+	const handleAppHide = () => {
+		setShowApplicationModal(false);
+	};
+
+	const handleAppsShow = () => {
+		setShowApplicationsModal(true);
+	};
+
+	const handleAppsHide = () => {
+		setShowApplicationsModal(false);
 	};
 
 	useEffect(() => {
-		dispatch(fetchProjectById(id));
-	}, [dispatch, id]);
+		dispatch(fetchProjectById(id)).then(res => {
+			if (res.payload) {
+				if (userProfile && userProfile.username === res.payload.creator) {
+					dispatch(getProjectApplications(id));
+				}
+			} else {
+				history.push('/404');
+			}
+		});
+	}, [dispatch, userProfile]);
 
 	return (
 		<>
@@ -50,9 +72,26 @@ function ProjectMain({ id }) {
 							</div>
 							<div className="d-flex align-items-center">
 								<p className="mb-0 me-3">{project.progress}</p>
-								<button className="btn btn-primary" onClick={handleShow}>
-									Apply to project
-								</button>
+								{userProfile && userProfile.username === project.creator ? (
+									<>
+										<button className="btn btn-primary me-2">
+											Manage contributors
+										</button>
+										{projectApplications && (
+											<button
+												className="btn btn-primary"
+												onClick={handleAppsShow}
+											>
+												Applications{' '}
+												{projectApplications && projectApplications.length}
+											</button>
+										)}
+									</>
+								) : (
+									<button className="btn btn-primary" onClick={handleAppShow}>
+										Apply to project
+									</button>
+								)}
 							</div>
 						</div>
 						<div className="p-3 d-flex justify-content-between align-items-center">
@@ -72,14 +111,21 @@ function ProjectMain({ id }) {
 							<ProjectDetail project={project} />
 						</div>
 						<div className="row mt-4">
-							<ProjectBoard />
+							<ProjectBoard profile={userProfile} />
 						</div>
 					</div>
-					{showModal && (
+					{showApplicationModal && (
 						<ProjectAppModal
-							show={showModal}
-							handleHide={handleHide}
+							show={showApplicationModal}
+							handleHide={handleAppHide}
 							project={project}
+						/>
+					)}
+					{showApplicationsModal && (
+						<ProjectApplicationsModal
+							show={showApplicationsModal}
+							handleHide={handleAppsHide}
+							applications={projectApplications}
 						/>
 					)}
 				</>

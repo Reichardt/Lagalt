@@ -20,7 +20,7 @@ function Home() {
 		<div className="container">
 			<div className="row">
 				<Sidenav side={'left'} />
-				{loading && <Loader />}
+				{loading && <Loader styles={loaderStyles} />}
 				{!loading && <ProjectList projects={projects} />}
 				<Sidenav side={'right'} />
 			</div>
@@ -29,3 +29,9 @@ function Home() {
 }
 
 export default Home;
+
+const loaderStyles = {
+	top: '50%',
+	left: '50%',
+	zIndex: '2',
+};
