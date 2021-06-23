@@ -11,682 +11,683 @@ $color-yellow: #bbb23c;
 *,
 *::before,
 *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .custom-input {
-	transition: 0.2s ease-in-out all;
-	border-radius: 0 !important;
+    transition: 0.2s ease-in-out border;
+    border-radius: 0 !important;
 
-	&:focus {
-		box-shadow: none;
-		border: 1px solid $color-purple;
-	}
+    &:focus {
+        box-shadow: none;
+        border: 1px solid $color-purple;
+    }
 }
 
 select {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 p {
-	margin: 0;
+    margin: 0;
 }
 
 .full-height {
-	height: 100%;
+    height: 100%;
 }
 
 .d-grid {
-	display: grid;
+    display: grid;
 }
 
 .four-column {
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 body {
-	font-family: 'Poppins', sans-serif;
-	font-size: 18px;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
 }
 
 .app {
-	background-color: $color-light;
-	min-height: 100vh;
+    background-color: $color-light;
+    min-height: 100vh;
 }
 
 .bg-container {
-	background-color: $color-white;
+    background-color: $color-white;
 }
 
 .bg-content {
-	background-color: $color-white;
+    background-color: $color-white;
 }
 
 .bg-primary {
-	background-color: $color-purple !important;
+    background-color: $color-purple !important;
 }
 
 .bg-secondary {
-	background-color: $color-light !important;
+    background-color: $color-light !important;
 }
 
 .text-darken {
-	color: $color-dark;
+    color: $color-dark;
 }
 
 .text-primary {
-	color: $color-purple !important;
+    color: $color-purple !important;
 }
 
 .btn {
-	font-size: 0.8em;
-	border-radius: 0;
+    font-size: 0.8em;
+    border-radius: 0;
 
-	&:focus {
-		box-shadow: none;
-	}
+    &:focus {
+        box-shadow: none;
+    }
 }
 
 .btn-primary {
-	background-color: $color-purple;
-	border: 1px solid $color-purple;
+    background-color: $color-purple;
+    border: 1px solid $color-purple;
 
-	&:hover {
-		background-color: darken($color-purple, 20%);
-	}
+    &:hover {
+        background-color: darken($color-purple, 20%);
+    }
 
-	&:disabled {
-		background-color: lighten($color-purple, 5%);
-		border: 1px solid $color-purple;
-	}
+    &:disabled {
+        background-color: lighten($color-purple, 5%);
+        border: 1px solid $color-purple;
+    }
 }
 
 .btn-success {
-	background-color: darken($color-green, 10%);
-	border: 1px solid $color-green;
+    background-color: darken($color-green, 10%);
+    border: 1px solid $color-green;
 
-	&:hover {
-		background-color: darken($color-green, 20%);
-	}
+    &:hover {
+        background-color: darken($color-green, 20%);
+    }
 
-	&:disabled {
-		background-color: lighten($color-green, 5%);
-		border: 1px solid $color-green;
-	}
+    &:disabled {
+        background-color: lighten($color-green, 5%);
+        border: 1px solid $color-green;
+    }
 }
 
 .btn-danger {
-	background-color: darken($color-red, 10%);
-	border: 1px solid $color-red;
+    background-color: darken($color-red, 10%);
+    border: 1px solid $color-red;
 
-	&:hover {
-		background-color: darken($color-red, 20%);
-	}
+    &:hover {
+        background-color: darken($color-red, 20%);
+    }
 
-	&:disabled {
-		background-color: lighten($color-red, 5%);
-		border: 1px solid $color-red;
-	}
+    &:disabled {
+        background-color: lighten($color-red, 5%);
+        border: 1px solid $color-red;
+    }
 }
 
 .btn-secondary {
-	background-color: $color-light;
-	border: 1px solid $color-grey;
-	color: $color-dark;
-	font-weight: 500;
+    background-color: $color-light;
+    border: 1px solid $color-grey;
+    color: $color-dark;
+    font-weight: 500;
 
-	&:hover {
-		background-color: darken($color-light, 10%);
-		color: $color-dark;
-		border: 1px solid darken($color-grey, 5%);
-	}
+    &:hover {
+        background-color: darken($color-light, 10%);
+        color: $color-dark;
+        border: 1px solid darken($color-grey, 5%);
+    }
 
-	&:focus {
-		background-color: darken($color-light, 10%);
-		color: $color-dark;
-		border: 1px solid darken($color-grey, 5%);
-	}
+    &:focus {
+        background-color: darken($color-light, 10%);
+        color: $color-dark;
+        border: 1px solid darken($color-grey, 5%);
+    }
 }
 
 .modal-content {
-	border-radius: 0;
+    border-radius: 0;
 }
 
 small {
-	font-size: 0.75rem;
+    font-size: 0.75rem;
 }
 
 .skill {
-	span:first-of-type {
-		text-decoration: none;
-		transition: 0.1s ease-in-out all;
+    span:first-of-type {
+        text-decoration: none;
+        transition: 0.1s ease-in-out all;
 
-		&:hover {
-			cursor: pointer;
-			color: $color-purple;
-		}
-	}
+        &:hover {
+            cursor: pointer;
+            color: $color-purple;
+        }
+    }
 
-	&.bg-custom {
-		background-color: $color-light;
-		border: 1px solid $color-grey;
-		color: $color-dark;
-	}
+    &.bg-custom {
+        background-color: $color-light;
+        border: 1px solid $color-grey;
+        color: $color-dark;
+    }
 }
 
 .icon-wrapper {
-	font-size: 1.2rem;
-	font-weight: 600;
-	font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
 
-	a {
-		color: $color-dark;
-		text-transform: capitalize;
-		transition: all 0.1s ease-in-out;
-		text-decoration: none;
+    a {
+        color: $color-dark;
+        text-transform: capitalize;
+        transition: all 0.1s ease-in-out;
+        text-decoration: none;
 
-		&:hover {
-			color: $color-purple;
-		}
-	}
+        &:hover {
+            color: $color-purple;
+        }
+    }
 
-	.active {
-		color: $color-purple;
-	}
+    .active {
+        color: $color-purple;
+    }
 
-	.badge {
-		font-size: 10px;
-	}
+    .badge {
+        font-size: 10px;
+    }
 
-	.logout,
-	.login {
-		span {
-			cursor: pointer;
+    .logout,
+    .login {
+        span {
+            cursor: pointer;
 
-			transition: all 0.1s ease-in-out;
+            transition: all 0.1s ease-in-out;
 
-			&:hover {
-				color: $color-purple;
-			}
-		}
-	}
+            &:hover {
+                color: $color-purple;
+            }
+        }
+    }
 }
 
 .recent-projects {
-	p {
-		font-weight: 600;
-	}
+    p {
+        font-weight: 600;
+    }
 }
 
 .recent-project {
-	p {
-		font-size: 1rem;
-	}
+    p {
+        font-size: 1rem;
+    }
 
-	a {
-		font-size: 1rem;
-	}
+    a {
+        font-size: 1rem;
+    }
 }
 
 .project-item {
-	transition: 0.1s all ease-in-out;
+    transition: 0.1s all ease-in-out;
 
-	p {
-		font-size: 1.1em;
-		font-family: 'Roboto', sans-serif;
-		font-weight: 500;
-	}
+    p {
+        font-size: 1.1em;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+    }
 
-	.badge {
-		font-size: 0.7em;
-		font-weight: 400;
-	}
+    .badge {
+        font-size: 0.7em;
+        font-weight: 400;
+    }
 
-	.members {
-		font-size: 0.8em;
-	}
+    .members {
+        font-size: 0.8em;
+    }
 
-	&:hover {
-		background-color: darken($color-light, 5%);
-		cursor: pointer;
-	}
+    &:hover {
+        background-color: darken($color-light, 5%);
+        cursor: pointer;
+    }
 
-	.link {
-		color: $color-blue;
-		transition: all 0.3s ease-in-out;
+    .link {
+        color: $color-blue;
+        transition: all 0.3s ease-in-out;
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 
-	.tags {
-		font-size: 0.9em;
+    .tags {
+        font-size: 0.9em;
 
-		.tag {
-			font-size: 0.8em;
-			font-weight: 500;
-		}
-	}
+        .tag {
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+    }
 
-	.desc {
-		p {
-			font-size: 0.7em;
-			color: darken($color-grey, 15%);
-			font-weight: 400;
-		}
-	}
+    .desc {
+        p {
+            font-size: 0.7em;
+            color: darken($color-grey, 15%);
+            font-weight: 400;
+        }
+    }
 
-	hr {
-		background-color: darken($color-grey, 20%);
-	}
+    hr {
+        background-color: darken($color-grey, 20%);
+    }
 }
 
 .center-column {
-	flex: 3;
+    flex: 3;
 }
 
 .right-column {
-	flex: 4;
+    flex: 4;
 }
 
 .sidenav {
-	flex: 1;
+    flex: 1;
 }
 
 .search-wrapper {
-	flex: 5;
+    flex: 5;
 
-	.suggestions {
-		width: 100%;
-		z-index: 10;
-		background: $color-white;
-		font-size: 1rem;
+    .suggestions {
+        width: 100%;
+        z-index: 10;
+        background: $color-white;
+        font-size: 1rem;
 
-		.suggestion {
-			padding: 0.5rem 1rem;
-			transition: all 0.3s ease-in-out;
+        .suggestion {
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in-out;
 
-			&:hover {
-				background-color: $color-grey;
-				cursor: pointer;
-			}
-		}
-	}
+            &:hover {
+                background-color: $color-grey;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .filter-icon {
-	flex: 1;
-	font-size: 1.3rem;
-	transition: all 0.3 ease-in-out;
+    flex: 1;
+    font-size: 1.3rem;
+    transition: all 0.3 ease-in-out;
 
-	&:hover {
-		color: $color-purple;
-		cursor: pointer;
-	}
+    &:hover {
+        color: $color-purple;
+        cursor: pointer;
+    }
 }
 
 .search-input {
-	width: 100%;
-	padding: 0.5rem 1rem;
-	outline: none;
-	font-size: 1rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    outline: none;
+    font-size: 1rem;
 }
 
 .border-secondary {
-	border-color: $color-grey !important;
+    border-color: $color-grey !important;
 }
 .profile {
-	.profile-header {
-		p {
-			text-transform: capitalize;
-		}
-	}
-	.desc-image {
-		font-size: 0.9em;
-	}
+    h2 {
+        font-size: 1.3em;
+    }
+    .profile-header {
+        p {
+            text-transform: capitalize;
+        }
+    }
+    .desc-image {
+        font-size: 0.9em;
+    }
 
-	.profile-desc {
-		p,
-		textarea {
-			font-size: 0.9em;
-			line-height: 30px;
-		}
+    .profile-desc {
+        p,
+        textarea {
+            font-size: 0.9em;
+            line-height: 30px;
+        }
 
-		textarea {
-			width: 100%;
-			height: 17rem;
-			margin-bottom: 1rem;
+        p {
+            word-break: break-all;
+        }
 
-			&::-webkit-scrollbar {
-				width: 0; /* Remove scrollbar space */
-				background: transparent; /* Optional: just make scrollbar invisible */
-			}
-		}
-	}
+        textarea {
+            width: 100%;
+            height: 17rem;
+            margin-bottom: 1rem;
 
-	.profile-skill {
-		svg {
-			color: $color-red;
-			font-size: 1.2em;
+            &::-webkit-scrollbar {
+                width: 0; /* Remove scrollbar space */
+                background: transparent; /* Optional: just make scrollbar invisible */
+            }
+        }
+    }
 
-			&:hover {
-				cursor: pointer;
-			}
-		}
-	}
+    .profile-skill {
+        svg {
+            color: $color-red;
+            font-size: 1.2em;
 
-	.form-switch {
-		.form-check-input {
-			background-image: url('./icons/square-unchecked.svg');
-			&:checked {
-				background-image: url('./icons/square-checked.svg');
-				background-color: inherit;
-				border-color: $color-grey;
-			}
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 
-			&:focus {
-				border-color: $color-grey;
-			}
-		}
-		label {
-			font-size: 0.9em;
-			font-weight: 500;
-		}
-	}
+    .form-switch {
+        .form-check-input {
+            background-image: url("./icons/square-unchecked.svg");
+            &:checked {
+                background-image: url("./icons/square-checked.svg");
+                background-color: inherit;
+                border-color: $color-grey;
+            }
 
-	.form-control {
-		&:focus {
-			box-shadow: none;
-			border: 1px solid darken($color-purple, 10%);
-		}
-	}
+            &:focus {
+                border-color: $color-grey;
+            }
+        }
+        label {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+    }
 
-	select {
-		width: 65%;
+    .form-control {
+        &:focus {
+            box-shadow: none;
+            border: 1px solid darken($color-purple, 10%);
+        }
+    }
 
-		&:focus {
-			box-shadow: none;
-			border: 1px solid $color-purple;
-		}
-	}
+    select {
+        width: 65%;
 
-	.item-editable {
-		width: 65%;
-	}
+        &:focus {
+            box-shadow: none;
+            border: 1px solid $color-purple;
+        }
+    }
 
-	.profile-img {
-		height: 200px;
-		width: 200px;
-		margin: 0 auto;
+    .item-editable {
+        width: 65%;
+    }
 
-		img {
-			width: 100%;
-			height: 100%;
-			border: 1px solid $color-light;
-		}
-	}
+    .profile-img {
+        height: 200px;
+        width: 200px;
+        margin: 0 auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            border: 1px solid $color-light;
+        }
+    }
 }
 
 .profile-app-modal {
-	p {
-		font-size: 0.8em;
-	}
+    p {
+        font-size: 0.8em;
+    }
 
-	.status {
-		font-weight: 500;
-	}
+    .status {
+        font-weight: 500;
+    }
 
-	.approved {
-		color: $color-green;
-	}
+    .approved {
+        color: $color-green;
+    }
 
-	.denied {
-		color: $color-red;
-	}
+    .denied {
+        color: $color-red;
+    }
 
-	.pending {
-		color: $color-yellow;
-	}
+    .pending {
+        color: $color-yellow;
+    }
 
-	a {
-		font-size: 0.8em;
-		text-decoration: none;
-		color: $color-dark;
-		transition: 0.2s ease-in-out all;
+    a {
+        font-size: 0.8em;
+        text-decoration: none;
+        color: $color-dark;
+        transition: 0.2s ease-in-out all;
 
-		&:hover {
-			color: $color-purple;
-		}
-	}
+        &:hover {
+            color: $color-purple;
+        }
+    }
 }
 
 .project-create {
-	form {
-		font-size: 0.9em;
-	}
-	* {
-		&:focus {
-			box-shadow: none;
-			border: 1px solid darken($color-purple, 10%);
-		}
-	}
-	textarea {
-		height: 8em;
-		resize: none;
-	}
+    form {
+        font-size: 0.9em;
+    }
+    * {
+        &:focus {
+            box-shadow: none;
+            border: 1px solid darken($color-purple, 10%);
+        }
+    }
+    textarea {
+        height: 8em;
+        resize: none;
+    }
 
-	label {
-		font-size: 0.9em;
-	}
+    label {
+        font-size: 0.9em;
+    }
 
-	.skills-select {
-		width: 65%;
-	}
+    .skills-select {
+        width: 65%;
+    }
 
-	.project-skill {
-		input {
-			width: fit-content;
-		}
+    .project-skill {
+        input {
+            width: fit-content;
+        }
 
-		label {
-			font-size: 0.8em;
-		}
+        label {
+            font-size: 0.8em;
+        }
 
-		p {
-			font-weight: 500;
-			text-transform: capitalize;
-		}
+        p {
+            font-weight: 500;
+            text-transform: capitalize;
+        }
 
-		svg {
-			color: $color-red;
-			cursor: pointer;
-		}
-	}
+        svg {
+            color: $color-red;
+            cursor: pointer;
+        }
+    }
 }
 
 .project {
-	.project-details {
-		height: 100%;
-		background-color: $color-light;
-		font-size: 0.9em;
+    .project-details {
+        height: 100%;
+        background-color: $color-light;
+        font-size: 0.9em;
 
-		.require {
-			font-size: 1.1em;
-			font-weight: 500;
-		}
+        .require {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
 
-		.required {
-			.intro {
-				font-weight: 600;
-			}
-			.required-skill {
-				font-weight: 400;
+        .required {
+            .intro {
+                font-weight: 600;
+            }
+            .required-skill {
+                font-weight: 400;
 
-				span {
-					font-weight: 600;
-					text-transform: capitalize;
-				}
-			}
-		}
+                span {
+                    font-weight: 600;
+                    text-transform: capitalize;
+                }
+            }
+        }
 
-		.repo-url {
-			a {
-				color: $color-purple;
-			}
-		}
-	}
+        .repo-url {
+            a {
+                color: $color-purple;
+            }
+        }
+    }
 
-	.main-desc {
-		p {
-			font-size: 0.9em;
-		}
-	}
+    .main-desc {
+        p {
+            font-size: 0.9em;
+        }
+    }
 
-	.comments {
-		font-size: 0.8em;
-	}
+    .comments {
+        font-size: 0.8em;
+    }
 
-	.comment {
-		position: relative;
-		margin: 1em auto;
-	}
-	.comment-heading {
-		display: flex;
-		align-items: center;
-		margin-bottom: 1em;
-	}
-	.comment-voting {
-		width: 20px;
-		height: 32px;
-		border: 1px solid rgba(0, 0, 0, 0.2);
-		border-radius: 4px;
-	}
-	.comment-voting button {
-		display: block;
-		width: 100%;
-		height: 50%;
-		padding: 0;
-		border: 0;
-		font-size: 10px;
-	}
-	.comment-author {
-		color: $color-dark;
-		font-weight: 600;
-		text-decoration: none;
-		transition: 0.2s ease-in-out all;
+    .comment {
+        position: relative;
+        margin: 1em auto;
+    }
+    .comment-heading {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+    }
 
-		&:hover {
-			color: $color-purple;
-		}
-	}
+    .comment-wrapper {
+        background-color: $color-light;
+    }
+    .comment-author {
+        color: $color-dark;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.2s ease-in-out all;
 
-	.comment-info {
-		p {
-			color: darken($color-light, 25%);
-			font-size: 0.75em;
-		}
-	}
+        &:hover {
+            color: $color-purple;
+        }
+    }
 
-	.comment-body {
-		svg {
-			cursor: pointer;
-		}
-	}
-	.replies {
-		padding-left: 1em;
-		margin-left: 0.8em;
-	}
+    .comment-info {
+        p {
+            color: darken($color-light, 25%);
+            font-size: 0.75em;
+        }
+    }
 
-	.reply-form {
-		label {
-			font-size: 0.9em;
-		}
+    .reply {
+        cursor: pointer;
+        width: fit-content;
+        transition: 0.2s ease-in-out color;
 
-		svg {
-			transition: all 0.2s ease-in-out;
+        &:hover {
+            color: $color-purple;
+        }
+    }
+    .replies {
+        padding-left: 1em;
+        margin-left: 0.8em;
+    }
 
-			&:hover {
-				cursor: pointer;
-				color: $color-purple;
-			}
-		}
-	}
+    .reply-form {
+        label {
+            font-size: 0.9em;
+        }
 
-	.badge {
-		font-weight: 500;
-	}
+        svg {
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                cursor: pointer;
+                color: $color-purple;
+            }
+        }
+    }
+
+    .badge {
+        font-weight: 500;
+    }
 }
 
 .project-app-modal {
-	textarea {
-		height: 10em;
-	}
+    textarea {
+        height: 10em;
+    }
 }
 
 .application-list-modal {
-	.list-group-item {
-		font-size: 0.9em;
-		border-radius: 0;
-	}
-	.app-mot-text {
-		word-break: break-all;
-	}
+    .list-group-item {
+        font-size: 0.9em;
+        border-radius: 0;
+    }
+    .app-mot-text {
+        word-break: break-all;
+    }
 
-	.app-user {
-		font-size: 1.1em;
-		font-weight: 500;
-	}
+    .app-user {
+        font-size: 1.1em;
+        font-weight: 500;
+    }
 
-	.app-skills {
-		font-size: 0.9em;
-	}
+    .app-skills {
+        font-size: 0.9em;
+    }
 }
 
 .categories {
-	.category-item {
-		transition: 0.2s all ease-in-out;
-		text-decoration: none;
+    .category-item {
+        transition: 0.2s all ease-in-out;
+        text-decoration: none;
 
-		&:nth-of-type(1) {
-			border-left: 1px solid $color-grey;
-			border-bottom: 1px solid $color-grey;
-			border-top: 1px solid $color-grey;
-		}
+        &:nth-of-type(1) {
+            border-left: 1px solid $color-grey;
+            border-bottom: 1px solid $color-grey;
+            border-top: 1px solid $color-grey;
+        }
 
-		&:nth-of-type(2) {
-			border: 1px solid $color-grey;
-		}
+        &:nth-of-type(2) {
+            border: 1px solid $color-grey;
+        }
 
-		&:nth-of-type(3) {
-			border-left: 1px solid $color-grey;
-			border-bottom: 1px solid $color-grey;
-		}
+        &:nth-of-type(3) {
+            border-left: 1px solid $color-grey;
+            border-bottom: 1px solid $color-grey;
+        }
 
-		&:nth-of-type(4) {
-			border-left: 1px solid $color-grey;
-			border-right: 1px solid $color-grey;
-			border-bottom: 1px solid $color-grey;
-		}
+        &:nth-of-type(4) {
+            border-left: 1px solid $color-grey;
+            border-right: 1px solid $color-grey;
+            border-bottom: 1px solid $color-grey;
+        }
 
-		&:hover {
-			background-color: $color-grey;
-			cursor: pointer;
-			color: $color-purple;
-			font-weight: 500;
-		}
-	}
+        &:hover {
+            background-color: $color-grey;
+            cursor: pointer;
+            color: $color-purple;
+            font-weight: 500;
+        }
+    }
 }
 
 @media (min-width: 1200px) {
-	.container,
-	.container-lg,
-	.container-md,
-	.container-sm,
-	.container-xl {
-		max-width: 1300px;
-	}
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1300px;
+    }
 }
