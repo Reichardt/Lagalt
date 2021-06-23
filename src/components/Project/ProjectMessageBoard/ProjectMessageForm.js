@@ -13,7 +13,7 @@ function ProjectReplyForm({ handleHide, project }) {
 		const messageData = {
 			id: project.id,
 			message: {
-				message,
+				text: message,
 			},
 			token: keyCloak.token,
 		};
