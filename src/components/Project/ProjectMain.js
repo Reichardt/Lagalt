@@ -127,6 +127,7 @@ function ProjectMain({ id }) {
 					show={showApplicationsModal}
 					handleHide={handleAppsHide}
 					applications={projectApplications}
+					project={project}
 				/>
 			)}
 		</>

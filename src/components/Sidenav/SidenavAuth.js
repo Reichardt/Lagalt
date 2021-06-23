@@ -47,7 +47,7 @@ function SidenavAuth() {
 				});
 			});
 		}
-	}, [dispatch, keyCloak, userProfile]);
+	}, [dispatch, keyCloak]);
 
 	return (
 		<>

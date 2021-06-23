@@ -14,7 +14,7 @@ function ProfileSkills({ profile, profileParam }) {
 	const dispatch = useDispatch();
 
 	const [state, setState] = useState({
-		checked: null,
+		checked: false,
 		skillOptions: [],
 		skillsAdded: [],
 		chosenSkill: null,

@@ -106,6 +106,14 @@ export const projectSlice = createSlice({
 		appLoading: false,
 		error: null,
 	},
+	reducers: {
+		setProjectApplications: (state, action) => {
+			state.projectApplications = action.payload;
+		},
+		setProject: (state, action) => {
+			state.project = action.payload;
+		},
+	},
 	extraReducers: {
 		[fetchAllProjects.pending]: state => {
 			state.loading = true;
@@ -168,6 +176,8 @@ export const projectSlice = createSlice({
 		},
 	},
 });
+
+export const { setProjectApplications, setProject } = projectSlice.actions;
 
 export const projectSelector = state => state.project;
 

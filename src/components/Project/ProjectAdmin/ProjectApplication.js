@@ -6,16 +6,20 @@ import {
 	addUserToProject,
 } from '../../../features/Project/projectSlice';
 
-function ProjectApplication({ application }) {
+function ProjectApplication({
+	application,
+	removeApplication,
+	acceptApplication,
+}) {
 	const { keyCloak } = useKeycloak();
 	const dispatch = useDispatch();
 
-	const handleRequest = bool => {
+	const handleRequest = accepted => {
 		const applicationData = {
 			id: application.project.id,
 			application: {
 				...application,
-				isAccepted: bool,
+				isAccepted: accepted,
 				isPending: false,
 				userId: application.user.id,
 				projectId: application.project.id,
@@ -23,9 +27,11 @@ function ProjectApplication({ application }) {
 			token: keyCloak.token,
 		};
 
-		dispatch(updateProjectApplication(applicationData));
+		dispatch(updateProjectApplication(applicationData)).then(res => {
+			removeApplication(application.id);
+		});
 
-		if (bool) {
+		if (accepted) {
 			const userData = {
 				id: application.project.id,
 				user: {
@@ -34,7 +40,10 @@ function ProjectApplication({ application }) {
 				},
 				token: keyCloak.token,
 			};
-			dispatch(addUserToProject(userData));
+			dispatch(addUserToProject(userData)).then(res => {
+				removeApplication(application.id);
+				acceptApplication(application.skills);
+			});
 		}
 	};
 
