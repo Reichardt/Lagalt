@@ -345,10 +345,14 @@ small {
 			text-transform: capitalize;
 		}
 	}
+	.desc-image {
+		font-size: 0.9em;
+	}
+
 	.profile-desc {
 		p,
 		textarea {
-			font-size: 1rem;
+			font-size: 0.9em;
 			line-height: 30px;
 		}
 

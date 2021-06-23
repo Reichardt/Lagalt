@@ -1,11 +1,23 @@
 import React from 'react';
-import profileImage from '../../../images/default_profile.png';
 
-function ProfileImage() {
+function ProfileImage({ checked, setState, state }) {
 	return (
-		<div className="profile-img">
-			<img className="rounded-circle" src={profileImage} alt="profile" />
-		</div>
+		<>
+			{checked ? (
+				<div className="ps-5 text-start desc-image">
+					<p>Image url</p>
+					<input
+						className="form-control"
+						onChange={e => setState({ ...state, imageUrl: e.target.value })}
+						value={state.imageUrl}
+					/>
+				</div>
+			) : (
+				<div className="profile-img">
+					<img className="rounded-circle" src={state.imageUrl} alt="profile" />
+				</div>
+			)}
+		</>
 	);
 }
 

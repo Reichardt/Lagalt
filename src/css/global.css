@@ -348,9 +348,13 @@ small {
   text-transform: capitalize;
 }
 
+.profile .desc-image {
+  font-size: 0.9em;
+}
+
 .profile .profile-desc p,
 .profile .profile-desc textarea {
-  font-size: 1rem;
+  font-size: 0.9em;
   line-height: 30px;
 }
 
