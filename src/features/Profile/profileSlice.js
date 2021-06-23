@@ -59,6 +59,14 @@ export const getProfileProjects = createAsyncThunk(
 	}
 );
 
+export const updateProfileDesc = createAsyncThunk(
+	'profile/updateProfileDesc',
+	async profileData => {
+		const { updatedProfile, token } = profileData;
+		await UserAPI.updateProfileDesc(updatedProfile, token);
+	}
+);
+
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {

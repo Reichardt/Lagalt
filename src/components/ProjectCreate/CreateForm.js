@@ -132,7 +132,7 @@ function CreateForm({ progress }) {
 						</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control custom-input"
 							name="title"
 							onChange={handleChange}
 							value={state.title}
@@ -144,7 +144,7 @@ function CreateForm({ progress }) {
 							Description
 						</label>
 						<textarea
-							className="form-control"
+							className="form-control custom-input"
 							name="description"
 							onChange={handleChange}
 							value={state.description}
@@ -158,7 +158,7 @@ function CreateForm({ progress }) {
 						</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control custom-input"
 							name="repoUrl"
 							onChange={handleChange}
 							value={state.repoUrl}
@@ -170,7 +170,7 @@ function CreateForm({ progress }) {
 						</label>
 						<input
 							type="text"
-							className="form-control"
+							className="form-control custom-input"
 							name="imgUrl"
 							onChange={handleChange}
 							value={state.imgUrl}
@@ -183,7 +183,7 @@ function CreateForm({ progress }) {
 						<select
 							onChange={handleChange}
 							name="progress"
-							className="form-select"
+							className="form-select custom-input"
 						>
 							<option value="0">Choose progress</option>
 							{progress.map(prog => (
@@ -199,7 +199,7 @@ function CreateForm({ progress }) {
 						</label>
 						<div className="d-flex justify-content-between align-items-center">
 							<select
-								className="form-select skills-select"
+								className="form-select skills-select custom-input"
 								aria-label="Default select example"
 								onChange={handleSkillChange}
 								value={state.chosenSkill ? state.chosenSkill.id : '0'}

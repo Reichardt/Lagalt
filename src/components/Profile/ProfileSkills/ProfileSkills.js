@@ -25,14 +25,10 @@ function ProfileSkills({ profile, profileParam }) {
 			setState({
 				...state,
 				skillOptions: res.payload.filter(so =>
-					profile
-						? profile.skills.every(pskill => pskill.id !== so.id)
-						: profileParam.skills.every(pskill => pskill.id !== so.id)
+					profileParam.skills.every(pskill => pskill.id !== so.id)
 				),
 				skillsAdded: res.payload.filter(so =>
-					profile
-						? profile.skills.some(pskill => pskill.id === so.id)
-						: profileParam.skills.some(pskill => pskill.id === so.id)
+					profileParam.skills.some(pskill => pskill.id === so.id)
 				),
 			});
 		});
@@ -101,16 +97,16 @@ function ProfileSkills({ profile, profileParam }) {
 					<div className="form-check form-switch">
 						<label>Edit skills</label>
 						<input
-							className="form-check-input "
+							className="form-check-input custom-input"
 							type="checkbox"
-							checked={state.checked}
+							checked={state && state.checked}
 							onChange={handleSwitchChange}
 						/>
 					</div>
 				)}
 			</div>
 			<hr />
-			{state.checked && (
+			{state && state.checked && (
 				<div className="d-flex justify-content-between align-items-center pe-3 mt-4">
 					<select
 						className="form-select"
@@ -134,14 +130,15 @@ function ProfileSkills({ profile, profileParam }) {
 					</button>
 				</div>
 			)}
-			{state.skillsAdded.map(skill => (
-				<ProfileSkill
-					skill={skill}
-					checked={state.checked}
-					removeSkill={removeSkill}
-					key={uniqid()}
-				/>
-			))}
+			{state &&
+				state.skillsAdded.map(skill => (
+					<ProfileSkill
+						skill={skill}
+						checked={state.checked}
+						removeSkill={removeSkill}
+						key={uniqid()}
+					/>
+				))}
 		</div>
 	);
 }

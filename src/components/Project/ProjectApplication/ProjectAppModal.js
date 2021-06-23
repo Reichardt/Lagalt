@@ -85,7 +85,7 @@ function ProjectAppModal({ show, handleHide, project }) {
 					<form onSubmit={submitApplication}>
 						<Modal.Header className="justify-content-center">
 							<Modal.Title>
-								<h4 className="mb-0">Apply to {project.title}</h4>
+								<h4 className="mb-0">{project.title}</h4>
 							</Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
@@ -94,7 +94,7 @@ function ProjectAppModal({ show, handleHide, project }) {
 									Motivational application
 								</label>
 								<textarea
-									className="form-control"
+									className="form-control custom-input"
 									name="mot-app"
 									onChange={e => setState({ ...state, motApp: e.target.value })}
 								></textarea>

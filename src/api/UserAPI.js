@@ -65,6 +65,17 @@ const UserAPI = {
 			return data;
 		}
 	},
+	async updateProfileDesc(profile, token) {
+		console.log(profile);
+		await fetch(`${process.env.REACT_APP_API_URL}/users/${profile.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + token,
+			},
+			body: JSON.stringify(profile),
+		});
+	},
 };
 
 export default UserAPI;

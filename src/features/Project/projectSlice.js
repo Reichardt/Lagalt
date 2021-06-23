@@ -103,6 +103,15 @@ export const getProjectMessages = createAsyncThunk(
 	}
 );
 
+export const addMessage = createAsyncThunk(
+	'profile/addMessage',
+	async messageData => {
+		const { id, message, token } = messageData;
+		const addedMessage = await ProjectsAPI.addMessage(id, message, token);
+		return addedMessage;
+	}
+);
+
 export const projectSlice = createSlice({
 	name: 'project',
 	initialState: {
