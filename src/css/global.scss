@@ -83,6 +83,7 @@ body {
 
 .btn {
 	font-size: 0.8em;
+	border-radius: 0;
 
 	&:focus {
 		box-shadow: none;
@@ -128,6 +129,25 @@ body {
 	&:disabled {
 		background-color: lighten($color-red, 5%);
 		border: 1px solid $color-red;
+	}
+}
+
+.btn-secondary {
+	background-color: $color-light;
+	border: 1px solid $color-grey;
+	color: $color-dark;
+	font-weight: 500;
+
+	&:hover {
+		background-color: darken($color-light, 10%);
+		color: $color-dark;
+		border: 1px solid darken($color-grey, 5%);
+	}
+
+	&:focus {
+		background-color: darken($color-light, 10%);
+		color: $color-dark;
+		border: 1px solid darken($color-grey, 5%);
 	}
 }
 
@@ -516,7 +536,6 @@ small {
 	}
 
 	.comments {
-		height: 30vh;
 		font-size: 0.8em;
 	}
 
@@ -600,6 +619,7 @@ small {
 .application-list-modal {
 	.list-group-item {
 		font-size: 0.9em;
+		border-radius: 0;
 	}
 	.app-mot-text {
 		word-break: break-all;

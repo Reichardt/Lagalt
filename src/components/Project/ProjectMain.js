@@ -3,6 +3,7 @@ import {
 	fetchProjectById,
 	projectSelector,
 	getProjectApplications,
+	getProjectMessages,
 } from '../../features/Project/projectSlice';
 import { profileSelector } from '../../features/Profile/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,7 +20,7 @@ import ProjectApplicationsModal from './ProjectAdmin/ProjectApplicationsModal';
 
 function ProjectMain({ id }) {
 	const { Login } = useKeycloak();
-	const { project, loading, projectApplications } =
+	const { project, loading, projectApplications, projectMessages } =
 		useSelector(projectSelector);
 	const { userProfile } = useSelector(profileSelector);
 	const [showApplicationModal, setShowApplicationModal] = useState(false);
@@ -53,6 +54,7 @@ function ProjectMain({ id }) {
 				if (userProfile && userProfile.username === res.payload.creator) {
 					dispatch(getProjectApplications(id));
 				}
+				dispatch(getProjectMessages(id));
 			} else {
 				history.push('/404');
 			}
@@ -73,7 +75,7 @@ function ProjectMain({ id }) {
 							<div className="d-flex align-items-center">
 								{userProfile && userProfile.username === project.creator ? (
 									<>
-										<button className="btn btn-primary me-2">
+										<button className="btn btn-secondary me-2">
 											Manage contributors
 										</button>
 										{projectApplications && (
@@ -110,7 +112,7 @@ function ProjectMain({ id }) {
 							<ProjectDetail project={project} />
 						</div>
 						<div className="row mt-4">
-							<ProjectBoard profile={userProfile} />
+							<ProjectBoard profile={userProfile} messages={projectMessages} />
 						</div>
 					</>
 				)}

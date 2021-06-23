@@ -80,6 +80,7 @@ body {
 
 .btn {
   font-size: 0.8em;
+  border-radius: 0;
 }
 
 .btn:focus {
@@ -127,6 +128,25 @@ body {
 .btn-danger:disabled {
   background-color: #c54545;
   border: 1px solid #b73939;
+}
+
+.btn-secondary {
+  background-color: #f8f8f8;
+  border: 1px solid #d3d9de;
+  color: #000000;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background-color: #dfdfdf;
+  color: #000000;
+  border: 1px solid #c4ccd3;
+}
+
+.btn-secondary:focus {
+  background-color: #dfdfdf;
+  color: #000000;
+  border: 1px solid #c4ccd3;
 }
 
 .fire-icon {
@@ -506,7 +526,6 @@ small {
 }
 
 .project .comments {
-  height: 30vh;
   font-size: 0.8em;
 }
 
@@ -591,6 +610,7 @@ small {
 
 .application-list-modal .list-group-item {
   font-size: 0.9em;
+  border-radius: 0;
 }
 
 .application-list-modal .app-mot-text {

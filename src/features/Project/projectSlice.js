@@ -95,6 +95,14 @@ export const addUserToProject = createAsyncThunk(
 	}
 );
 
+export const getProjectMessages = createAsyncThunk(
+	'profile/getProjectMessages',
+	async id => {
+		const messages = await ProjectsAPI.getMessages(id);
+		return messages;
+	}
+);
+
 export const projectSlice = createSlice({
 	name: 'project',
 	initialState: {
@@ -102,6 +110,7 @@ export const projectSlice = createSlice({
 		project: null,
 		projectApplications: null,
 		projectUsers: null,
+		projectMessages: null,
 		loading: false,
 		appLoading: false,
 		error: null,
@@ -172,6 +181,16 @@ export const projectSlice = createSlice({
 			state.projectUsers = action.payload;
 		},
 		[getProjectUsers.rejected]: (state, action) => {
+			state.error = action.payload;
+		},
+		[getProjectMessages.pending]: state => {
+			state.loading = true;
+		},
+		[getProjectMessages.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.projectMessages = action.payload;
+		},
+		[getProjectMessages.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 	},

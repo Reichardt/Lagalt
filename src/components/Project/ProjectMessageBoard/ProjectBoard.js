@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ProjectComment from './ProjectComment';
 import ProjectReplyForm from './ProjectReplyForm';
 
-function ProjectBoard({ profile }) {
+function ProjectBoard({ profile, messages }) {
 	const [showForm, setShowForm] = useState(false);
 
 	const handleShow = () => setShowForm(true);
@@ -16,7 +16,15 @@ function ProjectBoard({ profile }) {
 					{profile && <button className="btn btn-primary">New message</button>}
 				</div>
 				<div className="comments border-top">
-					<ProjectComment handleShow={handleShow} />
+					{messages && messages.length ? (
+						messages.map(message => (
+							<ProjectComment message={message} handleShow={handleShow} />
+						))
+					) : (
+						<p className="full-height d-flex justify-content-center align-items-center py-5">
+							There are no messages at the moment
+						</p>
+					)}
 				</div>
 				{showForm && <ProjectReplyForm handleHide={handleHide} />}
 			</div>

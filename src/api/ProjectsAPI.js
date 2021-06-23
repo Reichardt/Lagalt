@@ -100,6 +100,16 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async getMessages(id) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/messages`
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 };
 
 export default ProjectsAPI;
