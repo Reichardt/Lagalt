@@ -61,9 +61,9 @@ export const getProfileProjects = createAsyncThunk(
 
 export const updateProfileDesc = createAsyncThunk(
 	'profile/updateProfileDesc',
-	async descData => {
-		const { imageUrl, description } = descData;
-		await UserAPI.updateProfileDesc(imageUrl, description);
+	async profileData => {
+		const { updatedProfile, token } = profileData;
+		await UserAPI.updateProfileDesc(updatedProfile, token);
 	}
 );
 
