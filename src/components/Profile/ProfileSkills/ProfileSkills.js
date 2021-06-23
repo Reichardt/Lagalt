@@ -101,9 +101,9 @@ function ProfileSkills({ profile, profileParam }) {
 					<div className="form-check form-switch">
 						<label>Edit skills</label>
 						<input
-							className="form-check-input "
+							className="form-check-input custom-input"
 							type="checkbox"
-							checked={state.checked}
+							checked={state && state.checked}
 							onChange={handleSwitchChange}
 						/>
 					</div>

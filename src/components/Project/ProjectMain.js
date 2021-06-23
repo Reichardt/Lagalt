@@ -112,7 +112,11 @@ function ProjectMain({ id }) {
 							<ProjectDetail project={project} />
 						</div>
 						<div className="row mt-4">
-							<ProjectBoard profile={userProfile} messages={projectMessages} />
+							<ProjectBoard
+								profile={userProfile}
+								messages={projectMessages}
+								project={project}
+							/>
 						</div>
 					</>
 				)}

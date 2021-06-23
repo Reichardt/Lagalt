@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ProfileImage from './ProfileImage';
 import ProfileDesc from './ProfileDesc/ProfileDesc';
 import ProfileSkills from './ProfileSkills/ProfileSkills';
 import ProfilePortfolio from './ProfilePortfolio/ProfilePortfolio';
@@ -51,10 +50,6 @@ function ProfileMain({ username }) {
 						</div>
 						<div className="row pt-5">
 							<div className="col-lg-6 text-center">
-								<ProfileImage
-									profile={userProfile}
-									profileParam={searchedUser}
-								/>
 								<ProfileDesc
 									profile={userProfile}
 									profileParam={searchedUser}

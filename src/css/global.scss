@@ -16,13 +16,13 @@ $color-yellow: #bbb23c;
 	box-sizing: border-box;
 }
 
-textarea,
-input {
+.custom-input {
 	transition: 0.2s ease-in-out all;
+	border-radius: 0 !important;
 
 	&:focus {
-		box-shadow: none !important;
-		border: 1px solid $color-purple !important;
+		box-shadow: none;
+		border: 1px solid $color-purple;
 	}
 }
 
@@ -151,8 +151,8 @@ body {
 	}
 }
 
-.fire-icon {
-	color: $color-red;
+.modal-content {
+	border-radius: 0;
 }
 
 small {
@@ -376,10 +376,16 @@ small {
 	}
 
 	.form-switch {
-		input {
+		.form-check-input {
+			background-image: url('./icons/square-unchecked.svg');
 			&:checked {
-				background-color: $color-purple;
-				border: $color-purple;
+				background-image: url('./icons/square-checked.svg');
+				background-color: inherit;
+				border-color: $color-grey;
+			}
+
+			&:focus {
+				border-color: $color-grey;
 			}
 		}
 		label {
@@ -488,6 +494,7 @@ small {
 
 		p {
 			font-weight: 500;
+			text-transform: capitalize;
 		}
 
 		svg {

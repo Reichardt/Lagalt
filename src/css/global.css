@@ -7,17 +7,16 @@
           box-sizing: border-box;
 }
 
-textarea,
-input {
+.custom-input {
   -webkit-transition: 0.2s ease-in-out all;
   transition: 0.2s ease-in-out all;
+  border-radius: 0 !important;
 }
 
-textarea:focus,
-input:focus {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-  border: 1px solid #4338ca !important;
+.custom-input:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 1px solid #4338ca;
 }
 
 select {
@@ -149,8 +148,8 @@ body {
   border: 1px solid #c4ccd3;
 }
 
-.fire-icon {
-  color: #b73939;
+.modal-content {
+  border-radius: 0;
 }
 
 small {
@@ -377,9 +376,18 @@ small {
   cursor: pointer;
 }
 
-.profile .form-switch input:checked {
-  background-color: #4338ca;
-  border: #4338ca;
+.profile .form-switch .form-check-input {
+  background-image: url("./icons/square-unchecked.svg");
+}
+
+.profile .form-switch .form-check-input:checked {
+  background-image: url("./icons/square-checked.svg");
+  background-color: inherit;
+  border-color: #d3d9de;
+}
+
+.profile .form-switch .form-check-input:focus {
+  border-color: #d3d9de;
 }
 
 .profile .form-switch label {
@@ -486,6 +494,7 @@ small {
 
 .project-create .project-skill p {
   font-weight: 500;
+  text-transform: capitalize;
 }
 
 .project-create .project-skill svg {

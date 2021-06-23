@@ -6,7 +6,7 @@ function ProjectAppModalSkill({ skill, toggleSkill }) {
 	return (
 		<div className="form-check text-start" key={skill.id}>
 			<input
-				className="form-check-input me-3"
+				className="form-check-input me-3 custom-input"
 				type="checkbox"
 				checked={skill.checked}
 				value={skill.id}

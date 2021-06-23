@@ -110,6 +110,24 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async addMessage(id, text, token) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/messages`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(text),
+			}
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 };
 
 export default ProjectsAPI;

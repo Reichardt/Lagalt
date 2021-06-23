@@ -26,7 +26,7 @@ function Search() {
 			<div className="d-flex justify-content-between align-items-center">
 				<div className="bg-content search-wrapper position-relative">
 					<input
-						className="search-input bg-content border"
+						className="search-input bg-content border custom-input"
 						type="text"
 						placeholder="Search projects"
 						onChange={handleChange}

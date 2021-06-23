@@ -19,7 +19,7 @@ function ProjectSkill({ skill, handleAmountChange, removeSkill }) {
 				<input
 					value={skill.requiredCount}
 					type="number"
-					className="form-control me-3"
+					className="form-control me-3 custom-input"
 					onInput={handleChange}
 					name="amount-needed"
 				/>
