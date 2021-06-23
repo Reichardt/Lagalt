@@ -1,10 +1,9 @@
-import { Accordion, Card } from "react-bootstrap";
 import { useState } from "react";
 
-function ProfilePortfolioItem({ checked, title, body }) {
+function ProfilePortfolioItem({ checked, portfolioItem }) {
     const [state, setState] = useState({
-        itemTitle: title,
-        itemBody: body,
+        itemTitle: portfolioItem.title,
+        itemBody: portfolioItem.description,
     });
 
     const handleChange = (e) => {
@@ -18,64 +17,42 @@ function ProfilePortfolioItem({ checked, title, body }) {
         console.log("Deleting");
     };
 
-    const renderPortfolioTitle = () => {
-        return state.itemTitle;
-    };
-
-    const renderPortfolioEditableTitle = () => {
+    const renderPortfolioEditableItem = () => {
         return (
-            <div className='d-flex justify-content-between align-items-center'>
-                <input
-                    className='form-control item-editable'
-                    onChange={handleChange}
-                    value={state.itemTitle}
-                    type='text'
-                    name='itemTitle'
-                />
-                <button className='btn btn-primary' onClick={handleDelete}>
-                    Delete item
-                </button>
+            <div className='card'>
+                <div className='card-body'>
+                    <h5 className='card-title'>Card title</h5>
+                    <input
+                        className='form-control custom-input'
+                        value={state.itemTitle}
+                    />
+                    <p className='card-text'>
+                        <textarea
+                            className='form-control custom-input'
+                            value={state.itemBody}
+                        />
+                    </p>
+                </div>
             </div>
         );
     };
 
-    const renderPortfolioBody = () => {
-        return state.itemBody;
-    };
-
-    const renderPortfolioEditableBody = () => {
+    const renderPortfolioItem = () => {
         return (
-            <div className='d-flex justify-content-between align-items-center'>
-                <input
-                    className='form-control skill-editable'
-                    onChange={handleChange}
-                    value={state.itemBody}
-                    type='text'
-                    name='itemBody'
-                />
+            <div className='card mt-3'>
+                <div className='card-body'>
+                    <h5 className='card-title'>{state.itemTitle}</h5>
+                    <hr />
+                    <p className='card-text'>{state.itemBody}</p>
+                </div>
             </div>
         );
     };
+
     return (
-        <Accordion defaultActiveKey={checked && "0"}>
-            <Card className='mt-2'>
-                <Accordion.Toggle
-                    className='bg-white'
-                    as={Card.Header}
-                    eventKey='0'>
-                    {checked
-                        ? renderPortfolioEditableTitle()
-                        : renderPortfolioTitle()}
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey='0'>
-                    <Card.Body>
-                        {checked
-                            ? renderPortfolioEditableBody()
-                            : renderPortfolioBody()}
-                    </Card.Body>
-                </Accordion.Collapse>
-            </Card>
-        </Accordion>
+        <div className='col-lg-6'>
+            {checked ? renderPortfolioEditableItem() : renderPortfolioItem()}
+        </div>
     );
 }
 

@@ -4,7 +4,12 @@ import { useDispatch } from "react-redux";
 import { addMessage } from "../../../features/Project/projectSlice";
 import { useKeycloak } from "../../../context/KeycloakContext";
 
-function ProjectReplyForm({ handleHide, selectedComment, project }) {
+function ProjectReplyForm({
+    handleHide,
+    selectedComment,
+    project,
+    handleCommentAdd,
+}) {
     const [message, setMessage] = useState("");
     const { keyCloak } = useKeycloak();
     const dispatch = useDispatch();
@@ -23,18 +28,19 @@ function ProjectReplyForm({ handleHide, selectedComment, project }) {
             token: keyCloak.token,
         };
 
-        dispatch(addMessage(messageData));
+        dispatch(addMessage(messageData)).then((res) => {
+            handleCommentAdd(res.payload);
+        });
     };
 
     return (
-        <div className='mt-3 pe-4 reply-form mb-3'>
-            <hr />
+        <div className='mt-5 ps-3 reply-form mb-3'>
             <div className='d-flex justify-content-between'>
                 <label className='mb-2'>
                     {selectedComment && (
                         <>
                             <span>Reply to</span>
-                            <span className='text-capitalize'>
+                            <span className='text-capitalize ms-1'>
                                 {selectedComment.user.username}
                             </span>
                         </>
@@ -50,7 +56,7 @@ function ProjectReplyForm({ handleHide, selectedComment, project }) {
             <textarea
                 type='text'
                 name='reply'
-                className='form-control'
+                className='form-control custom-input'
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}></textarea>
             <button className='btn btn-primary mt-2' onClick={handleMessageAdd}>

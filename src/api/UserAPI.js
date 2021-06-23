@@ -75,6 +75,19 @@ const UserAPI = {
             body: JSON.stringify(profile),
         });
     },
+    async updateProfilePortfolioItems(portfolioItems, userId, token) {
+        await fetch(
+            `${process.env.REACT_APP_API_URL}/users/${userId}/userportfolios`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "Bearer " + token,
+                },
+                body: JSON.stringify(portfolioItems),
+            }
+        );
+    },
 };
 
 export default UserAPI;
