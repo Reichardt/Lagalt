@@ -17,7 +17,6 @@ import {
 } from "../../features/Profile/profileSlice";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Loader from "../Global/Loader";
 
 function SidenavAuth() {
     const { keyCloak, Login, Logout } = useKeycloak();
@@ -54,7 +53,6 @@ function SidenavAuth() {
             <div
                 style={authStyles}
                 className='icon-wrapper mt-3 position-relative'>
-                {loading && <Loader styles={loaderStyles} />}
                 {userProfile && !loading ? (
                     <>
                         <SidenavItem
@@ -102,9 +100,4 @@ export default SidenavAuth;
 const authStyles = {
     display: "flex",
     flexDirection: "column",
-};
-
-const loaderStyles = {
-    top: "50%",
-    left: "50%",
 };

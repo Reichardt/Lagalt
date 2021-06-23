@@ -83,6 +83,7 @@ function ProjectBoard({ profile, messages, project }) {
                                 boardState={state}
                                 allReplies={state.replies}
                                 profile={profile}
+                                key={comment.id}
                             />
                         ))
                     ) : (

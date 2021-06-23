@@ -1,7 +1,6 @@
 import { ReplyFill } from "react-bootstrap-icons";
 import getTimeDiff from "../../../util/getTimeDiff";
 import { useEffect, useState } from "react";
-import uniqid from "uniqid";
 
 function ProjectComment({
     comment,
@@ -55,7 +54,7 @@ function ProjectComment({
                             boardState={boardState}
                             allReplies={allReplies}
                             profile={profile}
-                            key={uniqid}
+                            key={reply.id}
                         />
                     ))}
             </div>

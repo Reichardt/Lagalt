@@ -19,13 +19,9 @@ function ProfileDesc({ profile, profileParam }) {
         if (checked) {
             const profileData = {
                 updatedProfile: {
-                    id: profile.id,
-                    email: profile.email,
-                    name: profile.name,
+                    ...profile,
                     description: state.description,
                     imageUrl: state.imageUrl,
-                    isSkillsHidden: profile.isSkillsHidden,
-                    isActive: profile.isActive,
                 },
                 token: keyCloak.token,
             };
@@ -43,7 +39,7 @@ function ProfileDesc({ profile, profileParam }) {
             <>
                 <p>Description</p>
                 <textarea
-                    className='form-control'
+                    className='form-control custom-input'
                     value={state.description}
                     onChange={(e) =>
                         setState({ ...state, description: e.target.value })
