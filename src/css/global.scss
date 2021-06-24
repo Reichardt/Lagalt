@@ -16,6 +16,10 @@ $color-yellow: #bbb23c;
 	box-sizing: border-box;
 }
 
+hr {
+	background-color: darken($color-grey, 25%);
+}
+
 .custom-input {
 	transition: 0.2s ease-in-out border;
 	border-radius: 0 !important;
@@ -302,10 +306,6 @@ small {
 			color: darken($color-grey, 15%);
 			font-weight: 400;
 		}
-	}
-
-	hr {
-		background-color: darken($color-grey, 20%);
 	}
 }
 

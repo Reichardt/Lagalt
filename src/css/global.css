@@ -7,6 +7,10 @@
           box-sizing: border-box;
 }
 
+hr {
+  background-color: #8a9aa7;
+}
+
 .custom-input {
   -webkit-transition: 0.2s ease-in-out border;
   transition: 0.2s ease-in-out border;
@@ -295,10 +299,6 @@ small {
   font-size: 0.7em;
   color: #a7b3bd;
   font-weight: 400;
-}
-
-.project-item hr {
-  background-color: #99a7b2;
 }
 
 .center-column {
