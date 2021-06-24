@@ -4,6 +4,7 @@ import profileReducer from '../features/Profile/profileSlice';
 import searchReducer from '../features/Search/searchSlice';
 import progressReducer from '../features/Progress/progressSlice';
 import skillReducer from '../features/Skill/skillSlice';
+import historyActionReducer from '../features/HistoryAction/historyActionSlice';
 
 export default combineReducers({
 	project: projectReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
 	search: searchReducer,
 	progress: progressReducer,
 	skill: skillReducer,
+	historyAction: historyActionReducer,
 });
