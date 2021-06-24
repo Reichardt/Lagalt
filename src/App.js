@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Project from './pages/Project';
@@ -10,8 +10,16 @@ import Projects from './pages/Projects';
 import NotFound from './pages/NotFound';
 import ProtectedRoute from './util/ProtectedRoute';
 import Category from './pages/Category';
+import { useDispatch } from 'react-redux';
+import { fetchAllActions } from './features/HistoryAction/historyActionSlice';
 
 function App() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchAllActions());
+	}, []);
+
 	return (
 		<BrowserRouter>
 			<div className="app">

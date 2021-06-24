@@ -41,6 +41,7 @@ p {
       grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
+  height: 30vh;
 }
 
 body {
@@ -167,6 +168,17 @@ small {
   color: #4338ca;
 }
 
+.skill.active span:first-of-type {
+  text-decoration: none;
+  -webkit-transition: 0.1s ease-in-out all;
+  transition: 0.1s ease-in-out all;
+}
+
+.skill.active span:first-of-type:hover {
+  cursor: pointer;
+  color: #d3d9de;
+}
+
 .skill.bg-custom {
   background-color: #f8f8f8;
   border: 1px solid #d3d9de;
@@ -216,7 +228,7 @@ small {
 }
 
 .recent-project p {
-  font-size: 1rem;
+  font-size: 0.95em;
 }
 
 .recent-project a {
@@ -229,6 +241,10 @@ small {
 
 .recent-project a:hover {
   background-color: #dfdfdf;
+}
+
+.recent-project small {
+  color: #a7b3bd;
 }
 
 .project-item {

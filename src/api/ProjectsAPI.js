@@ -100,6 +100,24 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async updateProjectUsers(id, users, token) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${id}/users`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(users),
+			}
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 	async getMessages(id) {
 		const res = await fetch(
 			`${process.env.REACT_APP_API_URL}/projects/${id}/messages`
@@ -121,6 +139,16 @@ const ProjectsAPI = {
 				},
 				body: JSON.stringify(text),
 			}
+		);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
+	async getRecommendedProjects(name) {
+		const res = await fetch(
+			`${process.env.REACT_APP_API_URL}/projects/${name}/recommended`
 		);
 		const data = await res.json();
 

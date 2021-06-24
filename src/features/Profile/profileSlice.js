@@ -75,12 +75,21 @@ export const updateProfilePortfolioItems = createAsyncThunk(
 	}
 );
 
+export const getProfileHistory = createAsyncThunk(
+	'profile/getProfileHistory',
+	async name => {
+		const history = await UserAPI.getProfileHistory(name);
+		return history;
+	}
+);
+
 export const profileSlice = createSlice({
 	name: 'profile',
 	initialState: {
 		userProfile: null,
 		applications: [],
 		projects: [],
+		history: [],
 		searchedUser: null,
 		searchedUserLoading: false,
 		loading: false,
@@ -158,6 +167,17 @@ export const profileSlice = createSlice({
 			state.projects = action.payload;
 		},
 		[getProfileProjects.rejected]: (state, action) => {
+			state.error = action.payload;
+			state.userAttributesLoading = false;
+		},
+		[getProfileHistory.pending]: state => {
+			state.userAttributesLoading = true;
+		},
+		[getProfileHistory.fulfilled]: (state, action) => {
+			state.userAttributesLoading = false;
+			state.history = action.payload;
+		},
+		[getProfileHistory.rejected]: (state, action) => {
 			state.error = action.payload;
 			state.userAttributesLoading = false;
 		},

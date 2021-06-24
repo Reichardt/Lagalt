@@ -23,7 +23,7 @@ function Home() {
 				{loading && <Loader styles={loaderStyles} />}
 				{!loading && (
 					<>
-						<ProjectList projects={projects} />
+						<ProjectList projects={projects} page="home" />
 						<Sidenav side={'right'} />
 					</>
 				)}

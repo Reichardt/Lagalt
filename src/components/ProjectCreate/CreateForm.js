@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import ProjectSkill from './ProjectSkill';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllSkills, skillSelector } from '../../features/Skill/skillSlice';
+import {
+	profileSelector,
+	getProfileProjects,
+} from '../../features/Profile/profileSlice';
 import { addNewProject } from '../../features/Project/projectSlice';
 import { useKeycloak } from '../../context/KeycloakContext';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +15,7 @@ function CreateForm({ progress }) {
 	const history = useHistory();
 	const { loading } = useSelector(skillSelector);
 	const { keyCloak } = useKeycloak();
+	const { userProfile } = useSelector(profileSelector);
 
 	const [state, setState] = useState({
 		title: '',
@@ -118,6 +123,7 @@ function CreateForm({ progress }) {
 		};
 
 		dispatch(addNewProject(projectData)).then(res => {
+			dispatch(getProfileProjects(userProfile.username));
 			history.push(`/project/${res.payload.id}`);
 		});
 	};

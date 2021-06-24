@@ -2,11 +2,23 @@ import { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { profileSelector } from '../../../features/Profile/profileSlice';
-import { applyToProject } from '../../../features/Project/projectSlice';
+import {
+	applyToProject,
+	projectSelector,
+} from '../../../features/Project/projectSlice';
 import ProjectAppModalSkill from './ProjectAppModalSkill';
 import { useKeycloak } from '../../../context/KeycloakContext';
+import { addUserAction } from '../../../features/HistoryAction/historyActionSlice';
+import Loader from '../../Global/Loader';
 
-function ProjectAppModal({ show, handleHide, project }) {
+function ProjectAppModal({
+	show,
+	handleHide,
+	project,
+	actions,
+	mainState,
+	setMainState,
+}) {
 	const [state, setState] = useState({
 		availSkills: [],
 		motApp: '',
@@ -14,6 +26,7 @@ function ProjectAppModal({ show, handleHide, project }) {
 		error: false,
 		btnDisable: false,
 	});
+	const { loading } = useSelector(projectSelector);
 	const { userProfile } = useSelector(profileSelector);
 	const { skills } = userProfile;
 	const dispatch = useDispatch();
@@ -70,6 +83,21 @@ function ProjectAppModal({ show, handleHide, project }) {
 				success: res.payload && true,
 				error: !res.payload && true,
 			});
+			setMainState({
+				...mainState,
+				hasApplied: true,
+			});
+			const action = actions.find(action => action.name === 'Applied');
+			const actionData = {
+				id: userProfile.id,
+				action: {
+					userId: userProfile.id,
+					projectId: project.id,
+					userHistoryActionId: action.id,
+				},
+				token: keyCloak.token,
+			};
+			dispatch(addUserAction(actionData));
 		});
 	};
 
@@ -80,7 +108,10 @@ function ProjectAppModal({ show, handleHide, project }) {
 				onHide={handleHide}
 				className="project-app-modal  text-center"
 			>
-				{state.success && <p>Your application has been sent for review</p>}
+				{loading && <Loader />}
+				{state.success && (
+					<p className="m-5">Your application has been sent for review</p>
+				)}
 				{!state.success && (
 					<form onSubmit={submitApplication}>
 						<Modal.Header className="justify-content-center">

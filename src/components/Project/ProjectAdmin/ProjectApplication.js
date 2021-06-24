@@ -5,11 +5,14 @@ import {
 	updateProjectApplication,
 	addUserToProject,
 } from '../../../features/Project/projectSlice';
+import { addUserAction } from '../../../features/HistoryAction/historyActionSlice';
 
 function ProjectApplication({
 	application,
 	removeApplication,
 	acceptApplication,
+	actions,
+	profile,
 }) {
 	const { keyCloak } = useKeycloak();
 	const dispatch = useDispatch();
@@ -43,6 +46,17 @@ function ProjectApplication({
 			dispatch(addUserToProject(userData)).then(res => {
 				removeApplication(application.id);
 				acceptApplication(application.skills);
+				const action = actions.find(action => action.name === 'Contributed');
+				const actionData = {
+					id: application.user.id,
+					action: {
+						userId: application.user.id,
+						projectId: res.payload.project.id,
+						userHistoryActionId: action.id,
+					},
+					token: keyCloak.token,
+				};
+				dispatch(addUserAction(actionData));
 			});
 		}
 	};
