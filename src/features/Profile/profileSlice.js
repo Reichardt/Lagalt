@@ -67,11 +67,37 @@ export const updateProfileDesc = createAsyncThunk(
 	}
 );
 
-export const updateProfilePortfolioItems = createAsyncThunk(
-	'profile/updateProfilePortfolioItems',
+export const updateProfilePortfolioItem = createAsyncThunk(
+	'profile/updateProfilePortfolioItem',
 	async portfolioData => {
-		const { portfolioItems, userId, token } = portfolioData;
-		await UserAPI.updateProfilePortfolioItems(portfolioItems, userId, token);
+		const { portfolioItem, itemId, userId, token } = portfolioData;
+		await UserAPI.updateProfilePortfolioItem(
+			portfolioItem,
+			itemId,
+			userId,
+			token
+		);
+	}
+);
+
+export const addProfilePortfolioItem = createAsyncThunk(
+	'profile/addProfilePortfolioItem',
+	async portfolioData => {
+		const { portfolioItem, userId, token } = portfolioData;
+		const item = await UserAPI.addProfilePortfolioItem(
+			portfolioItem,
+			userId,
+			token
+		);
+		return item;
+	}
+);
+
+export const deleteProfilePortfolioItem = createAsyncThunk(
+	'profile/deleteProfilePortfolioItem',
+	async portfolioData => {
+		const { itemId, userId, token } = portfolioData;
+		await UserAPI.deleteProfilePortfolioItem(itemId, userId, token);
 	}
 );
 

@@ -82,6 +82,10 @@ body {
   color: #4338ca !important;
 }
 
+.text-danger {
+  color: #b73939 !important;
+}
+
 .btn {
   font-size: 0.8em;
   border-radius: 0;
@@ -461,6 +465,10 @@ small {
   width: 100%;
   height: 100%;
   border: 1px solid #f8f8f8;
+}
+
+.profile .card {
+  border-radius: 0;
 }
 
 .profile-app-modal p {

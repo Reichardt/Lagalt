@@ -75,16 +75,45 @@ const UserAPI = {
 			body: JSON.stringify(profile),
 		});
 	},
-	async updateProfilePortfolioItems(portfolioItems, userId, token) {
-		await fetch(
+	async addProfilePortfolioItem(portfolioItem, userId, token) {
+		const res = await fetch(
 			`${process.env.REACT_APP_API_URL}/users/${userId}/userportfolios`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + token,
+				},
+				body: JSON.stringify(portfolioItem),
+			}
+		);
+
+		if (res.ok) {
+			const data = res.json();
+			return data;
+		}
+	},
+	async deleteProfilePortfolioItem(itemId, userId, token) {
+		await fetch(
+			`${process.env.REACT_APP_API_URL}/users/${userId}/userportfolios/${itemId}`,
+			{
+				method: 'DELETE',
+				headers: {
+					Authorization: 'Bearer ' + token,
+				},
+			}
+		);
+	},
+	async updateProfilePortfolioItem(portfolioItem, itemId, userId, token) {
+		await fetch(
+			`${process.env.REACT_APP_API_URL}/users/${userId}/userportfolios/${itemId}`,
 			{
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: 'Bearer ' + token,
 				},
-				body: JSON.stringify(portfolioItems),
+				body: JSON.stringify(portfolioItem),
 			}
 		);
 	},
