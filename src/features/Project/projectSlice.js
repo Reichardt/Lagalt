@@ -71,7 +71,7 @@ export const getProjectApplications = createAsyncThunk(
 );
 
 export const getProjectUsers = createAsyncThunk(
-	'profile/getProjectUsers',
+	'project/getProjectUsers',
 	async id => {
 		const users = await ProjectsAPI.getProjectUsers(id);
 		return users;
@@ -79,7 +79,7 @@ export const getProjectUsers = createAsyncThunk(
 );
 
 export const updateProjectApplication = createAsyncThunk(
-	'profile/updateProjectApplication',
+	'project/updateProjectApplication',
 	async applicationData => {
 		const { id, application, token } = applicationData;
 		await ProjectsAPI.updateProjectApplication(id, application, token);
@@ -87,7 +87,7 @@ export const updateProjectApplication = createAsyncThunk(
 );
 
 export const addUserToProject = createAsyncThunk(
-	'profile/addUserToProject',
+	'project/addUserToProject',
 	async userData => {
 		const { id, user, token } = userData;
 		const returnedUser = await ProjectsAPI.addUserToProject(id, user, token);
@@ -95,8 +95,16 @@ export const addUserToProject = createAsyncThunk(
 	}
 );
 
+export const updateProjectUsers = createAsyncThunk(
+	'project/updateProjectUsers',
+	async usersData => {
+		const { id, users, token } = usersData;
+		await ProjectsAPI.updateProjectUsers(id, users, token);
+	}
+);
+
 export const getProjectMessages = createAsyncThunk(
-	'profile/getProjectMessages',
+	'project/getProjectMessages',
 	async id => {
 		const messages = await ProjectsAPI.getMessages(id);
 		return messages;
@@ -104,11 +112,32 @@ export const getProjectMessages = createAsyncThunk(
 );
 
 export const addMessage = createAsyncThunk(
-	'profile/addMessage',
+	'project/addMessage',
 	async messageData => {
 		const { id, message, token } = messageData;
 		const addedMessage = await ProjectsAPI.addMessage(id, message, token);
 		return addedMessage;
+	}
+);
+
+export const getRecommendedProjects = createAsyncThunk(
+	'project/getRecommendedProjects',
+	async name => {
+		let projects = await ProjectsAPI.getRecommendedProjects(name);
+
+		projects = projects.map(project => {
+			return {
+				...project,
+				current: project.skills.reduce((acc, curr) => {
+					return (acc += curr.foundCount);
+				}, 0),
+				total: project.skills.reduce((acc, curr) => {
+					return (acc += curr.requiredCount);
+				}, 0),
+			};
+		});
+
+		return projects;
 	}
 );
 
@@ -122,6 +151,7 @@ export const projectSlice = createSlice({
 		projectMessages: null,
 		loading: false,
 		appLoading: false,
+		modalLoading: false,
 		error: null,
 	},
 	reducers: {
@@ -183,10 +213,10 @@ export const projectSlice = createSlice({
 			state.error = action.payload;
 		},
 		[getProjectUsers.pending]: state => {
-			state.loading = true;
+			state.modalLoading = true;
 		},
 		[getProjectUsers.fulfilled]: (state, action) => {
-			state.loading = false;
+			state.modalLoading = false;
 			state.projectUsers = action.payload;
 		},
 		[getProjectUsers.rejected]: (state, action) => {
@@ -200,6 +230,16 @@ export const projectSlice = createSlice({
 			state.projectMessages = action.payload;
 		},
 		[getProjectMessages.rejected]: (state, action) => {
+			state.error = action.payload;
+		},
+		[getRecommendedProjects.pending]: state => {
+			state.loading = true;
+		},
+		[getRecommendedProjects.fulfilled]: (state, action) => {
+			state.loading = false;
+			state.projects = action.payload;
+		},
+		[getRecommendedProjects.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 	},

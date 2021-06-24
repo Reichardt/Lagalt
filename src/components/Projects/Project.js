@@ -15,7 +15,7 @@ function Project({ project }) {
 		>
 			<div className="d-flex justify-content-between align-items-center mt-3">
 				<p>{project.project.title}</p>
-				<p>Role: {project.projectRole.name}</p>
+				<p>{project.projectRole.name}</p>
 			</div>
 			<hr />
 			<div className="d-flex justify-content-between desc">

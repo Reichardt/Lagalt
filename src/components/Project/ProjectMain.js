@@ -5,6 +5,10 @@ import {
 	getProjectApplications,
 	getProjectMessages,
 } from '../../features/Project/projectSlice';
+import {
+	historyActionSelector,
+	addUserAction,
+} from '../../features/HistoryAction/historyActionSlice';
 import { profileSelector } from '../../features/Profile/profileSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useKeycloak } from '../../context/KeycloakContext';
@@ -17,49 +21,79 @@ import ProjectAppModal from './ProjectApplication/ProjectAppModal';
 import Back from '../Global/Back';
 import { useHistory } from 'react-router-dom';
 import ProjectApplicationsModal from './ProjectAdmin/ProjectApplicationsModal';
+import ProjectUsersModal from './ProjectAdmin/ProjectUsersModal';
 
 function ProjectMain({ id }) {
-	const { Login } = useKeycloak();
+	const { keyCloak, Login } = useKeycloak();
 	const { project, loading, projectApplications, projectMessages } =
 		useSelector(projectSelector);
 	const { userProfile, projects } = useSelector(profileSelector);
-	const [showApplicationModal, setShowApplicationModal] = useState(false);
-	const [showApplicationsModal, setShowApplicationsModal] = useState(false);
-	const [role, setRole] = useState(null);
+	const { actions } = useSelector(historyActionSelector);
+	const [state, setState] = useState({
+		showAppModal: false,
+		showAppsModal: false,
+		showUsersModal: false,
+		hasApplied: false,
+	});
+	const [role, setRole] = useState({
+		name: 'init',
+	});
 	const dispatch = useDispatch();
 	const history = useHistory();
+
+	const handleAppHide = () => setState({ ...state, showAppModal: false });
 
 	const handleAppShow = () => {
 		if (!userProfile) {
 			Login();
 		} else {
-			setShowApplicationModal(true);
+			setState({ ...state, showAppModal: true });
 		}
 	};
 
-	const handleAppHide = () => {
-		setShowApplicationModal(false);
-	};
+	const handleAppsHide = () => setState({ ...state, showAppsModal: false });
 
-	const handleAppsShow = () => {
-		setShowApplicationsModal(true);
-	};
+	const handleAppsShow = () => setState({ ...state, showAppsModal: true });
 
-	const handleAppsHide = () => {
-		setShowApplicationsModal(false);
-	};
+	const handleUsersHide = () => setState({ ...state, showUsersModal: false });
+
+	const handleUsersShow = () => setState({ ...state, showUsersModal: true });
 
 	useEffect(() => {
 		dispatch(fetchProjectById(id)).then(res => {
 			if (res.payload) {
-				if (userProfile && userProfile.username === res.payload.creator) {
-					dispatch(getProjectApplications(id));
+				if (userProfile) {
+					dispatch(getProjectApplications(id)).then(res => {
+						setState({
+							...state,
+							hasApplied: res.payload.some(
+								application => application.user.id === userProfile.id
+							),
+						});
+						const action = actions.find(action => action.name === 'Viewed');
+						const actionData = {
+							id: userProfile.id,
+							action: {
+								userId: userProfile.id,
+								projectId: id,
+								userHistoryActionId: action.id,
+							},
+							token: keyCloak.token,
+						};
+						dispatch(addUserAction(actionData));
+					});
 				}
 				dispatch(getProjectMessages(id));
 				const proj = projects.find(
 					project => project.project.id === res.payload.id
 				);
-				setRole(proj ? proj.projectRole : null);
+				setRole(
+					proj
+						? proj.projectRole
+						: {
+								name: 'init',
+						  }
+				);
 			} else {
 				history.push('/404');
 			}
@@ -78,36 +112,44 @@ function ProjectMain({ id }) {
 								<p className="fw-bold ms-3 m-0">{project.title}</p>
 							</div>
 							<div className="d-flex align-items-center">
-								{userProfile &&
-									userProfile.username === project.creator &&
-									role && (
-										<>
-											<button className="btn btn-secondary me-2">
-												Manage users
+								{userProfile && userProfile.username === project.creator && (
+									<>
+										<button
+											className="btn btn-secondary me-2"
+											onClick={handleUsersShow}
+										>
+											Manage users
+										</button>
+										{projectApplications && (
+											<button
+												className="btn btn-primary"
+												onClick={handleAppsShow}
+											>
+												Applications{' '}
+												{projectApplications && projectApplications.length}
 											</button>
-											{projectApplications && (
-												<button
-													className="btn btn-primary"
-													onClick={handleAppsShow}
-												>
-													Applications{' '}
-													{projectApplications && projectApplications.length}
-												</button>
-											)}
-										</>
-									)}
-								{userProfile && (
-									<button
-										className={`btn btn-${
-											userProfile && !role ? 'primary' : 'secondary'
-										}`}
-										onClick={handleAppShow}
-									>
-										{userProfile && !role
-											? 'Apply to project'
-											: 'Leave project'}
-									</button>
+										)}
+									</>
 								)}
+								{userProfile &&
+									userProfile.username !== project.creator &&
+									role.name !== 'Owner' && (
+										<button
+											className={`btn btn-${
+												userProfile && role.name === 'init'
+													? 'primary'
+													: 'secondary'
+											}`}
+											disabled={state.hasApplied}
+											onClick={role.name === 'init' && handleAppShow}
+										>
+											{userProfile && role.name === 'init'
+												? !state.hasApplied
+													? 'Apply to project'
+													: 'Application pending'
+												: 'Leave project'}
+										</button>
+									)}
 							</div>
 						</div>
 						<div className="p-3 d-flex justify-content-between align-items-center">
@@ -136,18 +178,30 @@ function ProjectMain({ id }) {
 					</>
 				)}
 			</div>
-			{showApplicationModal && (
+			{state.showAppModal && (
 				<ProjectAppModal
-					show={showApplicationModal}
+					show={state.showAppModal}
 					handleHide={handleAppHide}
 					project={project}
+					actions={actions}
+					mainState={state}
+					setMainState={setState}
 				/>
 			)}
-			{showApplicationsModal && (
+			{state.showAppsModal && (
 				<ProjectApplicationsModal
-					show={showApplicationsModal}
+					show={state.showAppsModal}
 					handleHide={handleAppsHide}
 					applications={projectApplications}
+					project={project}
+					actions={actions}
+					profile={userProfile}
+				/>
+			)}
+			{state.showUsersModal && (
+				<ProjectUsersModal
+					show={state.showUsersModal}
+					handleHide={handleUsersHide}
 					project={project}
 				/>
 			)}

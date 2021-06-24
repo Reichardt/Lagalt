@@ -45,6 +45,7 @@ p {
 .four-column {
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 1fr 1fr;
+	height: 30vh;
 }
 
 body {
@@ -170,6 +171,18 @@ small {
 		}
 	}
 
+	&.active {
+		span:first-of-type {
+			text-decoration: none;
+			transition: 0.1s ease-in-out all;
+
+			&:hover {
+				cursor: pointer;
+				color: $color-grey;
+			}
+		}
+	}
+
 	&.bg-custom {
 		background-color: $color-light;
 		border: 1px solid $color-grey;
@@ -223,7 +236,7 @@ small {
 
 .recent-project {
 	p {
-		font-size: 1rem;
+		font-size: 0.95em;
 	}
 
 	a {
@@ -235,6 +248,10 @@ small {
 		&:hover {
 			background-color: darken($color-light, 10%);
 		}
+	}
+
+	small {
+		color: darken($color-grey, 15%);
 	}
 }
 

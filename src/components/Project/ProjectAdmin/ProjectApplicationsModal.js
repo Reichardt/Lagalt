@@ -6,7 +6,14 @@ import {
 	setProject,
 } from '../../../features/Project/projectSlice';
 
-function ProjectApplicationsModal({ show, handleHide, applications, project }) {
+function ProjectApplicationsModal({
+	show,
+	handleHide,
+	applications,
+	project,
+	actions,
+	profile,
+}) {
 	const dispatch = useDispatch();
 
 	const removeApplication = id => {
@@ -49,6 +56,8 @@ function ProjectApplicationsModal({ show, handleHide, applications, project }) {
 								removeApplication={removeApplication}
 								acceptApplication={acceptApplication}
 								key={application.id}
+								actions={actions}
+								profile={profile}
 							/>
 						))}
 					</ul>

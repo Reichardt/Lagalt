@@ -2,9 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import HistoryActionAPI from '../../api/HistoryActionAPI';
 
 export const fetchAllActions = createAsyncThunk(
-	'progress/fetchAllActions',
+	'historyAction/fetchAllActions',
 	async () => {
 		return await HistoryActionAPI.getHistoryActions();
+	}
+);
+
+export const addUserAction = createAsyncThunk(
+	'historyAction/addUserAction',
+	async actionData => {
+		const { id, action, token } = actionData;
+		return await HistoryActionAPI.addUserAction(id, action, token);
 	}
 );
 
@@ -20,7 +28,7 @@ export const historyActionSlice = createSlice({
 			state.loading = true;
 		},
 		[fetchAllActions.fulfilled]: (state, action) => {
-			state.progress = action.payload;
+			state.actions = action.payload;
 			state.loading = false;
 		},
 		[fetchAllActions.rejected]: (state, action) => {

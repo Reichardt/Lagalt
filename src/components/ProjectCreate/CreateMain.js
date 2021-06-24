@@ -23,19 +23,27 @@ function CreateMain() {
 
 	return (
 		<>
-			{loading && <Loader />}
-			{!loading && progress && (
-				<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary project-create">
-					<div className="border-bottom border-secondary d-flex justify-content-between text-darken p-3">
-						<div className="d-flex align-items-center">
-							<p className="fw-bold m-0 ms-2">Create a new project</p>
+			<div className="col-lg-9 bg-content border-bottom border-start border-end border-secondary project-create">
+				{loading && <Loader styles={loaderStyles} />}
+				{!loading && progress && (
+					<>
+						<div className="border-bottom border-secondary d-flex justify-content-between text-darken p-3">
+							<div className="d-flex align-items-center">
+								<p className="fw-bold m-0 ms-2">Create a new project</p>
+							</div>
 						</div>
-					</div>
-					<CreateForm progress={progress} />
-				</div>
-			)}
+						<CreateForm progress={progress} />
+					</>
+				)}
+			</div>
 		</>
 	);
 }
 
 export default CreateMain;
+
+const loaderStyles = {
+	position: 'absolute',
+	top: '50%',
+	left: '50%',
+};
