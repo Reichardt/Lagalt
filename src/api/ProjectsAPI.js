@@ -39,6 +39,16 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async updateProject(id, project, token) {
+		await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + token,
+			},
+			body: JSON.stringify(project),
+		});
+	},
 	async applyToProject(application, id, token) {
 		const res = await fetch(
 			`${process.env.REACT_APP_API_URL}/projects/${id}/applications`,
