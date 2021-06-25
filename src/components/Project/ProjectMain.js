@@ -5,6 +5,7 @@ import {
 	getProjectApplications,
 	getProjectMessages,
 	getProjectUsers,
+	updateProjectUsers,
 } from '../../features/Project/projectSlice';
 import {
 	historyActionSelector,
@@ -41,6 +42,7 @@ function ProjectMain({ id }) {
 		showUsersModal: false,
 		hasApplied: false,
 		role: null,
+		users: [],
 	});
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -62,6 +64,25 @@ function ProjectMain({ id }) {
 	const handleUsersHide = () => setState({ ...state, showUsersModal: false });
 
 	const handleUsersShow = () => setState({ ...state, showUsersModal: true });
+
+	const handleRemoveUser = () => {
+		const users = state.users
+			.filter(user => user.user.username !== userProfile.username)
+			.map(user => {
+				return {
+					userId: user.user.id,
+					skills: user.skills.map(skill => skill.id),
+					userProjectRoleId: user.projectRole.id,
+				};
+			});
+		const usersData = {
+			id: Number(id),
+			users,
+			token: keyCloak.token,
+		};
+		console.log(usersData);
+		dispatch(updateProjectUsers(usersData));
+	};
 
 	useEffect(() => {
 		dispatch(fetchProjectById(id)).then(res => {
@@ -95,6 +116,7 @@ function ProjectMain({ id }) {
 								if (user) {
 									setState({
 										...state,
+										users,
 										role: user.projectRole.name,
 									});
 								}
@@ -149,7 +171,7 @@ function ProjectMain({ id }) {
 										<button
 											className="btn btn-primary"
 											disabled={state.hasApplied}
-											onClick={!state.role && handleAppShow}
+											onClick={handleAppShow}
 										>
 											{state.hasApplied
 												? 'Application pending'
@@ -160,7 +182,12 @@ function ProjectMain({ id }) {
 									state.role &&
 									!modalLoading &&
 									state.role !== 'Owner' && (
-										<button className="btn btn-secondary">Leave project</button>
+										<button
+											className="btn btn-secondary"
+											onClick={handleRemoveUser}
+										>
+											Leave project
+										</button>
 									)}
 							</div>
 						</div>
