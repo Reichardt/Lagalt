@@ -35,9 +35,7 @@ function ProjectMain({ id }) {
 		showUsersModal: false,
 		hasApplied: false,
 	});
-	const [role, setRole] = useState({
-		name: 'init',
-	});
+	const [role, setRole] = useState(null);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -88,7 +86,7 @@ function ProjectMain({ id }) {
 					project => project.project.id === res.payload.id
 				);
 				setRole(
-					proj
+					proj && proj.projectRole
 						? proj.projectRole
 						: {
 								name: 'init',
@@ -133,17 +131,16 @@ function ProjectMain({ id }) {
 								)}
 								{userProfile &&
 									userProfile.username !== project.creator &&
+									role &&
 									role.name !== 'Owner' && (
 										<button
 											className={`btn btn-${
-												userProfile && role.name === 'init'
-													? 'primary'
-													: 'secondary'
+												userProfile && !role ? 'primary' : 'secondary'
 											}`}
 											disabled={state.hasApplied}
-											onClick={role.name === 'init' && handleAppShow}
+											onClick={!role && handleAppShow}
 										>
-											{userProfile && role && role.name === 'init'
+											{userProfile && !role
 												? !state.hasApplied
 													? 'Apply to project'
 													: 'Application pending'

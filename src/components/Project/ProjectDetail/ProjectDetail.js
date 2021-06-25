@@ -19,7 +19,7 @@ function ProjectDetail({ project, role }) {
 			<div className="col-lg-12 mb-3">
 				<div className="px-3 d-flex justify-content-between align-items-center mb-3">
 					<h2 className="text-capitalize">{project.title}</h2>
-					{role.name === 'Owner' && (
+					{role && role.name === 'Owner' && (
 						<div className="form-check form-switch mt-3">
 							<label>Edit project</label>
 							<input

@@ -13,7 +13,7 @@ function ProfileAppModal({ show, handleClose }) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(getProfileApplications(userProfile.name));
+		dispatch(getProfileApplications(userProfile.username));
 	}, [userProfile]);
 	return (
 		<>
