@@ -143,7 +143,7 @@ function ProjectMain({ id }) {
 											disabled={state.hasApplied}
 											onClick={role.name === 'init' && handleAppShow}
 										>
-											{userProfile && role.name === 'init'
+											{userProfile && role && role.name === 'init'
 												? !state.hasApplied
 													? 'Apply to project'
 													: 'Application pending'

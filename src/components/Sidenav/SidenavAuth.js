@@ -41,7 +41,7 @@ function SidenavAuth() {
 				dispatch(getProfileById(keyCloak.subject)).then(user => {
 					if (!user.payload) {
 						dispatch(addNewProfile([profile, keyCloak.token]));
-						dispatch(setProfileProjects(0));
+						dispatch(setProfileProjects([]));
 					} else {
 						dispatch(getProfileProjects(user.payload.username));
 					}
