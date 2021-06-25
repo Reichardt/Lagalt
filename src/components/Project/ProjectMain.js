@@ -4,6 +4,7 @@ import {
 	projectSelector,
 	getProjectApplications,
 	getProjectMessages,
+	getProjectUsers,
 } from '../../features/Project/projectSlice';
 import {
 	historyActionSelector,
@@ -25,17 +26,22 @@ import ProjectUsersModal from './ProjectAdmin/ProjectUsersModal';
 
 function ProjectMain({ id }) {
 	const { keyCloak, Login } = useKeycloak();
-	const { project, loading, projectApplications, projectMessages } =
-		useSelector(projectSelector);
-	const { userProfile, projects } = useSelector(profileSelector);
+	const {
+		project,
+		loading,
+		projectApplications,
+		projectMessages,
+		modalLoading,
+	} = useSelector(projectSelector);
+	const { userProfile } = useSelector(profileSelector);
 	const { actions } = useSelector(historyActionSelector);
 	const [state, setState] = useState({
 		showAppModal: false,
 		showAppsModal: false,
 		showUsersModal: false,
 		hasApplied: false,
+		role: null,
 	});
-	const [role, setRole] = useState(null);
 	const dispatch = useDispatch();
 	const history = useHistory();
 
@@ -79,13 +85,24 @@ function ProjectMain({ id }) {
 							token: keyCloak.token,
 						};
 						dispatch(addUserAction(actionData));
+
+						dispatch(getProjectUsers(id)).then(res => {
+							const users = res.payload;
+							if (users) {
+								const user = users.find(
+									user => user.user.username === userProfile.username
+								);
+								if (user) {
+									setState({
+										...state,
+										role: user.projectRole.name,
+									});
+								}
+							}
+						});
 					});
 				}
 				dispatch(getProjectMessages(id));
-				const proj = projects.find(
-					project => project.project.id === res.payload.id
-				);
-				setRole(proj && proj.projectRole ? proj.projectRole : null);
 			} else {
 				history.push('/404');
 			}
@@ -104,41 +121,47 @@ function ProjectMain({ id }) {
 								<p className="fw-bold ms-3 m-0">{project.title}</p>
 							</div>
 							<div className="d-flex align-items-center">
-								{userProfile && userProfile.username === project.creator && (
-									<>
-										<button
-											className="btn btn-secondary me-2"
-											onClick={handleUsersShow}
-										>
-											Manage users
-										</button>
-										{projectApplications && (
+								{userProfile &&
+									userProfile.username === project.creator &&
+									!modalLoading && (
+										<>
 											<button
-												className="btn btn-primary"
-												onClick={handleAppsShow}
+												className="btn btn-secondary me-2"
+												onClick={handleUsersShow}
 											>
-												Applications{' '}
-												{projectApplications && projectApplications.length}
+												Manage users
 											</button>
-										)}
-									</>
-								)}
+											{projectApplications && (
+												<button
+													className="btn btn-primary"
+													onClick={handleAppsShow}
+												>
+													Applications{' '}
+													{projectApplications && projectApplications.length}
+												</button>
+											)}
+										</>
+									)}
 								{userProfile &&
 									userProfile.username !== project.creator &&
-									!role && (
+									!state.role &&
+									!modalLoading && (
 										<button
 											className="btn btn-primary"
 											disabled={state.hasApplied}
-											onClick={!role && handleAppShow}
+											onClick={!state.role && handleAppShow}
 										>
 											{state.hasApplied
 												? 'Application pending'
 												: 'Apply to project'}
 										</button>
 									)}
-								{userProfile && role && role.name !== 'Owner' && (
-									<button className="btn btn-secondary">Leave project</button>
-								)}
+								{userProfile &&
+									state.role &&
+									!modalLoading &&
+									state.role !== 'Owner' && (
+										<button className="btn btn-secondary">Leave project</button>
+									)}
 							</div>
 						</div>
 						<div className="p-3 d-flex justify-content-between align-items-center">
@@ -155,7 +178,7 @@ function ProjectMain({ id }) {
 							</div>
 						</div>
 						<div className="row mt-4">
-							<ProjectDetail project={project} role={role} />
+							<ProjectDetail project={project} role={state.role} />
 						</div>
 						<div className="row mt-4">
 							<ProjectBoard

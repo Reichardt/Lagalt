@@ -34,6 +34,7 @@ function ProjectApplicationsModal({
 			});
 		const updatedProject = {
 			...project,
+			current: project.current + 1,
 			skills: projectSkills,
 		};
 		dispatch(setProject(updatedProject));

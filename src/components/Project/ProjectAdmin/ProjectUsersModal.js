@@ -26,7 +26,6 @@ function ProjectUsersModal({ show, handleHide, project }) {
 
 	const handleRemoveUser = userData => {
 		const { user, skills } = userData;
-		console.log(user, skills);
 		setState({ users: state.users.filter(suser => suser.user.id !== user.id) });
 		const updatedUsers = state.users
 			.filter(suser => suser.user.id !== user.id)
