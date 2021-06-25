@@ -68,37 +68,39 @@ function ProjectAppModal({
 			.filter(skill => skill.checked)
 			.map(skill => skill.id);
 
-		const applicationData = {
-			id: project.id,
-			token: keyCloak.token,
-			application: {
-				motivationalText: state.motApp,
-				skills,
-			},
-		};
-
-		dispatch(applyToProject(applicationData)).then(res => {
-			setState({
-				...state,
-				success: res.payload && true,
-				error: !res.payload && true,
-			});
-			setMainState({
-				...mainState,
-				hasApplied: true,
-			});
-			const action = actions.find(action => action.name === 'Applied');
-			const actionData = {
-				id: userProfile.id,
-				action: {
-					userId: userProfile.id,
-					projectId: project.id,
-					userHistoryActionId: action.id,
-				},
+		if (skills.length && state.motApp.length) {
+			const applicationData = {
+				id: project.id,
 				token: keyCloak.token,
+				application: {
+					motivationalText: state.motApp,
+					skills,
+				},
 			};
-			dispatch(addUserAction(actionData));
-		});
+
+			dispatch(applyToProject(applicationData)).then(res => {
+				setState({
+					...state,
+					success: res.payload && true,
+					error: !res.payload && true,
+				});
+				setMainState({
+					...mainState,
+					hasApplied: true,
+				});
+				const action = actions.find(action => action.name === 'Applied');
+				const actionData = {
+					id: userProfile.id,
+					action: {
+						userId: userProfile.id,
+						projectId: project.id,
+						userHistoryActionId: action.id,
+					},
+					token: keyCloak.token,
+				};
+				dispatch(addUserAction(actionData));
+			});
+		}
 	};
 
 	return (

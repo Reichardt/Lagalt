@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 function CreateForm({ progress }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { loading } = useSelector(skillSelector);
+	const { loading, skills } = useSelector(skillSelector);
 	const { keyCloak } = useKeycloak();
 	const { userProfile } = useSelector(profileSelector);
 

@@ -4,6 +4,8 @@ import {
 	projectSelector,
 	getProjectApplications,
 	getProjectMessages,
+	getProjectUsers,
+	updateProjectUsers,
 } from '../../features/Project/projectSlice';
 import {
 	historyActionSelector,
@@ -25,18 +27,22 @@ import ProjectUsersModal from './ProjectAdmin/ProjectUsersModal';
 
 function ProjectMain({ id }) {
 	const { keyCloak, Login } = useKeycloak();
-	const { project, loading, projectApplications, projectMessages } =
-		useSelector(projectSelector);
-	const { userProfile, projects } = useSelector(profileSelector);
+	const {
+		project,
+		loading,
+		projectApplications,
+		projectMessages,
+		modalLoading,
+	} = useSelector(projectSelector);
+	const { userProfile } = useSelector(profileSelector);
 	const { actions } = useSelector(historyActionSelector);
 	const [state, setState] = useState({
 		showAppModal: false,
 		showAppsModal: false,
 		showUsersModal: false,
 		hasApplied: false,
-	});
-	const [role, setRole] = useState({
-		name: 'init',
+		role: null,
+		users: [],
 	});
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -58,6 +64,25 @@ function ProjectMain({ id }) {
 	const handleUsersHide = () => setState({ ...state, showUsersModal: false });
 
 	const handleUsersShow = () => setState({ ...state, showUsersModal: true });
+
+	const handleRemoveUser = () => {
+		const users = state.users
+			.filter(user => user.user.username !== userProfile.username)
+			.map(user => {
+				return {
+					userId: user.user.id,
+					skills: user.skills.map(skill => skill.id),
+					userProjectRoleId: user.projectRole.id,
+				};
+			});
+		const usersData = {
+			id: Number(id),
+			users,
+			token: keyCloak.token,
+		};
+		console.log(usersData);
+		dispatch(updateProjectUsers(usersData));
+	};
 
 	useEffect(() => {
 		dispatch(fetchProjectById(id)).then(res => {
@@ -81,19 +106,25 @@ function ProjectMain({ id }) {
 							token: keyCloak.token,
 						};
 						dispatch(addUserAction(actionData));
+
+						dispatch(getProjectUsers(id)).then(res => {
+							const users = res.payload;
+							if (users) {
+								const user = users.find(
+									user => user.user.username === userProfile.username
+								);
+								if (user) {
+									setState({
+										...state,
+										users,
+										role: user.projectRole.name,
+									});
+								}
+							}
+						});
 					});
 				}
 				dispatch(getProjectMessages(id));
-				const proj = projects.find(
-					project => project.project.id === res.payload.id
-				);
-				setRole(
-					proj
-						? proj.projectRole
-						: {
-								name: 'init',
-						  }
-				);
 			} else {
 				history.push('/404');
 			}
@@ -112,42 +143,50 @@ function ProjectMain({ id }) {
 								<p className="fw-bold ms-3 m-0">{project.title}</p>
 							</div>
 							<div className="d-flex align-items-center">
-								{userProfile && userProfile.username === project.creator && (
-									<>
-										<button
-											className="btn btn-secondary me-2"
-											onClick={handleUsersShow}
-										>
-											Manage users
-										</button>
-										{projectApplications && (
+								{userProfile &&
+									userProfile.username === project.creator &&
+									!modalLoading && (
+										<>
 											<button
-												className="btn btn-primary"
-												onClick={handleAppsShow}
+												className="btn btn-secondary me-2"
+												onClick={handleUsersShow}
 											>
-												Applications{' '}
-												{projectApplications && projectApplications.length}
+												Manage users
 											</button>
-										)}
-									</>
-								)}
+											{projectApplications && (
+												<button
+													className="btn btn-primary"
+													onClick={handleAppsShow}
+												>
+													Applications{' '}
+													{projectApplications && projectApplications.length}
+												</button>
+											)}
+										</>
+									)}
 								{userProfile &&
 									userProfile.username !== project.creator &&
-									role.name !== 'Owner' && (
+									!state.role &&
+									!modalLoading && (
 										<button
-											className={`btn btn-${
-												userProfile && role.name === 'init'
-													? 'primary'
-													: 'secondary'
-											}`}
+											className="btn btn-primary"
 											disabled={state.hasApplied}
-											onClick={role.name === 'init' && handleAppShow}
+											onClick={handleAppShow}
 										>
-											{userProfile && role.name === 'init'
-												? !state.hasApplied
-													? 'Apply to project'
-													: 'Application pending'
-												: 'Leave project'}
+											{state.hasApplied
+												? 'Application pending'
+												: 'Apply to project'}
+										</button>
+									)}
+								{userProfile &&
+									state.role &&
+									!modalLoading &&
+									state.role !== 'Owner' && (
+										<button
+											className="btn btn-secondary"
+											onClick={handleRemoveUser}
+										>
+											Leave project
 										</button>
 									)}
 							</div>
@@ -166,7 +205,7 @@ function ProjectMain({ id }) {
 							</div>
 						</div>
 						<div className="row mt-4">
-							<ProjectDetail project={project} role={role} />
+							<ProjectDetail project={project} role={state.role} />
 						</div>
 						<div className="row mt-4">
 							<ProjectBoard
