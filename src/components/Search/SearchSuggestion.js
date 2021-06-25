@@ -1,11 +1,11 @@
 import React from "react";
 
-function SearchSuggestion() {
-    return (
-        <div className='suggestion border-start border-end border-bottom border-secondary'>
-            I am a search suggestion
-        </div>
-    );
+function SearchSuggestion({ searchSuggestion }) {
+  return (
+    <div className="suggestion border-start border-end border-bottom border-secondary">
+      {searchSuggestion.title}
+    </div>
+  );
 }
 
 export default SearchSuggestion;
