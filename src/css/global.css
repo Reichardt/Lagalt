@@ -157,6 +157,26 @@ body {
   border: 1px solid #c4ccd3;
 }
 
+.form-switch .form-check-input {
+  background-image: url("./icons/square-unchecked.svg");
+}
+
+.form-switch .form-check-input:checked {
+  background-image: url("./icons/square-checked.svg");
+  background-color: inherit;
+  border-color: #d3d9de;
+}
+
+.form-switch .form-check-input:focus {
+  border-color: #d3d9de;
+  background-image: url("./icons/square-checked.svg");
+}
+
+.form-switch label {
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
 .modal-content {
   border-radius: 0;
 }
@@ -416,25 +436,6 @@ small {
   cursor: pointer;
 }
 
-.profile .form-switch .form-check-input {
-  background-image: url("./icons/square-unchecked.svg");
-}
-
-.profile .form-switch .form-check-input:checked {
-  background-image: url("./icons/square-checked.svg");
-  background-color: inherit;
-  border-color: #d3d9de;
-}
-
-.profile .form-switch .form-check-input:focus {
-  border-color: #d3d9de;
-}
-
-.profile .form-switch label {
-  font-size: 0.9em;
-  font-weight: 500;
-}
-
 .profile .form-control:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -551,7 +552,9 @@ small {
 }
 
 .project .project-details {
-  height: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: #f8f8f8;
   font-size: 0.9em;
 }
@@ -580,6 +583,24 @@ small {
 
 .project .main-desc p {
   font-size: 0.9em;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.project .main-desc .project-img {
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.project .main-desc .project-img img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #f8f8f8;
+}
+
+.project .main-desc textarea {
+  height: 10em;
 }
 
 .project .comments {

@@ -160,6 +160,26 @@ body {
 	}
 }
 
+.form-switch {
+	.form-check-input {
+		background-image: url('./icons/square-unchecked.svg');
+		&:checked {
+			background-image: url('./icons/square-checked.svg');
+			background-color: inherit;
+			border-color: $color-grey;
+		}
+
+		&:focus {
+			border-color: $color-grey;
+			background-image: url('./icons/square-checked.svg');
+		}
+	}
+	label {
+		font-size: 0.9em;
+		font-weight: 500;
+	}
+}
+
 .modal-content {
 	border-radius: 0;
 }
@@ -414,25 +434,6 @@ small {
 		}
 	}
 
-	.form-switch {
-		.form-check-input {
-			background-image: url('./icons/square-unchecked.svg');
-			&:checked {
-				background-image: url('./icons/square-checked.svg');
-				background-color: inherit;
-				border-color: $color-grey;
-			}
-
-			&:focus {
-				border-color: $color-grey;
-			}
-		}
-		label {
-			font-size: 0.9em;
-			font-weight: 500;
-		}
-	}
-
 	.form-control {
 		&:focus {
 			box-shadow: none;
@@ -553,7 +554,7 @@ small {
 
 .project {
 	.project-details {
-		height: 100%;
+		height: fit-content;
 		background-color: $color-light;
 		font-size: 0.9em;
 
@@ -586,6 +587,24 @@ small {
 	.main-desc {
 		p {
 			font-size: 0.9em;
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.project-img {
+			height: 200px;
+			width: 200px;
+			margin: 0 auto;
+
+			img {
+				width: 100%;
+				height: 100%;
+				border: 1px solid $color-light;
+			}
+		}
+
+		textarea {
+			height: 10em;
 		}
 	}
 

@@ -80,7 +80,6 @@ function ProjectMain({ id }) {
 			users,
 			token: keyCloak.token,
 		};
-		console.log(usersData);
 		dispatch(updateProjectUsers(usersData));
 	};
 
@@ -95,7 +94,8 @@ function ProjectMain({ id }) {
 								application => application.user.id === userProfile.id
 							),
 						});
-						const action = actions.find(action => action.name === 'Viewed');
+						const action =
+							actions && actions.find(action => action.name === 'Viewed');
 						const actionData = {
 							id: userProfile.id,
 							action: {
@@ -205,7 +205,11 @@ function ProjectMain({ id }) {
 							</div>
 						</div>
 						<div className="row mt-4">
-							<ProjectDetail project={project} role={state.role} />
+							<ProjectDetail
+								projectprop={project}
+								userProfile={userProfile}
+								token={keyCloak.token}
+							/>
 						</div>
 						<div className="row mt-4">
 							<ProjectBoard

@@ -41,6 +41,15 @@ export const fetchProjectById = createAsyncThunk(
 	}
 );
 
+export const updateProject = createAsyncThunk(
+	'project/updateProject',
+	async projectData => {
+		const { id, project, token } = projectData;
+
+		await ProjectsAPI.updateProject(id, project, token);
+	}
+);
+
 export const addNewProject = createAsyncThunk(
 	'project/addNewProject',
 	async projectData => {
