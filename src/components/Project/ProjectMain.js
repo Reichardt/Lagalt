@@ -85,13 +85,7 @@ function ProjectMain({ id }) {
 				const proj = projects.find(
 					project => project.project.id === res.payload.id
 				);
-				setRole(
-					proj && proj.projectRole
-						? proj.projectRole
-						: {
-								name: 'init',
-						  }
-				);
+				setRole(proj && proj.projectRole ? proj.projectRole : null);
 			} else {
 				history.push('/404');
 			}
@@ -131,22 +125,20 @@ function ProjectMain({ id }) {
 								)}
 								{userProfile &&
 									userProfile.username !== project.creator &&
-									role &&
-									role.name !== 'Owner' && (
+									!role && (
 										<button
-											className={`btn btn-${
-												userProfile && !role ? 'primary' : 'secondary'
-											}`}
+											className="btn btn-primary"
 											disabled={state.hasApplied}
 											onClick={!role && handleAppShow}
 										>
-											{userProfile && !role
-												? !state.hasApplied
-													? 'Apply to project'
-													: 'Application pending'
-												: 'Leave project'}
+											{state.hasApplied
+												? 'Application pending'
+												: 'Apply to project'}
 										</button>
 									)}
+								{userProfile && role && role.name !== 'Owner' && (
+									<button className="btn btn-secondary">Leave project</button>
+								)}
 							</div>
 						</div>
 						<div className="p-3 d-flex justify-content-between align-items-center">
