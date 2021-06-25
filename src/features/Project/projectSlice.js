@@ -41,6 +41,27 @@ export const fetchProjectById = createAsyncThunk(
 	}
 );
 
+export const fetchAllProjectsByCategory = createAsyncThunk(
+	'project/fetchAllProjectsByCategory',
+	async (category) => {
+		let projects = await ProjectsAPI.getAllProjectsByCategory(category);
+
+		projects = projects.map(project => {
+			return {
+				...project,
+				current: project.skills.reduce((acc, curr) => {
+					return (acc += curr.foundCount);
+				}, 0),
+				total: project.skills.reduce((acc, curr) => {
+					return (acc += curr.requiredCount);
+				}, 0),
+			};
+		});
+
+		return projects;
+	}
+);
+
 export const addNewProject = createAsyncThunk(
 	'project/addNewProject',
 	async projectData => {
@@ -181,6 +202,16 @@ export const projectSlice = createSlice({
 			state.loading = false;
 		},
 		[fetchProjectById.rejected]: (state, action) => {
+			state.error = action.payload;
+		},
+		[fetchAllProjectsByCategory.pending]: state => {
+			state.loading = true;
+		},
+		[fetchAllProjectsByCategory.fulfilled]: (state, action) => {
+			state.projects = action.payload;
+			state.loading = false;
+		},
+		[fetchAllProjectsByCategory.rejected]: (state, action) => {
 			state.error = action.payload;
 		},
 		[addNewProject.pending]: state => {

@@ -7,6 +7,14 @@ const ProjectsAPI = {
 			return data;
 		}
 	},
+	async getAllProjectsByCategory(category) {
+		const res = await fetch(`${process.env.REACT_APP_API_URL}/projects?skills=${category}`);
+		const data = await res.json();
+
+		if (res.ok) {
+			return data;
+		}
+	},
 	async addProject(project, token) {
 		const res = await fetch(`${process.env.REACT_APP_API_URL}/projects`, {
 			method: 'POST',
