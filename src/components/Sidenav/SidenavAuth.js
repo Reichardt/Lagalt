@@ -14,6 +14,7 @@ import {
 	getProfileById,
 	setProfile,
 	getProfileProjects,
+	setProfileProjects,
 } from '../../features/Profile/profileSlice';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -40,8 +41,9 @@ function SidenavAuth() {
 				dispatch(getProfileById(keyCloak.subject)).then(user => {
 					if (!user.payload) {
 						dispatch(addNewProfile([profile, keyCloak.token]));
+						dispatch(setProfileProjects(0));
 					} else {
-						dispatch(getProfileProjects(user.payload.name));
+						dispatch(getProfileProjects(user.payload.username));
 					}
 				});
 			});

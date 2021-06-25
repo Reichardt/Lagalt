@@ -38,10 +38,17 @@ function ProfileAppModal({ show, handleClose }) {
 										<p
 											className={`status p-2 bg-secondary border-secondary border-top border-bottom border-start rounded-start text-primary ${
 												application.isAccepted && 'accepted'
-											} ${application.isPending && 'pending'}`}
+											} ${application.isPending && 'pending'} ${
+												!application.isPending &&
+												!application.isAccepted &&
+												'declined'
+											}`}
 										>
 											{application.isAccepted && 'Accepted'}
 											{application.isPending && 'Pending'}
+											{!application.isPending &&
+												!application.isAccepted &&
+												'Declined'}
 										</p>
 									</div>
 								</li>

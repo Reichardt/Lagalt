@@ -129,6 +129,9 @@ export const profileSlice = createSlice({
 		setProfileSkills: (state, action) => {
 			state.userProfile.skills = action.payload;
 		},
+		setProfileProjects: (state, action) => {
+			state.projects = action.payload;
+		},
 	},
 	extraReducers: {
 		[addNewProfile.pending]: state => {
@@ -210,7 +213,8 @@ export const profileSlice = createSlice({
 	},
 });
 
-export const { setProfile, setProfileSkills } = profileSlice.actions;
+export const { setProfile, setProfileSkills, setProfileProjects } =
+	profileSlice.actions;
 
 export const profileSelector = state => state.profile;
 

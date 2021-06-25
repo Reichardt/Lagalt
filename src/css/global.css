@@ -471,6 +471,10 @@ small {
   border-radius: 0;
 }
 
+.profile .card .card-text {
+  font-size: 0.9em;
+}
+
 .profile-app-modal p {
   font-size: 0.8em;
 }

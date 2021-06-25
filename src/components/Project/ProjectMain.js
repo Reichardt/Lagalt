@@ -166,7 +166,7 @@ function ProjectMain({ id }) {
 							</div>
 						</div>
 						<div className="row mt-4">
-							<ProjectDetail project={project} />
+							<ProjectDetail project={project} role={role} />
 						</div>
 						<div className="row mt-4">
 							<ProjectBoard

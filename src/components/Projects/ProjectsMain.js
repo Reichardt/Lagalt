@@ -28,9 +28,10 @@ function ProjectsMain() {
 			</div>
 			{userAttributesLoading && <Loader styles={loaderStyles} />}
 			{!userAttributesLoading &&
+				projects &&
 				projects.length > 0 &&
 				projects.map(project => <Project project={project} />)}
-			{!userAttributesLoading && projects.length === 0 && (
+			{!userAttributesLoading && projects && projects.length === 0 && (
 				<div className="full-height d-flex justify-content-center align-items-center bg-content border-secondary border-start border-end border-bottom flex-column">
 					<h4>{!projects.length && 'You are not apart of any projects'}</h4>
 					<Link to="/home" className="btn btn-primary mt-4">

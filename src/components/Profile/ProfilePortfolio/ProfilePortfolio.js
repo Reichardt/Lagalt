@@ -71,7 +71,7 @@ function ProfilePortfolio({ profile, profileParam }) {
 					{profileParam &&
 						profile &&
 						profileParam.username === profile.username && (
-							<button className="btn btn-secondary" onClick={handleShow}>
+							<button className="btn btn-primary" onClick={handleShow}>
 								Add new portfolio item
 							</button>
 						)}
