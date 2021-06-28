@@ -30,7 +30,8 @@ function ProjectDetail({ projectprop, userProfile, token }) {
 				progress: res.payload,
 			});
 		});
-	}, []);
+		// eslint-disable-next-line
+	}, [dispatch]);
 
 	const handleSwitchChange = () => {
 		setState({

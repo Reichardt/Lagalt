@@ -2,12 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchAllProjectsByCategory,
-	projectSelector
+	projectSelector,
 } from '../features/Project/projectSlice';
 import Sidenav from '../components/Sidenav/Sidenav';
 import ProjectList from '../components/ProjectList/ProjectList';
 import Loader from '../components/Global/Loader';
-
 
 function Category({ match }) {
 	const { category } = match.params;
@@ -15,8 +14,9 @@ function Category({ match }) {
 	const { projects, loading } = useSelector(projectSelector);
 
 	useEffect(() => {
-		dispatch(fetchAllProjectsByCategory(category))
-	}, [dispatch])
+		dispatch(fetchAllProjectsByCategory(category));
+		// eslint-disable-next-line
+	}, [dispatch]);
 
 	return (
 		<div className="container">

@@ -19,6 +19,7 @@ function ProjectSkill({ skill }) {
 				userProfile.skills.find(uskill => uskill.name === skill.skillName)
 			);
 		}
+		// eslint-disable-next-line
 	}, [userProfile]);
 
 	return (

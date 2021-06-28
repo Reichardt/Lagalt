@@ -13,7 +13,7 @@ function SidenavRecent() {
 
 	useEffect(() => {
 		userProfile && dispatch(getProfileHistory(userProfile.username));
-	}, [userProfile]);
+	}, [userProfile, dispatch]);
 
 	return (
 		<>
@@ -23,7 +23,7 @@ function SidenavRecent() {
 						<p className="mb-0">Recently viewed projects</p>
 					</div>
 					{history.map(project => (
-						<div className="recent-project">
+						<div className="recent-project" key={project.id}>
 							<Link
 								to={`/project/${project.project.id}`}
 								className="bg-content border-secondary border-start border-end border-bottom p-3 d-flex flex-column"

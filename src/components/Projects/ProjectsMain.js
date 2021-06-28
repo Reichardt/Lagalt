@@ -16,7 +16,8 @@ function ProjectsMain() {
 
 	useEffect(() => {
 		userProfile && dispatch(getProfileProjects(userProfile.username));
-	}, []);
+		// eslint-disable-next-line
+	}, [dispatch]);
 
 	return (
 		<div className="col-lg-9 mb-5">
@@ -30,7 +31,7 @@ function ProjectsMain() {
 			{!userAttributesLoading &&
 				projects &&
 				projects.length > 0 &&
-				projects.map(project => <Project project={project} />)}
+				projects.map(project => <Project project={project} key={project.id} />)}
 			{!userAttributesLoading && projects && projects.length === 0 && (
 				<div className="full-height d-flex justify-content-center align-items-center bg-content border-secondary border-start border-end border-bottom flex-column">
 					<h4>{!projects.length && 'You are not apart of any projects'}</h4>

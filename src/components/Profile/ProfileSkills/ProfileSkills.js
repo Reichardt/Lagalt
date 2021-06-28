@@ -6,8 +6,10 @@ import { fetchAllSkills } from '../../../features/Skill/skillSlice';
 import {
 	setProfileSkills,
 	updateProfileSkills,
+	updateProfileDesc,
 } from '../../../features/Profile/profileSlice';
 import { useKeycloak } from '../../../context/KeycloakContext';
+import { EyeFill, Eye } from 'react-bootstrap-icons';
 
 function ProfileSkills({ profile, profileParam }) {
 	const { keyCloak } = useKeycloak();
@@ -18,6 +20,7 @@ function ProfileSkills({ profile, profileParam }) {
 		skillOptions: [],
 		skillsAdded: [],
 		chosenSkill: null,
+		skillsHidden: profileParam.isSkillsHidden,
 	});
 
 	useEffect(() => {
@@ -36,6 +39,7 @@ function ProfileSkills({ profile, profileParam }) {
 		return () => {
 			setState();
 		};
+		// eslint-disable-next-line
 	}, [dispatch]);
 
 	const handleSwitchChange = () => {
@@ -89,21 +93,50 @@ function ProfileSkills({ profile, profileParam }) {
 		});
 	};
 
+	const toggleSkills = bool => {
+		const profileData = {
+			updatedProfile: {
+				...profileParam,
+				isSkillsHidden: bool,
+			},
+			token: keyCloak.token,
+		};
+		dispatch(updateProfileDesc(profileData)).then(res => {
+			setState({
+				...state,
+				skillsHidden: bool,
+			});
+		});
+	};
+
 	return (
 		<div>
 			<div className="d-flex justify-content-between align-items-center pe-3">
-				<h2 className="text-primary">Skills</h2>
-				{profileParam && profile && profileParam.username === profile.username && (
-					<div className="form-check form-switch">
-						<label>Edit skills</label>
-						<input
-							className="form-check-input custom-input"
-							type="checkbox"
-							checked={state && state.checked}
-							onChange={handleSwitchChange}
-						/>
-					</div>
-				)}
+				<div className="d-flex align-items-center">
+					<h2 className="text-primary mb-0 me-2">Skills</h2>
+					{profileParam &&
+						state &&
+						(state.skillsHidden ? (
+							<Eye onClick={() => toggleSkills(false)} />
+						) : (
+							<EyeFill onClick={() => toggleSkills(true)} />
+						))}
+				</div>
+				{profileParam &&
+					profile &&
+					profileParam.username === profile.username &&
+					state &&
+					!state.skillsHidden && (
+						<div className="form-check form-switch">
+							<label>Edit skills</label>
+							<input
+								className="form-check-input custom-input"
+								type="checkbox"
+								checked={state && state.checked}
+								onChange={handleSwitchChange}
+							/>
+						</div>
+					)}
 			</div>
 			<hr />
 			{state && state.checked && (
@@ -131,6 +164,7 @@ function ProfileSkills({ profile, profileParam }) {
 				</div>
 			)}
 			{state &&
+				!state.skillsHidden &&
 				state.skillsAdded.map(skill => (
 					<ProfileSkill
 						skill={skill}

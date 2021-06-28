@@ -46,6 +46,7 @@ function ProjectAppModal({
 			}),
 			btnDisable: !skillsAvailable.length ? true : false,
 		});
+		// eslint-disable-next-line
 	}, []);
 
 	const toggleSkill = skill => {

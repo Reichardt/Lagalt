@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 function CreateForm({ progress }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const { loading, skills } = useSelector(skillSelector);
+	const { loading } = useSelector(skillSelector);
 	const { keyCloak } = useKeycloak();
 	const { userProfile } = useSelector(profileSelector);
 
@@ -39,6 +39,7 @@ function CreateForm({ progress }) {
 		return () => {
 			setState({ ...state });
 		};
+		// eslint-disable-next-line
 	}, [dispatch]);
 
 	const handleChange = e => {

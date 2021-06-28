@@ -48,6 +48,7 @@ function SidenavAuth() {
 				});
 			});
 		}
+		// eslint-disable-next-line
 	}, [dispatch, keyCloak]);
 
 	return (

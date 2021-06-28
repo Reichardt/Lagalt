@@ -19,6 +19,7 @@ function ProjectBoard({ profile, messages, project }) {
 			replies:
 				messages && messages.filter(message => message.messageId !== null),
 		});
+		// eslint-disable-next-line
 	}, [messages]);
 
 	const handleCommentAdd = comment => {

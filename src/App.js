@@ -18,7 +18,7 @@ function App() {
 
 	useEffect(() => {
 		dispatch(fetchAllActions());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<BrowserRouter>

@@ -14,7 +14,7 @@ function ProfileAppModal({ show, handleClose }) {
 
 	useEffect(() => {
 		dispatch(getProfileApplications(userProfile.username));
-	}, [userProfile]);
+	}, [dispatch, userProfile]);
 	return (
 		<>
 			<Modal show={show} onHide={handleClose} className="profile-app-modal">
@@ -25,7 +25,7 @@ function ProfileAppModal({ show, handleClose }) {
 				</Modal.Header>
 				<Modal.Body>
 					<ul className="list-group">
-						{applications &&
+						{applications && applications.length ? (
 							applications.map(application => (
 								<li
 									className="list-group-item ps-2 pb-2 pt-2 pe-0"
@@ -52,7 +52,10 @@ function ProfileAppModal({ show, handleClose }) {
 										</p>
 									</div>
 								</li>
-							))}
+							))
+						) : (
+							<p>There was no applications found</p>
+						)}
 					</ul>
 				</Modal.Body>
 				<Modal.Footer>

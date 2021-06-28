@@ -22,7 +22,8 @@ function ProjectUsersModal({ show, handleHide, project }) {
 				users: res.payload,
 			});
 		});
-	}, []);
+		// eslint-disable-next-line
+	}, [dispatch]);
 
 	const handleRemoveUser = userData => {
 		const { user, skills } = userData;

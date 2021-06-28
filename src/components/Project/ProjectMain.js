@@ -129,6 +129,7 @@ function ProjectMain({ id }) {
 				history.push('/404');
 			}
 		});
+		// eslint-disable-next-line
 	}, [dispatch, userProfile]);
 
 	return (
