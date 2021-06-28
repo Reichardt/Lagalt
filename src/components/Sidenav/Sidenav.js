@@ -26,9 +26,13 @@ function Sidenav({ side }) {
 
 	const renderRightSide = () => {
 		return (
-			<div className="border-dark col-lg-3 text-darken sticky-top align-self-start pt-4">
-				<Search />
-				<SidenavRecent />
+			<div className="col-lg-3">
+				<div className="border-dark text-darken sticky-top align-self-start pt-4 pb-2 search-container">
+					<Search />
+				</div>
+				<div className="border-dark text-darken sticky-top align-self-start pt-5">
+					<SidenavRecent />
+				</div>
 			</div>
 		);
 	};

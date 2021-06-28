@@ -18,7 +18,7 @@ function SidenavRecent() {
 	return (
 		<>
 			{userProfile && (
-				<>
+				<div className="recent">
 					<div className="bg-light border border-secondary text-darken p-3 mt-3 recent-projects">
 						<p className="mb-0">Recently viewed projects</p>
 					</div>
@@ -34,7 +34,7 @@ function SidenavRecent() {
 							</Link>
 						</div>
 					))}
-				</>
+				</div>
 			)}
 		</>
 	);

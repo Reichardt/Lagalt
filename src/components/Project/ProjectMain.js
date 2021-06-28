@@ -102,7 +102,11 @@ function ProjectMain({ id }) {
 		const updatedProject = {
 			...project,
 			skills: projectSkills,
-			current: project.current - 1,
+			current:
+				project.current -
+				project.skills.filter(skill =>
+					userProfile.skills.some(uskill => uskill.name === skill.skillName)
+				).length,
 		};
 		dispatch(setProject(updatedProject));
 		setState({
