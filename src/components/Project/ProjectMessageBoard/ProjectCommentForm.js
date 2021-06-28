@@ -62,7 +62,7 @@ function ProjectReplyForm({
 				onChange={e => setMessage(e.target.value)}
 			></textarea>
 			<button className="btn btn-primary mt-2" onClick={handleMessageAdd}>
-				Reply
+				{!selectedComment ? 'Post' : 'Reply'}
 			</button>
 		</div>
 	);

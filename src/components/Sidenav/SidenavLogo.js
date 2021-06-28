@@ -3,7 +3,7 @@ import logo from '../../images/logo.png';
 
 const SidenavLogo = () => {
 	return (
-		<div className="img-wrapper mb-3">
+		<div className="img-wrapper d-flex justify-content-center mb-3">
 			<Link to="/">
 				<img src={logo} style={logoStyles} alt="logo" />
 			</Link>
@@ -14,5 +14,5 @@ const SidenavLogo = () => {
 export default SidenavLogo;
 
 const logoStyles = {
-	width: '4em',
+	width: '5em',
 };

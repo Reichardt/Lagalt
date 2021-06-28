@@ -115,6 +115,8 @@ function ProfileSkills({ profile, profileParam }) {
 				<div className="d-flex align-items-center">
 					<h2 className="text-primary mb-0 me-2">Skills</h2>
 					{profileParam &&
+						profile &&
+						profileParam.username === profile.username &&
 						state &&
 						(state.skillsHidden ? (
 							<Eye onClick={() => toggleSkills(false)} />
