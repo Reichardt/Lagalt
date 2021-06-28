@@ -436,6 +436,10 @@ small {
   cursor: pointer;
 }
 
+.profile svg:hover {
+  cursor: pointer;
+}
+
 .profile .form-control:focus {
   -webkit-box-shadow: none;
           box-shadow: none;

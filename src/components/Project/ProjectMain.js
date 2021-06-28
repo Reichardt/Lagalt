@@ -6,6 +6,7 @@ import {
 	getProjectMessages,
 	getProjectUsers,
 	updateProjectUsers,
+	setProject,
 } from '../../features/Project/projectSlice';
 import {
 	historyActionSelector,
@@ -77,10 +78,38 @@ function ProjectMain({ id }) {
 			});
 		const usersData = {
 			id: Number(id),
-			users,
+			users: [
+				...users,
+				{
+					userId: project.creator.id,
+					skills: [],
+					userProjectRoleId: 1,
+				},
+			],
 			token: keyCloak.token,
 		};
 		dispatch(updateProjectUsers(usersData));
+		const projectSkills = project.skills
+			.filter(skill =>
+				userProfile.skills.some(uskill => uskill.name === skill.skillName)
+			)
+			.map(skill => {
+				return {
+					...skill,
+					foundCount: skill.foundCount - 1,
+				};
+			});
+		const updatedProject = {
+			...project,
+			skills: projectSkills,
+			current: project.current - 1,
+		};
+		dispatch(setProject(updatedProject));
+		setState({
+			...state,
+			hasApplied: false,
+			role: null,
+		});
 	};
 
 	useEffect(() => {
@@ -145,7 +174,7 @@ function ProjectMain({ id }) {
 							</div>
 							<div className="d-flex align-items-center">
 								{userProfile &&
-									userProfile.username === project.creator &&
+									userProfile.username === project.creator.username &&
 									!modalLoading && (
 										<>
 											<button
@@ -166,7 +195,7 @@ function ProjectMain({ id }) {
 										</>
 									)}
 								{userProfile &&
-									userProfile.username !== project.creator &&
+									userProfile.username !== project.creator.username &&
 									!state.role &&
 									!modalLoading && (
 										<button
@@ -247,7 +276,6 @@ function ProjectMain({ id }) {
 					show={state.showUsersModal}
 					handleHide={handleUsersHide}
 					project={project}
-					profile={userProfile}
 				/>
 			)}
 		</>
