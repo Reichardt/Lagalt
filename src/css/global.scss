@@ -743,6 +743,21 @@ small {
 	}
 }
 
+.search-container {
+	z-index: 1150;
+}
+
+.search-overlay {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1100;
+	transition: opacity 500ms ease;
+}
+
 @media (min-width: 1200px) {
 	.container,
 	.container-lg,
