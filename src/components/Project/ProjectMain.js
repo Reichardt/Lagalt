@@ -247,6 +247,7 @@ function ProjectMain({ id }) {
 					show={state.showUsersModal}
 					handleHide={handleUsersHide}
 					project={project}
+					profile={userProfile}
 				/>
 			)}
 		</>
