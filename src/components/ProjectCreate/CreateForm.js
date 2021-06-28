@@ -116,6 +116,7 @@ function CreateForm({ progress }) {
 			project: {
 				title: state.title,
 				description: state.description,
+				imageURL: state.imgUrl,
 				repoUrl: state.repoUrl,
 				progressId: Number(state.progress),
 				skills,
