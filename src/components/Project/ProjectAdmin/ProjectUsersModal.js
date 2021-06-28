@@ -9,7 +9,7 @@ import {
 import ProjectUser from './ProjectUser';
 import { useKeycloak } from '../../../context/KeycloakContext';
 
-function ProjectUsersModal({ show, handleHide, project, profile }) {
+function ProjectUsersModal({ show, handleHide, project }) {
 	const { keyCloak } = useKeycloak();
 	const dispatch = useDispatch();
 	const [state, setState] = useState({
@@ -42,7 +42,7 @@ function ProjectUsersModal({ show, handleHide, project, profile }) {
 			users: [
 				...updatedUsers,
 				{
-					userId: profile.id,
+					userId: project.creator.id,
 					skills: [],
 					userProjectRoleId: 1,
 				},

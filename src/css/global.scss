@@ -434,6 +434,12 @@ small {
 		}
 	}
 
+	svg {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
 	.form-control {
 		&:focus {
 			box-shadow: none;
